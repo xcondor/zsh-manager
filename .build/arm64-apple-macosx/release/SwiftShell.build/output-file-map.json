@@ -1,0 +1,61 @@
+{
+  "": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/SwiftShell.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/SwiftShell.o",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/master.swiftdeps"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Bash.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Bash.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Bash~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Bash.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Bash.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Command.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Command.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Command~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Command.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Command.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Context.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Context.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Context~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Context.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Context.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Files.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Files.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Files~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Files.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Files.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/General/Array.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Array.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Array~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Array.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Array.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Process.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Process.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Process~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Process.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Process.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Lazy-split.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Lazy-split.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Lazy-split~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Lazy-split.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Lazy-split.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Stream.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Stream.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Stream~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Stream.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/Stream.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/String.swift": {
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/String.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/String~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/String.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/String.dia"
+  }
+}

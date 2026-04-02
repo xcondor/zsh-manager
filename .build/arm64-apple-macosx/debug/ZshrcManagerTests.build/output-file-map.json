@@ -1,0 +1,12 @@
+{
+  "": {
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/master.swiftdeps"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Tests/ZshrcManagerTests/CoreTests.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.dia"
+  }
+}

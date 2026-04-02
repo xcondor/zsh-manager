@@ -1,0 +1,30 @@
+{
+  "object" : {
+    "artifacts" : [
+
+    ],
+    "dependencies" : [
+      {
+        "basedOn" : null,
+        "packageRef" : {
+          "identity" : "swiftshell",
+          "kind" : "remoteSourceControl",
+          "location" : "https://github.com/kareman/SwiftShell",
+          "name" : "SwiftShell"
+        },
+        "state" : {
+          "checkoutState" : {
+            "revision" : "5b2207cd7177567e4efd9366d554c384037ef42f",
+            "version" : "5.1.1"
+          },
+          "name" : "sourceControlCheckout"
+        },
+        "subpath" : "SwiftShell"
+      }
+    ],
+    "prebuilts" : [
+
+    ]
+  },
+  "version" : 7
+}

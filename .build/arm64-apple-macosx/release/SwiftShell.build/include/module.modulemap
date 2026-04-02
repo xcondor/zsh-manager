@@ -1,0 +1,3 @@
+module SwiftShell {
+    header "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/release/SwiftShell.build/include/SwiftShell-Swift.h"
+}

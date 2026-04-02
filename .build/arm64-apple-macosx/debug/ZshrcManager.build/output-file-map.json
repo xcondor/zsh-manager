@@ -1,0 +1,187 @@
+{
+  "": {
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/master.swiftdeps"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/AliasManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/App.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ConfigAnalyzer.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/DiagnosticManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/EnvironmentDetector.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/LanguageManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PathManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PythonManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ServiceManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ShellManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/SnapshotManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TemplateManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TerminalManager.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/AliasListView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/DiagnosticView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EnvDetectionView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EssentialsView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/FunctionalListView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PathListView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PythonView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/ShellEditorView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/SnapshotView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TemplateView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TerminalView.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/UIComponents.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.dia"
+  },
+  "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/main.swift": {
+    "dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.d",
+    "object": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swift.o",
+    "swiftmodule": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main~partial.swiftmodule",
+    "swift-dependencies": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swiftdeps",
+    "diagnostics": "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.dia"
+  }
+}

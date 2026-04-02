@@ -1,0 +1,1625 @@
+{
+  "builtTestProducts" : [
+    {
+      "binaryPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.xctest/Contents/MacOS/ZshrcManagerPackageTests",
+      "packagePath" : "/Users/xingyc/PROJECTS/zshrc-manager",
+      "productName" : "ZshrcManagerPackageTests"
+    }
+  ],
+  "copyCommands" : {
+
+  },
+  "explicitTargetDependencyImportCheckingMode" : {
+    "none" : {
+
+    }
+  },
+  "generatedSourceTargetSet" : [
+
+  ],
+  "pluginDescriptions" : [
+
+  ],
+  "swiftCommands" : {
+    "C.SwiftShell-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/sources",
+      "importPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Bash.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Command.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Context.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Files.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/General/Array.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Process.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Lazy-split.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Stream.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/String.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "SwiftShell",
+      "moduleOutputPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/SwiftShell.swiftmodule",
+      "objects" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Bash.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Command.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Context.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Files.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Array.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Process.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Lazy-split.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Stream.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/String.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx10.13",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/include/SwiftShell-Swift.h",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-DDEBUG",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-suppress-warnings"
+      ],
+      "outputFileMapPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Bash.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Command.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Context.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Files.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Array.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Process.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Lazy-split.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Stream.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/String.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/SwiftShell.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Bash.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Command.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Context.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Files.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/General/Array.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Process.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Lazy-split.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Stream.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/String.swift"
+      ],
+      "tempsPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ZshrcManager-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/sources",
+      "importPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/AliasManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ConfigAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/DiagnosticManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/EnvironmentDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/LanguageManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PathManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PythonManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ServiceManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ShellManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/SnapshotManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TemplateManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TerminalManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/AliasListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/DiagnosticView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EnvDetectionView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EssentialsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/FunctionalListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PathListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PythonView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/ShellEditorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/SnapshotView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TemplateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TerminalView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/UIComponents.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/main.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/SwiftShell.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/sources"
+        }
+      ],
+      "isLibrary" : false,
+      "moduleName" : "ZshrcManager",
+      "moduleOutputPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManager.swiftmodule",
+      "objects" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swift.o",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-Xfrontend",
+        "-entry-point-function-name",
+        "-Xfrontend",
+        "ZshrcManager_main",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "zshrc_manager"
+      ],
+      "outputFileMapPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManager.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/AliasManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/App.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ConfigAnalyzer.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/DiagnosticManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/EnvironmentDetector.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/LanguageManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PathManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PythonManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ServiceManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ShellManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/SnapshotManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TemplateManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TerminalManager.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/AliasListView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/DiagnosticView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EnvDetectionView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EssentialsView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/FunctionalListView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PathListView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PythonView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/ShellEditorView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/SnapshotView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TemplateView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TerminalView.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/UIComponents.swift",
+        "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/main.swift"
+      ],
+      "tempsPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ZshrcManagerPackageTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/sources",
+      "importPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManagerTests.swiftmodule"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ZshrcManagerPackageTests",
+      "moduleOutputPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManagerPackageTests.swiftmodule",
+      "objects" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/runner.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-emit-objc-header",
+        "-emit-objc-header-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/include/ZshrcManagerPackageTests-Swift.h",
+        "-color-diagnostics",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "zshrc_manager"
+      ],
+      "outputFileMapPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManagerPackageTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift"
+      ],
+      "tempsPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build",
+      "wholeModuleOptimization" : false
+    },
+    "C.ZshrcManagerTests-arm64-apple-macosx15.0-debug.module" : {
+      "executable" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "fileList" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/sources",
+      "importPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "inputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Tests/ZshrcManagerTests/CoreTests.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/sources"
+        }
+      ],
+      "isLibrary" : true,
+      "moduleName" : "ZshrcManagerTests",
+      "moduleOutputPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManagerTests.swiftmodule",
+      "objects" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.swift.o"
+      ],
+      "otherArguments" : [
+        "-target",
+        "arm64-apple-macosx14.0",
+        "-incremental",
+        "-enable-batch-mode",
+        "-serialize-diagnostics",
+        "-index-store-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+        "-Onone",
+        "-enable-testing",
+        "-Xfrontend",
+        "-enable-cross-import-overlays",
+        "-j10",
+        "-DSWIFT_PACKAGE",
+        "-DDEBUG",
+        "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+        "-module-cache-path",
+        "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+        "-parseable-output",
+        "-parse-as-library",
+        "-color-diagnostics",
+        "-swift-version",
+        "5",
+        "-plugin-path",
+        "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+        "-sdk",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-F",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-I",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-L",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+        "-g",
+        "-Xcc",
+        "-isysroot",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+        "-Xcc",
+        "-F",
+        "-Xcc",
+        "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+        "-Xcc",
+        "-fPIC",
+        "-Xcc",
+        "-g",
+        "-package-name",
+        "zshrc_manager"
+      ],
+      "outputFileMapPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/output-file-map.json",
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules/ZshrcManagerTests.swiftmodule"
+        }
+      ],
+      "prepareForIndexing" : false,
+      "sources" : [
+        "/Users/xingyc/PROJECTS/zshrc-manager/Tests/ZshrcManagerTests/CoreTests.swift"
+      ],
+      "tempsPath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build",
+      "wholeModuleOptimization" : false
+    }
+  },
+  "swiftFrontendCommands" : {
+
+  },
+  "swiftTargetScanArgs" : {
+    "SwiftShell" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "SwiftShell",
+      "-c",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Bash.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Command.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Context.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Files.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/General/Array.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Process.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Lazy-split.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Stream.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/String.swift",
+      "-I",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx10.13",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/include/SwiftShell-Swift.h",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-DDEBUG",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-suppress-warnings",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ZshrcManager" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ZshrcManager",
+      "-package-name",
+      "zshrc_manager",
+      "-c",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/AliasManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/App.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ConfigAnalyzer.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/DiagnosticManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/EnvironmentDetector.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/LanguageManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PathManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PythonManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ServiceManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ShellManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/SnapshotManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TemplateManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TerminalManager.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/AliasListView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/DiagnosticView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EnvDetectionView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EssentialsView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/FunctionalListView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PathListView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PythonView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/ShellEditorView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/SnapshotView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TemplateView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TerminalView.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/UIComponents.swift",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/main.swift",
+      "-I",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-Xfrontend",
+      "-entry-point-function-name",
+      "-Xfrontend",
+      "ZshrcManager_main",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "zshrc_manager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ZshrcManagerPackageTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ZshrcManagerPackageTests",
+      "-package-name",
+      "zshrc_manager",
+      "-c",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift",
+      "-I",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-emit-objc-header",
+      "-emit-objc-header-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/include/ZshrcManagerPackageTests-Swift.h",
+      "-color-diagnostics",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "zshrc_manager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ],
+    "ZshrcManagerTests" : [
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc",
+      "-module-name",
+      "ZshrcManagerTests",
+      "-package-name",
+      "zshrc_manager",
+      "-c",
+      "/Users/xingyc/PROJECTS/zshrc-manager/Tests/ZshrcManagerTests/CoreTests.swift",
+      "-I",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/Modules",
+      "-target",
+      "arm64-apple-macosx14.0",
+      "-incremental",
+      "-enable-batch-mode",
+      "-serialize-diagnostics",
+      "-index-store-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/index/store",
+      "-Onone",
+      "-enable-testing",
+      "-Xfrontend",
+      "-enable-cross-import-overlays",
+      "-j10",
+      "-DSWIFT_PACKAGE",
+      "-DDEBUG",
+      "-DSWIFT_MODULE_RESOURCE_BUNDLE_UNAVAILABLE",
+      "-module-cache-path",
+      "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ModuleCache",
+      "-parseable-output",
+      "-parse-as-library",
+      "-color-diagnostics",
+      "-swift-version",
+      "5",
+      "-plugin-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing",
+      "-sdk",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-F",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-I",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-L",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/usr/lib",
+      "-g",
+      "-Xcc",
+      "-isysroot",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX26.1.sdk",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/Frameworks",
+      "-Xcc",
+      "-F",
+      "-Xcc",
+      "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/Library/PrivateFrameworks",
+      "-Xcc",
+      "-fPIC",
+      "-Xcc",
+      "-g",
+      "-package-name",
+      "zshrc_manager",
+      "-driver-use-frontend-path",
+      "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+    ]
+  },
+  "targetDependencyMap" : {
+    "SwiftShell" : [
+
+    ],
+    "ZshrcManager" : [
+      "SwiftShell"
+    ],
+    "ZshrcManagerPackageTests" : [
+      "ZshrcManagerTests",
+      "ZshrcManager",
+      "SwiftShell"
+    ],
+    "ZshrcManagerTests" : [
+      "ZshrcManager",
+      "SwiftShell"
+    ]
+  },
+  "testDiscoveryCommands" : {
+
+  },
+  "testEntryPointCommands" : {
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift" : {
+      "inputs" : [
+
+      ],
+      "outputs" : [
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift"
+        }
+      ]
+    }
+  },
+  "traitConfiguration" : {
+    "default" : {
+
+    }
+  },
+  "writeCommands" : {
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Bash.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Command.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Context.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Files.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/General/Array.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Process.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Lazy-split.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/Stream/Stream.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/checkouts/SwiftShell/Sources/SwiftShell/String.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/sources"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager-entitlement.plist" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<entitlement-plist>"
+        },
+        {
+          "kind" : "virtual",
+          "name" : "<com.apple.security.get-task-allow>"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager-entitlement.plist"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/AliasManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/App.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ConfigAnalyzer.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/DiagnosticManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/EnvironmentDetector.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/LanguageManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PathManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/PythonManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ServiceManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/ShellManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/SnapshotManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TemplateManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/TerminalManager.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/AliasListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/DiagnosticView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EnvDetectionView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/EssentialsView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/FunctionalListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PathListView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/PythonView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/ShellEditorView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/SnapshotView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TemplateView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/TerminalView.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/Views/UIComponents.swift"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Sources/ZshrcManager/main.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/sources"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Array.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Bash.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Command.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Context.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Files.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Lazy-split.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Process.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Stream.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/String.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.product/Objects.LinkFileList"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.derived/runner.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/sources"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.product/Objects.LinkFileList" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<link-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Array.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Bash.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Command.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Context.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Files.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Lazy-split.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Process.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/Stream.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/SwiftShell.build/String.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/AliasManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/App.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ConfigAnalyzer.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/DiagnosticView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvDetectionView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EnvironmentDetector.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/EssentialsView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/FunctionalListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/LanguageManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathListView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PathManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/PythonView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ServiceManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellEditorView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/ShellManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/SnapshotView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TemplateView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalManager.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/TerminalView.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/UIComponents.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManager.build/main.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.build/runner.swift.o"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/CoreTests.swift.o"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerPackageTests.product/Objects.LinkFileList"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/sources" : {
+      "alwaysOutOfDate" : false,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<sources-file-list>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Users/xingyc/PROJECTS/zshrc-manager/Tests/ZshrcManagerTests/CoreTests.swift"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/ZshrcManagerTests.build/sources"
+    },
+    "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt" : {
+      "alwaysOutOfDate" : true,
+      "inputs" : [
+        {
+          "kind" : "virtual",
+          "name" : "<swift-get-version>"
+        },
+        {
+          "kind" : "file",
+          "name" : "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc"
+        }
+      ],
+      "outputFilePath" : "/Users/xingyc/PROJECTS/zshrc-manager/.build/arm64-apple-macosx/debug/swift-version--58304C5D6DBC2206.txt"
+    }
+  }
+}
