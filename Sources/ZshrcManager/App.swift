@@ -17,14 +17,21 @@ struct ContentView: View {
     @StateObject private var terminalManager = TerminalManager()
     
     @State private var selection: String? = "Overview"
+    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     var body: some View {
-        NavigationSplitView {
-            SidebarView(selection: $selection, lang: lang)
-        } detail: {
-            mainContent
+        Group {
+            if !hasCompletedOnboarding {
+                OnboardingView(lang: lang)
+            } else {
+                NavigationSplitView {
+                    SidebarView(selection: $selection, lang: lang)
+                } detail: {
+                    mainContent
+                }
+                .navigationTitle("Zshrc Manager")
+            }
         }
-        .navigationTitle("Zshrc Manager")
         .environmentObject(lang)
         .onAppear {
             shellManager.start()
@@ -149,6 +156,44 @@ struct DetailView: View {
                     icon: "macwindow",
                     color: manager.isInstalled ? .blue : .orange
                 )
+                
+                let healthScore = manager.conflicts.isEmpty ? 100 : max(10, 100 - (manager.conflicts.count * 20))
+                GlassCard {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(lang.t("Health Score"))
+                                .font(.system(size: 14, weight: .bold))
+                                .foregroundColor(.secondary)
+                            Text("\(healthScore)")
+                                .font(.system(size: 40, weight: .black, design: .rounded))
+                                .foregroundColor(healthScore == 100 ? .green : .orange)
+                        }
+                        Spacer()
+                        if healthScore < 100 {
+                            Button(action: { selection = "FunctionalList" }) {
+                                Text(lang.t("Fix Issues to Improve Score"))
+                                    .font(.system(size: 13, weight: .bold))
+                                    .padding(.horizontal, 16)
+                                    .padding(.vertical, 8)
+                                    .background(Color.orange)
+                                    .foregroundColor(.white)
+                                    .cornerRadius(8)
+                            }
+                            .buttonStyle(.plain)
+                        } else {
+                            Image(systemName: "checkmark.seal.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(.green.opacity(0.8))
+                        }
+                    }
+                    .padding(20)
+                }
+                
+                HStack(spacing: 16) {
+                    QuickActionButton(title: lang.t("Quick_Add_Alias"), icon: "bolt.fill", color: .orange) { selection = "Aliases" }
+                    QuickActionButton(title: lang.t("Quick_Fix_Command"), icon: "folder.fill", color: .blue) { selection = "Path" }
+                    QuickActionButton(title: lang.t("Quick_Install_Env"), icon: "pyramid.fill", color: .green) { selection = "Essentials" }
+                }
                 
                 VStack(alignment: .leading, spacing: 20) {
                     if !manager.conflicts.isEmpty {
@@ -275,5 +320,33 @@ struct MetricRow: View {
         }
         .padding(.horizontal, 20)
         .padding(.vertical, 14)
+    }
+}
+
+struct QuickActionButton: View {
+    let title: String
+    let icon: String
+    let color: Color
+    let action: () -> Void
+    
+    var body: some View {
+        Button(action: action) {
+            VStack(spacing: 12) {
+                Image(systemName: icon)
+                    .font(.system(size: 24))
+                    .foregroundColor(color)
+                Text(title)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundColor(.primary)
+                    .multilineTextAlignment(.center)
+            }
+            .frame(maxWidth: .infinity)
+            .padding(.vertical, 20)
+            .padding(.horizontal, 10)
+            .background(Color.white.opacity(0.05))
+            .cornerRadius(12)
+            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.1), lineWidth: 1))
+        }
+        .buttonStyle(.plain)
     }
 }

@@ -84,6 +84,51 @@ class ServiceManager: ObservableObject {
             checkCommand: "which pnpm",
             installCommand: "curl -fsSL https://get.pnpm.io/install.sh | sh -",
             tips: "Advanced node package manager"
+        ),
+        EssentialService(
+            id: "bun",
+            name: "Bun",
+            icon: "bolt.fill",
+            description: "Fast all-in-one JS toolkit",
+            checkCommand: "which bun",
+            installCommand: "curl -fsSL https://bun.sh/install | bash",
+            tips: "Drop-in replacement for Node.js"
+        ),
+        EssentialService(
+            id: "golang",
+            name: "Go",
+            icon: "circle.grid.hex.fill",
+            description: "Go Language Environment",
+            checkCommand: "which go",
+            installCommand: "brew install go",
+            tips: "Build fast, reliable, and efficient software"
+        ),
+        EssentialService(
+            id: "deno",
+            name: "Deno",
+            icon: "leaf.arrow.triangle.circlepath",
+            description: "Modern JS/TS runtime",
+            checkCommand: "which deno",
+            installCommand: "curl -fsSL https://deno.land/install.sh | sh",
+            tips: "Secure by default runtime"
+        ),
+        EssentialService(
+            id: "gh",
+            name: "GitHub CLI",
+            icon: "network",
+            description: "GitHub on the command line",
+            checkCommand: "which gh",
+            installCommand: "brew install gh",
+            tips: "Bring pull requests and issues to your terminal"
+        ),
+        EssentialService(
+            id: "java",
+            name: "Java (OpenJDK)",
+            icon: "cup.and.saucer.fill",
+            description: "Java Development Kit",
+            checkCommand: "java -version",
+            installCommand: "brew install openjdk",
+            tips: "Standard platform for Java development"
         )
     ]
     

@@ -110,7 +110,7 @@ class TerminalManager: ObservableObject {
         env["PATH"] = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:" + (env["PATH"] ?? "")
         task.environment = env
         
-        task.arguments = ["-c", command]
+        task.arguments = ["-ilc", command]
         task.standardOutput = pipe
         task.standardError = pipe
         

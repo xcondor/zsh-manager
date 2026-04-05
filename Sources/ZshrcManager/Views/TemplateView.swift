@@ -10,7 +10,7 @@ struct TemplateView: View {
     @State private var wizardResults: [String: WizardStatus] = [:]
     
     enum WizardStatus {
-        case idle, detecting, configuring, verifying, success(String), failure(String)
+        case idle, detecting, configuring, verifying, success(String), failure(String), notInstalled
     }
     
     var body: some View {
@@ -23,11 +23,7 @@ struct TemplateView: View {
                     color: .purple
                 )
                 
-                if manager.templates.filter({ template in
-                    let status = wizardResults[template.id] ?? (template.checkApplied(aliasManager: aliasManager, pathManager: pathManager) ? .success(lang.t("Ready")) : .idle)
-                    if case .failure(let msg) = status, msg == lang.t("Not Found") { return false }
-                    return true
-                }).isEmpty {
+                if manager.templates.isEmpty {
                     VStack(spacing: 20) {
                         Image(systemName: "circle.slash")
                             .font(.system(size: 40))
@@ -40,19 +36,15 @@ struct TemplateView: View {
                 } else {
                     LazyVGrid(columns: [GridItem(.adaptive(minimum: 350))], spacing: 20) {
                         ForEach(manager.templates) { template in
-                            let status = wizardResults[template.id] ?? (template.checkApplied(aliasManager: aliasManager, pathManager: pathManager) ? .success(lang.t("Ready")) : .idle)
+                            let status = wizardResults[template.id] ?? .detecting
                             
-                            if case .failure(let msg) = status, msg == lang.t("Not Found") {
-                                // Skip
-                            } else {
-                                WizardCard(
-                                    template: template,
-                                    status: status,
-                                    lang: lang,
-                                    isKeyMissing: checkKeyMissing(for: template),
-                                    onAction: { runWizard(for: template) }
-                                )
-                            }
+                            WizardCard(
+                                template: template,
+                                status: status,
+                                lang: lang,
+                                isKeyMissing: checkKeyMissing(for: template),
+                                onAction: { runWizard(for: template) }
+                            )
                         }
                     }
                 }
@@ -89,7 +81,7 @@ struct TemplateView: View {
         terminal.runCommand(template.checkCommand, silent: true) { output in
             DispatchQueue.main.async {
                 if output.isEmpty || output.contains("not found") {
-                    wizardResults[template.id] = .failure(lang.t("Not Found"))
+                    wizardResults[template.id] = .notInstalled
                 } else {
                     if template.checkApplied(aliasManager: aliasManager, pathManager: pathManager) {
                         wizardResults[template.id] = .verifying
@@ -116,7 +108,7 @@ struct TemplateView: View {
         
         terminal.runCommand(template.checkCommand, silent: true) { output in
             if output.isEmpty || output.contains("not found") {
-                wizardResults[template.id] = .failure(lang.t("Not Found"))
+                DispatchQueue.main.async { wizardResults[template.id] = .notInstalled }
                 return
             }
             
@@ -127,6 +119,23 @@ struct TemplateView: View {
                 }
                 for path in template.paths {
                     pathManager.addPath(path)
+                }
+                
+                for script in template.initScripts {
+                    let envPath = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent(".zsh_manager/env.zsh")
+                    let content = "\n# Managed by Zshrc Manager: \(template.name)\n\(script)\n"
+                    let firstLine = script.components(separatedBy: "\n").first ?? script
+                    if let current = try? String(contentsOf: envPath, encoding: .utf8), current.contains(firstLine) { continue }
+                    
+                    if FileManager.default.fileExists(atPath: envPath.path) {
+                        if let handle = try? FileHandle(forWritingTo: envPath) {
+                            handle.seekToEndOfFile()
+                            handle.write(content.data(using: .utf8)!)
+                            handle.closeFile()
+                        }
+                    } else {
+                        try? content.write(to: envPath, atomically: true, encoding: .utf8)
+                    }
                 }
                 
                 wizardResults[template.id] = .verifying
@@ -162,8 +171,8 @@ struct WizardCard: View {
                     }
                     
                     VStack(alignment: .leading, spacing: 4) {
-                        Text(template.name).font(.system(size: 16, weight: .bold))
-                        Text(template.description).font(.system(size: 11)).foregroundColor(.secondary).lineLimit(2)
+                        Text(lang.t(template.name)).font(.system(size: 16, weight: .bold))
+                        Text(lang.t(template.description)).font(.system(size: 11)).foregroundColor(.secondary).lineLimit(2)
                     }
                     Spacer()
                     StatusIndicator(status: status)
@@ -194,9 +203,11 @@ struct WizardCard: View {
                         }
                         .padding(.vertical, 8)
                     } else if case .failure = status {
-                        GlowButton(label: lang.t("Configure"), icon: "arrow.clockwise", color: .purple, action: onAction)
+                        GlowButton(label: lang.t("Retry"), icon: "arrow.clockwise", color: .red, action: onAction)
+                    } else if case .notInstalled = status {
+                        Text(lang.t("Please install tool first")).font(.system(size: 11)).foregroundColor(.secondary)
                     } else {
-                        GlowButton(label: lang.t("Configure"), icon: "wand.and.stars", color: .purple, action: onAction)
+                        GlowButton(label: lang.t("Auto-Configure"), icon: "wand.and.stars", color: .purple, action: onAction)
                     }
                 }
             }
@@ -213,7 +224,8 @@ struct WizardCard: View {
     
     var statusText: String {
         switch status {
-        case .idle: return "IDLE"
+        case .idle: return lang.t("Detected, Not Configured")
+        case .notInstalled: return lang.t("Not Installed")
         case .detecting: return lang.t("Detecting")
         case .configuring: return lang.t("Configuring")
         case .verifying: return lang.t("Verifying")
@@ -225,8 +237,9 @@ struct WizardCard: View {
     var statusColor: Color {
         switch status {
         case .detecting, .configuring, .verifying: return .orange
+        case .idle: return .blue
         case .success: return .green
-        case .failure: return .red
+        case .failure, .notInstalled: return .red
         default: return .secondary
         }
     }
@@ -245,8 +258,9 @@ struct StatusIndicator: View {
     var color: Color {
         switch status {
         case .detecting, .configuring, .verifying: return .orange
+        case .idle: return .blue
         case .success: return .green
-        case .failure: return .red
+        case .failure, .notInstalled: return .red
         default: return .gray.opacity(0.3)
         }
     }

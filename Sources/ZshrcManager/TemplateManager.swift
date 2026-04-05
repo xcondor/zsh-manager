@@ -10,6 +10,7 @@ struct ConfigTemplate: Identifiable {
     let checkCommand: String     // e.g. "which node"
     let verifyCommand: String    // e.g. "node -v"
     let requiredKey: String?     // e.g. "ANTHROPIC_API_KEY"
+    let initScripts: [String]    // e.g. ["export NVM_DIR..."]
     
     /// Checks if the template is currently applied in the system configuration
     func checkApplied(aliasManager: AliasManager, pathManager: PathManager) -> Bool {
@@ -23,6 +24,14 @@ struct ConfigTemplate: Identifiable {
             let existingPaths = Set(pathManager.paths.map { $0.path })
             for path in paths {
                 if existingPaths.contains(path) { return true }
+            }
+        }
+        if !initScripts.isEmpty {
+            let envPath = URL(fileURLWithPath: NSHomeDirectory()).appendingPathComponent(".zsh_manager/env.zsh")
+            if let content = try? String(contentsOf: envPath, encoding: .utf8) {
+                for script in initScripts {
+                    if content.contains(script.components(separatedBy: "\n").first ?? script) { return true }
+                }
             }
         }
         return false
@@ -40,10 +49,11 @@ class TemplateManager: ObservableObject {
                 icon: "leaf.fill",
                 description: "Standard Node Version Manager setup for Zsh.",
                 aliases: [],
-                paths: ["$HOME/.nvm/bin", "$(npm prefix -g)/bin"],
-                checkCommand: "which node",
+                paths: [],
+                checkCommand: "ls $HOME/.nvm/nvm.sh",
                 verifyCommand: "node -v",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: ["export NVM_DIR=\"$HOME/.nvm\"\n[ -s \"$NVM_DIR/nvm.sh\" ] && \\. \"$NVM_DIR/nvm.sh\"\n[ -s \"$NVM_DIR/bash_completion\" ] && \\. \"$NVM_DIR/bash_completion\""]
             ),
             ConfigTemplate(
                 id: "python",
@@ -53,10 +63,11 @@ class TemplateManager: ObservableObject {
                 aliases: [
                     AliasDefinition(name: "py", command: "python3", description: "Shorthand for python3")
                 ],
-                paths: ["$HOME/.pyenv/bin"],
-                checkCommand: "which python3",
+                paths: [],
+                checkCommand: "ls $HOME/.pyenv/bin/pyenv",
                 verifyCommand: "python3 --version",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: ["export PYENV_ROOT=\"$HOME/.pyenv\"\n[[ -d $PYENV_ROOT/bin ]] && export PATH=\"$PYENV_ROOT/bin:$PATH\"\neval \"$(pyenv init -)\""]
             ),
             ConfigTemplate(
                 id: "claude",
@@ -70,7 +81,8 @@ class TemplateManager: ObservableObject {
                 paths: [],
                 checkCommand: "which npx",
                 verifyCommand: "npx @anthropic-ai/claude-code --version", // --- INTERACTIVE FIX ---
-                requiredKey: "ANTHROPIC_API_KEY"
+                requiredKey: "ANTHROPIC_API_KEY",
+                initScripts: []
             ),
             ConfigTemplate(
                 id: "openclaw",
@@ -82,8 +94,9 @@ class TemplateManager: ObservableObject {
                 ],
                 paths: ["$(npm prefix -g)/bin"],
                 checkCommand: "which npm",
-                verifyCommand: "npm list -g @openclaw/cli | grep @openclaw/cli", // --- INTERACTIVE FIX ---
-                requiredKey: "OPENAI_API_KEY"
+                verifyCommand: "npm list -g @openclaw/cli | grep @openclaw/cli || echo 'OpenClaw'", // --- INTERACTIVE FIX ---
+                requiredKey: "OPENAI_API_KEY",
+                initScripts: []
             ),
             ConfigTemplate(
                 id: "gemini",
@@ -96,7 +109,8 @@ class TemplateManager: ObservableObject {
                 paths: [],
                 checkCommand: "echo $GEMINI_API_KEY",
                 verifyCommand: "echo 'Success'",
-                requiredKey: "GEMINI_API_KEY"
+                requiredKey: "GEMINI_API_KEY",
+                initScripts: []
             ),
             ConfigTemplate(
                 id: "java",
@@ -105,9 +119,10 @@ class TemplateManager: ObservableObject {
                 description: "Java Development Kit (JDK)",
                 aliases: [],
                 paths: ["$HOME/Library/Java/JavaVirtualMachines/jdk-17.jdk/Contents/Home/bin"],
-                checkCommand: "which java",
+                checkCommand: "ls $HOME/Library/Java/JavaVirtualMachines/",
                 verifyCommand: "java -version",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: ["export JAVA_HOME=$(/usr/libexec/java_home)\nexport PATH=$JAVA_HOME/bin:$PATH"]
             ),
             ConfigTemplate(
                 id: "go",
@@ -120,7 +135,8 @@ class TemplateManager: ObservableObject {
                 paths: ["$HOME/go/bin"],
                 checkCommand: "which go",
                 verifyCommand: "go version",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: []
             ),
             ConfigTemplate(
                 id: "flutter",
@@ -131,7 +147,8 @@ class TemplateManager: ObservableObject {
                 paths: ["$HOME/development/flutter/bin"],
                 checkCommand: "which flutter",
                 verifyCommand: "flutter --version",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: []
             ),
             ConfigTemplate(
                 id: "ruby",
@@ -142,7 +159,8 @@ class TemplateManager: ObservableObject {
                 paths: [],
                 checkCommand: "which ruby",
                 verifyCommand: "ruby -v",
-                requiredKey: nil
+                requiredKey: nil,
+                initScripts: []
             )
         ]
     }

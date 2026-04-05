@@ -28,7 +28,7 @@ struct FunctionalListView: View {
                                     Image(systemName: "doc.text.magnifyingglass")
                                         .font(.system(size: 32))
                                         .foregroundColor(.secondary.opacity(0.3))
-                                    Text("No functional insights detected yet.")
+                                    Text(lang.t("No functional insights detected yet."))
                                         .font(.system(size: 13))
                                         .foregroundColor(.secondary)
                                 }

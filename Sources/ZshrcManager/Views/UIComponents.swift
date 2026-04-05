@@ -204,6 +204,7 @@ struct CustomTextField: View {
 }
 struct ConfigInsightRow: View {
     let insight: ConfigInsight
+    @EnvironmentObject var lang: LanguageManager
     
     var body: some View {
         HStack(spacing: 16) {
@@ -213,7 +214,7 @@ struct ConfigInsightRow: View {
             }
             
             VStack(alignment: .leading, spacing: 2) {
-                Text(insight.description)
+                Text(lang.t(insight.description))
                     .font(.system(size: 13, weight: .bold))
                 Text(insight.content)
                     .font(.system(size: 10, design: .monospaced))
@@ -223,7 +224,7 @@ struct ConfigInsightRow: View {
             
             Spacer()
             
-            Text(insight.category.uppercased())
+            Text(lang.t(insight.category).uppercased())
                 .font(.system(size: 8, weight: .black))
                 .padding(.horizontal, 6).padding(.vertical, 2)
                 .background(Color.secondary.opacity(0.1))
