@@ -39,7 +39,7 @@ class LanguageManager: ObservableObject {
         "Injection Desc": [.en: "Monitoring ~/.zshrc for local management", .zh: "监控 ~/.zshrc 以进行本地化管理"],
         "System Metrics": [.en: "System Metrics", .zh: "系统指标"],
         "Environment Detection": [.en: "Environment Detection", .zh: "环境检测"],
-        "Functional List": [.en: "Functional List", .zh: "功能详情清单"],
+        "Functional List": [.en: "Functional List", .zh: "功能清单"],
         "Conflict Alerts": [.en: "Configuration Conflict Alerts", .zh: "配置文件冲突提示"],
         "Duplicate Variable": [.en: "Duplicate Variable", .zh: "变量定义重复"],
         "Duplicate Alias": [.en: "Duplicate Alias", .zh: "别名定义重复"],

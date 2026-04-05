@@ -96,12 +96,21 @@ class ServiceManager: ObservableObject {
             var newlyInstalled: Set<String> = []
             let homeDir = FileManager.default.homeDirectoryForCurrentUser.path
             
+            // Set up context with full PATH
+            var context = CustomContext(main)
+            let homebrewPath = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            if let existingPath = context.env["PATH"] {
+                context.env["PATH"] = "\(homebrewPath):\(existingPath)"
+            } else {
+                context.env["PATH"] = homebrewPath
+            }
+            
             for service in self.services {
                 // Expand ~ to HOME if present
                 let cmd = service.checkCommand.replacingOccurrences(of: "~", with: homeDir)
                 
                 // Run check command via bash to support existence tests (ls, [ -d ... ])
-                let res = SwiftShell.run("/bin/bash", "-c", cmd)
+                let res = context.run("/bin/bash", "-c", cmd)
                 if res.exitcode == 0 {
                     newlyInstalled.insert(service.id)
                 }
@@ -119,7 +128,15 @@ class ServiceManager: ObservableObject {
         
         DispatchQueue.global(qos: .userInitiated).async {
             // Run the install command via shell
-            let context = CustomContext()
+            // Run the install command via shell with full Homebrew PATH
+            var context = CustomContext(main)
+            let homebrewPath = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            if let existingPath = context.env["PATH"] {
+                context.env["PATH"] = "\(homebrewPath):\(existingPath)"
+            } else {
+                context.env["PATH"] = homebrewPath
+            }
+            
             let process = context.runAsync("/bin/bash", "-c", service.installCommand)
             
             process.onCompletion { res in

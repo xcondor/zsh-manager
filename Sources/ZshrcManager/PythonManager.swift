@@ -80,7 +80,13 @@ class PythonManager: ObservableObject {
         installationOutput = "Starting installation of Python \(version)...\n"
         
         DispatchQueue.global(qos: .userInitiated).async {
-            var context = CustomContext()
+            var context = CustomContext(main)
+            let homebrewPath = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            if let existingPath = context.env["PATH"] {
+                context.env["PATH"] = "\(homebrewPath):\(existingPath)"
+            } else {
+                context.env["PATH"] = homebrewPath
+            }
             
             // Apply mirror if selected
             if let mirror = self.selectedMirror {
