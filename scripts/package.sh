@@ -42,11 +42,24 @@ else
     <string>$APP_NAME</string>
     <key>CFBundlePackageType</key>
     <string>APPL</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon.icns</string>
     <key>LSMinimumSystemVersion</key>
     <string>14.0</string>
 </dict>
 </plist>
 EOF
+fi
+
+# 4.5 Copy Icon
+echo "🖼️ Copying app icon..."
+if [ -f "Resources/AppIcon.icns" ]; then
+    cp "Resources/AppIcon.icns" "$APP_BUNDLE/Contents/Resources/"
+else
+    echo "⚠️ AppIcon.icns not found! Generating now..."
+    chmod +x scripts/generate_icons.sh
+    ./scripts/generate_icons.sh
+    cp "Resources/AppIcon.icns" "$APP_BUNDLE/Contents/Resources/"
 fi
 
 # 5. Build DMG

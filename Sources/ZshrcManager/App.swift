@@ -32,6 +32,7 @@ struct ContentView: View {
                 .navigationTitle("Zshrc Manager")
             }
         }
+        .frame(minWidth: 1100, minHeight: 750)
         .environmentObject(lang)
         .onAppear {
             shellManager.start()
