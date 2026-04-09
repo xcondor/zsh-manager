@@ -18,20 +18,21 @@ autoreleasepool {
             let contentView = ContentView()
             
             // Create the window and set the content view.
+            // Create the window with a simplified style mask to avoid layout loops
             let window = NSWindow(
-                contentRect: NSRect(x: 0, y: 0, width: 1000, height: 650),
-                styleMask: [.titled, .closable, .miniaturizable, .resizable, .fullSizeContentView],
+                contentRect: NSRect(x: 0, y: 0, width: 1100, height: 750),
+                styleMask: [.titled, .closable, .miniaturizable, .resizable],
                 backing: .buffered, defer: false)
             
             window.center()
-            window.titlebarAppearsTransparent = true
-            window.titleVisibility = .hidden
-            window.isMovableByWindowBackground = true
-            
-            window.contentView = NSHostingView(rootView: contentView)
+            window.title = "Zshrc Manager"
+            window.contentView = NSHostingView(rootView: ContentView())
             window.makeKeyAndOrderFront(nil)
             
             self.window = window
+            
+            // Bring the app to the front (Critical for visibility)
+            NSApp.activate(ignoringOtherApps: true)
             
             // Set up menus for Copy/Paste support
             self.setupMenu()

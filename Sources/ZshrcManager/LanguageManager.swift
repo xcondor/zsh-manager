@@ -13,8 +13,8 @@ class LanguageManager: ObservableObject {
         }
     }
     
-    // Translations Dictionary
-    private let translations: [String: [Language: String]] = [
+    // Translations Dictionary (Static to avoid AttributeGraph cycles)
+    private static let translations: [String: [Language: String]] = [
         "Status_Success": [.en: "Installation Successful!", .zh: "注入成功！"],
         "Status_Failed": [.en: "Operation Failed", .zh: "操作失败"],
         "Status_Uninstall": [.en: "Uninstalled from .zshrc", .zh: "已从 .zshrc 中卸载"],
@@ -26,6 +26,7 @@ class LanguageManager: ObservableObject {
         "Environments": [.en: "Environments", .zh: "一键环境安装 (Dev Tools)"],
         "Config Doctor": [.en: "Config Doctor", .zh: "环境修复 (一键扫描)"],
         "Snapshots": [.en: "Snapshots", .zh: "安全备份 (时光机)"],
+        "Plugins": [.en: "Plugins", .zh: "插件市场 (Store)"],
         "Settings & Tools": [.en: "Settings & Tools", .zh: "实验室与高级工具"],
         "General": [.en: "General", .zh: "系统核心功能"],
         
@@ -114,6 +115,43 @@ class LanguageManager: ObservableObject {
         "Add Path": [.en: "Add Path", .zh: "添加路径"],
         "Path does not exist": [.en: "Path does not exist", .zh: "路径不存在"],
         "Drag rows to reorder": [.en: "Drag rows to reorder priority", .zh: "拖拽行以调整优先级"],
+        "Live Analysis": [.en: "Live Analysis", .zh: "实时会话分析"],
+        "system": [.en: "System", .zh: "系统路径"],
+        "managed": [.en: "Managed", .zh: "工具注入"],
+        "user": [.en: "External", .zh: "用户手动"],
+        "Drag_to_prioritize": [.en: "Drag to prioritize (Top-down)", .zh: "拖拽以调整执行优先级 (由上至下)"],
+        "Configure_Shortcut_Desc": [.en: "Configure command shortcut", .zh: "配置终端命令快捷方式"],
+        "Edit_Alias": [.en: "Edit Alias", .zh: "编辑别名"],
+        "Dynamic_Shell_Expression": [.en: "Dynamic Shell Expression", .zh: "动态 Shell 表达式工具"],
+        "Redundant": [.en: "Redundant", .zh: "冗余 (被覆盖)"],
+        "Shadowed": [.en: "Shadowed", .zh: "优先级较低"],
+        "Refresh Live Path": [.en: "Refresh Live Path", .zh: "刷新实时状态"],
+        "Priority Hierarchy": [.en: "Priority Hierarchy", .zh: "执行优先级层级"],
+        "Live_Analysis_Desc": [.en: "Live view of your current shell's PATH hierarchy", .zh: "实时查看您当前终端会话中的 PATH 层级结构"],
+        
+        // AI Assistant
+        "AI Assistant": [.en: "AI Assistant", .zh: "AI 助手"],
+        "Ask AI to generate command": [.en: "Ask AI to generate a complex command from Chinese", .zh: "使用中文描述您的需求，让 AI 生成命令"],
+        "Type your requirement here": [.en: "e.g. Find files larger than 100MB", .zh: "例如：查找大于 100MB 的文件..."],
+        "Generate Command": [.en: "Generate", .zh: "生成命令"],
+        "AI is thinking": [.en: "AI is thinking...", .zh: "AI 正在思考..."],
+        "Save as Alias": [.en: "Save as Alias", .zh: "保存为别名"],
+        "Try in Terminal": [.en: "Try in Terminal", .zh: "在终端尝试"],
+        "AI Settings": [.en: "AI Settings", .zh: "AI 助手设置"],
+        "API Key Required": [.en: "API Key Required", .zh: "需要配置 API Key"],
+        "Enter your API Key": [.en: "Enter your API Key", .zh: "在此输入您的 API Key"],
+        "API Provider": [.en: "API Provider", .zh: "API 提供商"],
+        
+        // Diagnostic Engine
+        "Health Score": [.en: "Configuration Health", .zh: "配置健康状态评分"],
+        "Scan Results": [.en: "Diagnostic Report", .zh: "全方位诊断报告"],
+        "Critical": [.en: "Critical", .zh: "高危风险"],
+        "Warning": [.en: "Warning", .zh: "性能警告"],
+        "Suggestion": [.en: "Suggestion", .zh: "修复建议"],
+        "Fix Now": [.en: "Fix Now", .zh: "立即修复"],
+        "No issues found": [.en: "Your Zshrc is healthy!", .zh: "您的配置非常完美！"],
+        "Start Checkup": [.en: "Scan Zshrc", .zh: "开始深度扫描"],
+        "Rules Scanned": [.en: "Rules Scanned", .zh: "项检查规则已执行"],
         
         // Environment Detection
         "Environment Status": [.en: "Environment Status", .zh: "开发环境状态"],
@@ -165,6 +203,18 @@ class LanguageManager: ObservableObject {
         "OpenClaw": [.en: "OpenClaw", .zh: "OpenClaw"],
         "Gemini CLI": [.en: "Gemini CLI", .zh: "Gemini CLI"],
         
+        // Plugins
+        "Plugin Store Desc": [.en: "Enhance your shell with visual plugins", .zh: "可视化增强您的终端功能"],
+        "Installed": [.en: "Installed", .zh: "已安装"],
+        "Plugin_Not_Installed": [.en: "Not Installed", .zh: "未安装"],
+        "Active": [.en: "Active", .zh: "运行中"],
+        "Installing...": [.en: "Installing...", .zh: "正在安装..."],
+        "Install Plugin": [.en: "Install", .zh: "安装插件"],
+        "Toggle Plugin": [.en: "Toggle", .zh: "启用/禁用"],
+        "Plugin_Autosuggestions_Desc": [.en: "Fish-like autosuggestions for zsh", .zh: "类似 Fish 的实时命令建议"],
+        "Plugin_SyntaxHighlighting_Desc": [.en: "Fish-like syntax highlighting for zsh", .zh: "终端命令实时高亮 (绿/红)"],
+        "Plugin_FzfTab_Desc": [.en: "Better completion menu with fzf", .zh: "使用 fzf 升级 Tab 补全菜单"],
+        
         // Terminal Test Lab
         "Test Lab": [.en: "Test Lab", .zh: "测试实验室"],
         "Console Output": [.en: "Console Output", .zh: "控制台输出"],
@@ -178,7 +228,6 @@ class LanguageManager: ObservableObject {
         "Detecting": [.en: "Detecting tool...", .zh: "正在探测工具..."],
         "Configuring": [.en: "Applying configs...", .zh: "正在应用配置..."],
         "Verifying": [.en: "Verifying health...", .zh: "正在验证健康状况..."],
-        "API Key Required": [.en: "API Key Required", .zh: "⚠️ 缺少 API Key"],
         "Key Missing Desc": [.en: "Set your API Key in the Aliases page to enable this tool.", .zh: "请前往“别名”页面设置您的真实 API Key 以启用此工具。"],
         
         // Missing Overview Strings
@@ -187,7 +236,6 @@ class LanguageManager: ObservableObject {
         "System Fully Managed": [.en: "System Fully Managed", .zh: "系统已完全受控"],
         "Bridge Status": [.en: "Bridge Status", .zh: "通信桥接状态"],
         "Zsh communication health": [.en: "Zsh communication health", .zh: "Zsh 通信健康状况"],
-        "Active": [.en: "Active", .zh: "运行中"],
         "Disabled": [.en: "Disabled", .zh: "已禁用"],
         "Ready to use": [.en: "Ready to use", .zh: "准备就绪"],
         "Analyzing System Health...": [.en: "Analyzing System Health...", .zh: "正在分析系统健康状况..."],
@@ -231,7 +279,6 @@ class LanguageManager: ObservableObject {
         "Quick_Add_Alias": [.en: "Create Shortcut", .zh: "添加快捷指令"],
         "Quick_Fix_Command": [.en: "Fix PATH Issues", .zh: "修复找不到命令"],
         "Quick_Install_Env": [.en: "Install Dev Tools", .zh: "安装开发环境"],
-        "Health Score": [.en: "Health Score", .zh: "系统健康分"],
         "Fix Issues to Improve Score": [.en: "Fix Issues to Improve Score", .zh: "修复问题以提升全系统健康分"],
         "Refresh_Reminder": [.en: "Changes Saved! Launch a new terminal to see them:", .zh: "配置已无缝保存！启动一个全新终端体验："],
         "Launch_Terminal": [.en: "Launch Fresh Terminal", .zh: "一键呼出新终端"],
@@ -356,24 +403,18 @@ class LanguageManager: ObservableObject {
     ]
 
     init() {
-        // 1. Try to load saved language
+        // Simple initialization to avoid startup race conditions
         if let saved = UserDefaults.standard.string(forKey: "selectedLanguage"),
            let lang = Language(rawValue: saved) {
             self.currentLanguage = lang
         } else {
-            // 2. Fallback to system auto-detection
-            let languageCode = Locale.current.language.languageCode?.identifier ?? "en"
-            if languageCode.contains("zh") {
-                self.currentLanguage = .zh
-            } else {
-                self.currentLanguage = .en
-            }
+            self.currentLanguage = .en
         }
     }
 
     func t(_ key: String) -> String {
-        guard let entry = translations[key] else {
-            return key // Return key if translation missing
+        guard let entry = Self.translations[key] else {
+            return key
         }
         return entry[currentLanguage] ?? key
     }

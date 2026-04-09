@@ -149,6 +149,47 @@ class ShellManager: ObservableObject {
         }
     }
     
+    // --- Phase 3.0: 自动修复能力 ---
+    
+    func commentLine(at index: Int) {
+        guard index >= 0 && index < configLines.count else { return }
+        configLines[index].isCommented = true
+        saveConfig()
+    }
+    
+    func appendLine(_ content: String, isManaged: Bool = true) {
+        let newLine = ConfigLine(content: content, isCommented: false, isManagerInjected: isManaged)
+        configLines.append(newLine)
+        saveConfig()
+    }
+    
+    func saveConfig() {
+        let actualPath = currentShellPath
+        guard !actualPath.isEmpty else { return }
+        
+        // 1. 安全备份
+        let backupPath = actualPath + ".doctor.bak"
+        try? fileManager.copyItem(atPath: actualPath, toPath: backupPath)
+        
+        // 2. 序列化内容
+        let content = configLines.map { line in
+            if line.isCommented {
+                return "# " + line.content
+            } else {
+                return line.content
+            }
+        }.joined(separator: "\n")
+        
+        // 3. 写入文件
+        do {
+            try content.write(toFile: actualPath, atomically: true, encoding: .utf8)
+            // 重新加载以触发 UI 更新
+            loadConfigLines()
+        } catch {
+            print("Failed to save config: \(error)")
+        }
+    }
+    
     func toggleLine(id: UUID) {
         if let index = configLines.firstIndex(where: { $0.id == id }) {
             configLines[index].isCommented.toggle()
@@ -276,6 +317,7 @@ class ShellManager: ObservableObject {
                 [[ -f ~/.zsh_manager/aliases.zsh ]] && source ~/.zsh_manager/aliases.zsh
                 [[ -f ~/.zsh_manager/env.zsh ]] && source ~/.zsh_manager/env.zsh
                 [[ -f ~/.zsh_manager/paths.zsh ]] && source ~/.zsh_manager/paths.zsh
+                [[ -f ~/.zsh_manager/plugins.zsh ]] && source ~/.zsh_manager/plugins.zsh
                 """
                 try initialContent.write(to: mainZshPath, atomically: true, encoding: .utf8)
             }

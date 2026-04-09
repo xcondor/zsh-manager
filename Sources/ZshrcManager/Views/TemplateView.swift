@@ -240,7 +240,6 @@ struct WizardCard: View {
         case .idle: return .blue
         case .success: return .green
         case .failure, .notInstalled: return .red
-        default: return .secondary
         }
     }
 }
@@ -261,7 +260,6 @@ struct StatusIndicator: View {
         case .idle: return .blue
         case .success: return .green
         case .failure, .notInstalled: return .red
-        default: return .gray.opacity(0.3)
         }
     }
 }

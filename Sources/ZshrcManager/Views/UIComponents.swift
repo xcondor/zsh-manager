@@ -2,17 +2,17 @@ import SwiftUI
 
 /// Premium UI Components: Glassmorphism, Hub-style accents
 struct GlassCard<Content: View>: View {
-    let content: Content
+    let content: () -> Content
     var isSubtle: Bool = false
     
-    init(isSubtle: Bool = false, @ViewBuilder content: () -> Content) {
-        self.content = content()
+    init(isSubtle: Bool = false, @ViewBuilder content: @escaping () -> Content) {
+        self.content = content
         self.isSubtle = isSubtle
     }
     
     var body: some View {
         VStack(spacing: 0) {
-            content
+            content()
         }
         .background(
             Group {
@@ -24,7 +24,6 @@ struct GlassCard<Content: View>: View {
             }
         )
         .cornerRadius(12)
-        // Premium 1px Inner Border
         .overlay(
             RoundedRectangle(cornerRadius: 12)
                 .stroke(
@@ -87,8 +86,10 @@ struct StatusRow: View {
                         .frame(width: 8, height: 8)
                         .opacity(pulse)
                         .onAppear {
-                            withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
-                                pulse = 0.2
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                                withAnimation(.easeInOut(duration: 1.2).repeatForever(autoreverses: true)) {
+                                    pulse = 0.2
+                                }
                             }
                         }
                 }

@@ -3,7 +3,10 @@ import SwiftUI
 struct AliasListView: View {
     @ObservedObject var manager: AliasManager
     @ObservedObject var lang: LanguageManager
+    @StateObject private var aiManager = AIManager()
+    
     @State private var showingAddPopover = false
+    @State private var showingAIGenerator = false
     @State private var editingAlias: AliasDefinition? = nil
     
     @State private var newName = ""
@@ -56,8 +59,14 @@ struct AliasListView: View {
                     HStack {
                         ModernSectionHeader(title: lang.t("Active Aliases"))
                         Spacer()
-                        GlowButton(label: lang.t("Add Alias"), icon: "plus.circle.fill", color: .orange) {
-                            showingAddPopover.toggle()
+                        HStack(spacing: 12) {
+                            GlowButton(label: lang.t("AI Assistant"), icon: "sparkles", color: .indigo, isSubtle: true) {
+                                showingAIGenerator.toggle()
+                            }
+                            
+                            GlowButton(label: lang.t("Add Alias"), icon: "plus.circle.fill", color: .orange) {
+                                showingAddPopover.toggle()
+                            }
                         }
                     }
                     
@@ -77,12 +86,12 @@ struct AliasListView: View {
                             
                             ScrollView(.horizontal, showsIndicators: true) {
                                 HStack(spacing: 16) {
+                                    QuickPresetAliasButton(title: lang.t("Clear Trash"), command: "rm -rf ~/.Trash/*") { manager.addAlias(name: "empty", command: "rm -rf ~/.Trash/*", description: lang.t("Empty Trash Bin")) }
+                                    QuickPresetAliasButton(title: lang.t("My Public IP"), command: "curl ifconfig.me") { manager.addAlias(name: "myip", command: "curl ifconfig.me", description: lang.t("Get public IP address")) }
                                     QuickPresetAliasButton(title: lang.t("Flush DNS"), command: "sudo dscacheutil -flushcache") { manager.addAlias(name: "flushdns", command: "sudo dscacheutil -flushcache; sudo killall -HUP mDNSResponder", description: lang.t("Clear Mac DNS Cache")) }
                                     QuickPresetAliasButton(title: lang.t("Git Status"), command: "git status") { manager.addAlias(name: "gs", command: "git status", description: lang.t("Quick Git Status")) }
                                     QuickPresetAliasButton(title: lang.t("Show Hidden"), command: "defaults write com.apple.finder AppleShowAllFiles YES") { manager.addAlias(name: "showhidden", command: "defaults write com.apple.finder AppleShowAllFiles YES; killall Finder", description: lang.t("Show Hidden Files")) }
                                     QuickPresetAliasButton(title: lang.t("Update Brew"), command: "brew update && brew upgrade") { manager.addAlias(name: "brewup", command: "brew update && brew upgrade", description: lang.t("Update and Upgrade Homebrew")) }
-                                    QuickPresetAliasButton(title: lang.t("Clear Trash"), command: "rm -rf ~/.Trash/*") { manager.addAlias(name: "empty", command: "rm -rf ~/.Trash/*", description: lang.t("Empty Trash Bin")) }
-                                    QuickPresetAliasButton(title: lang.t("My Public IP"), command: "curl ifconfig.me") { manager.addAlias(name: "myip", command: "curl ifconfig.me", description: lang.t("Get public IP address")) }
                                 }
                                 .padding(.horizontal, 4)
                                 .padding(.bottom, 12)
@@ -138,6 +147,9 @@ struct AliasListView: View {
                 editingAlias = nil
             }
         }
+        .sheet(isPresented: $showingAIGenerator) {
+            AICommandGeneratorSheet(aiManager: aiManager, aliasManager: manager, lang: lang)
+        }
     }
 }
 
@@ -152,7 +164,7 @@ struct AliasEditSheet: View {
     
     var body: some View {
         VStack(spacing: 20) {
-            HeroBanner(title: title, subtitle: "Configure command shortcut", icon: "bolt.badge.a.fill", color: .orange)
+            HeroBanner(title: title, subtitle: lang.t("Configure_Shortcut_Desc"), icon: "bolt.badge.a.fill", color: .orange)
             VStack(spacing: 20) {
                 CustomTextField(label: lang.t("Alias Name"), text: $name, placeholder: "e.g. gs", icon: "terminal.fill")
                 CustomTextField(label: lang.t("Command"), text: $command, placeholder: "e.g. git status", icon: "command")
@@ -189,7 +201,7 @@ struct EditExistingAliasSheet: View {
     
     var body: some View {
         AliasEditSheet(
-            title: "Edit Alias",
+            title: lang.t("Edit_Alias"),
             name: $name,
             command: $command,
             description: $description,

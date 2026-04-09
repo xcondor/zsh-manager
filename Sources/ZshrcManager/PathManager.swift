@@ -1,17 +1,26 @@
 import Foundation
 import SwiftShell
 
+enum PathSource: String, Codable {
+    case system  // 来自 /etc/paths 或系统默认
+    case managed // 本工具管理 (~/.zsh_manager/paths.zsh)
+    case user    // 用户在 .zshrc 或其他地方手动定义
+}
+
 struct PathEntry: Identifiable, Codable {
-    var id: String { path }
+    var id: String { "\(source.rawValue):\(path)" }
     let path: String
     var isValid: Bool = true
     var isEnabled: Bool = true
-    var isDynamic: Bool? = false // Optional to handle migration from old JSON
+    var isDynamic: Bool? = false
+    var source: PathSource = .managed
+    var isShadowed: Bool = false // 是否被更高优先级的路径覆盖
+    var sourceFile: String?    // 来源文件路径（如果有）
 }
 
 class PathManager: ObservableObject {
-    @Published var paths: [PathEntry] = []
-    
+    @Published var paths: [PathEntry] = [] // 用户通过 UI 管理的路径
+    @Published var sessionPaths: [PathEntry] = [] // 实时从会话中解析出的全量路径
     private let fileManager = FileManager.default
     private var pathsZshPath: URL {
         fileManager.homeDirectoryForCurrentUser
@@ -67,35 +76,89 @@ class PathManager: ObservableObject {
         }
     }
 
-    /// Smart Resolver: Expands $HOME and ~ for validation purposes
+    /// 实时分析当前会话的 PATH 状态
+    func refreshLivePath() {
+        DispatchQueue.global(qos: .userInitiated).async {
+            // 1. 获取系统默认路径 (来自 /etc/paths)
+            let systemPaths = self.getSystemPaths()
+            
+            // 2. 获取当前会话的真实 PATH
+            let pathString = SwiftShell.run("zsh", "-f", "-c", "echo $PATH").stdout
+            let sessionRawPaths = pathString.split(separator: ":").map { String($0) }.filter { !$0.isEmpty }
+            
+            var analyzedPaths: [PathEntry] = []
+            var seenPaths: Set<String> = []
+            
+            for rawPath in sessionRawPaths {
+                let resolved = self.resolvePath(rawPath)
+                let exists = FileManager.default.fileExists(atPath: resolved)
+                let isShadowed = seenPaths.contains(resolved)
+                
+                // 识别来源
+                var source: PathSource = .user
+                if systemPaths.contains(rawPath) {
+                    source = .system
+                } else if self.paths.contains(where: { $0.path == rawPath }) {
+                    source = .managed
+                }
+                
+                analyzedPaths.append(PathEntry(
+                    path: rawPath,
+                    isValid: exists,
+                    isEnabled: true,
+                    isDynamic: rawPath.contains("$") || rawPath.contains("`"),
+                    source: source,
+                    isShadowed: isShadowed
+                ))
+                
+                if exists {
+                    seenPaths.insert(resolved)
+                }
+            }
+            
+            DispatchQueue.main.async {
+                self.sessionPaths = analyzedPaths
+            }
+        }
+    }
+    
+    private func getSystemPaths() -> [String] {
+        let etcPaths = "/etc/paths"
+        if let content = try? String(contentsOfFile: etcPaths) {
+            return content.split(separator: "\n").map { String($0).trimmingCharacters(in: .whitespaces) }
+        }
+        return ["/usr/bin", "/bin", "/usr/sbin", "/sbin"]
+    }
+
+    /// 增强型路径解析：支持递归展开常用的环境变量
     private func resolvePath(_ path: String) -> String {
         var resolved = path
         let home = fileManager.homeDirectoryForCurrentUser.path
         resolved = resolved.replacingOccurrences(of: "$HOME", with: home)
+        resolved = resolved.replacingOccurrences(of: "~", with: home)
+        
+        // 如果是相对路径
+        if !resolved.hasPrefix("/") && !resolved.contains("$") {
+            // 尝试在当前目录下查找（虽然在 PATH 中通常不推荐，但为了准确性）
+        }
+        
         return (resolved as NSString).expandingTildeInPath
     }
 
     func checkValidity() {
+        // 更新用户管理的路径状态
         var updatedPaths = paths
         for index in updatedPaths.indices {
-            let original = updatedPaths[index].path
-            
-            // 1. Identify dynamic shell expressions (e.g. $(...) or `...`)
-            if original.contains("$(") || original.contains("`") {
-                updatedPaths[index].isDynamic = true
-                updatedPaths[index].isValid = true // We assume dynamic paths are valid for the UI (trusting the user)
-                continue
-            }
-            
-            // 2. Expand and check literal paths
-            let resolved = resolvePath(original)
-            updatedPaths[index].isDynamic = false
+            let resolved = resolvePath(updatedPaths[index].path)
             updatedPaths[index].isValid = fileManager.fileExists(atPath: resolved)
         }
         
         DispatchQueue.main.async {
             self.paths = updatedPaths
         }
+        
+        // 同时刷新实时分析
+        refreshLivePath()
     }
 
     func save() {

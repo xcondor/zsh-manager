@@ -4,41 +4,23 @@ struct ZshrcManagerApp {
 }
 
 struct ContentView: View {
-    @StateObject private var lang = LanguageManager()
-    @StateObject private var shellManager = ShellManager()
-    @StateObject private var aliasManager = AliasManager()
-    @StateObject private var pathManager = PathManager()
-    @StateObject private var snapshotManager = SnapshotManager()
-    @StateObject private var envDetector = EnvironmentDetector()
-    @StateObject private var diagnosticManager = DiagnosticManager()
-    @StateObject private var templateManager = TemplateManager()
-    @StateObject private var serviceManager = ServiceManager()
-    @StateObject private var pythonManager = PythonManager()
-    @StateObject private var terminalManager = TerminalManager()
-    
+    // Plain property to avoid Meta-Graph observation cycles
+    private let state = AppState()
     @State private var selection: String? = "Overview"
-    @AppStorage("hasCompletedOnboarding") private var hasCompletedOnboarding: Bool = false
     
     var body: some View {
-        Group {
-            if !hasCompletedOnboarding {
-                OnboardingView(lang: lang)
-            } else {
-                NavigationSplitView {
-                    SidebarView(selection: $selection, lang: lang)
-                } detail: {
-                    mainContent
-                }
-                .navigationTitle("Zshrc Manager")
-            }
+        HStack(spacing: 0) {
+            SidebarView(selection: $selection, lang: state.lang)
+                .frame(width: 250)
+            
+            Divider()
+            
+            mainContent
         }
         .frame(minWidth: 1100, minHeight: 750)
-        .environmentObject(lang)
+        .environmentObject(state.lang)
         .onAppear {
-            shellManager.start()
-            aliasManager.start()
-            pathManager.start()
-            pythonManager.start()
+            state.startAll()
         }
     }
     
@@ -48,32 +30,41 @@ struct ContentView: View {
             if let selection = selection {
                 switch selection {
                 case "Overview":
-                    DetailView(
-                        manager: shellManager,
-                        aliasManager: aliasManager,
-                        pathManager: pathManager,
-                        snapshotManager: snapshotManager,
-                        envDetector: envDetector,
-                        lang: lang,
-                        selection: $selection
-                    )
-                case "FunctionalList":
-                    FunctionalListView(manager: shellManager, lang: lang)
+                    DetailView(manager: state.shellManager, lang: state.lang, selection: $selection)
                 case "Aliases":
-                    AliasListView(manager: aliasManager, lang: lang)
+                    AliasListView(manager: state.aliasManager, lang: state.lang)
                 case "Path":
-                    PathListView(manager: pathManager, lang: lang)
-                case "Templates":
-                    TemplateView(manager: templateManager, aliasManager: aliasManager, pathManager: pathManager, lang: lang)
-                case "Essentials":
-                    EssentialsView(manager: serviceManager, lang: lang)
-                case "Python":
-                    PythonView(manager: pythonManager, lang: lang)
+                    PathListView(manager: state.pathManager, lang: state.lang)
+                case "Environment":
+                    EnvDetectionView(manager: state.envDetector, lang: state.lang)
+                case "Doctor":
+                    DiagnosticView(
+                        manager: state.diagnosticManager,
+                        shellManager: state.shellManager,
+                        aliasManager: state.aliasManager,
+                        pathManager: state.pathManager,
+                        lang: state.lang
+                    )
+                case "Snapshots":
+                    SnapshotView(manager: state.snapshotManager, lang: state.lang)
+                case "Plugins":
+                    TemplateView(
+                        manager: state.templateManager,
+                        aliasManager: state.aliasManager,
+                        pathManager: state.pathManager,
+                        lang: state.lang
+                    )
+                case "Functional":
+                    FunctionalListView(manager: state.shellManager, lang: state.lang)
                 default:
-                    VStack { Text("Select Category") }
+                    VStack {
+                        Text("Content for: \(selection)")
+                            .font(.title)
+                            .foregroundColor(.secondary)
+                    }
                 }
             } else {
-                VStack { Text("Select Category") }
+                Text("Select an item")
             }
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -87,70 +78,74 @@ struct SidebarView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            List(selection: $selection) {
-                Section(header: Text(lang.t("General"))) {
-                    Label(lang.t("Overview"), systemImage: "macwindow").tag("Overview")
-                    Label(lang.t("Functional List"), systemImage: "checklist").tag("FunctionalList")
-                    Label(lang.t("Aliases"), systemImage: "bolt.fill").tag("Aliases")
-                    Label(lang.t("Path Manager"), systemImage: "folder.fill").tag("Path")
-                    Label(lang.t("Environment Detection"), systemImage: "sensor.tag.radiowaves.forward.fill").tag("Templates")
-                    Label(lang.t("Essentials"), systemImage: "sparkles").tag("Essentials")
-                    Label(lang.t("Python Manager"), systemImage: "pyramid.fill").tag("Python")
-                }
-            }
-            .listStyle(.sidebar)
-            
-            // Clean Language Switcher (Menu with Buttons, No Redundant Chevrons)
-            VStack {
-                Divider().opacity(0.1)
-                HStack(spacing: 12) {
-                    Image(systemName: "globe.americas.fill")
-                        .font(.system(size: 14))
-                        .foregroundColor(.blue.opacity(0.8))
+            ScrollView {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(lang.t("General"))
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 12)
+                        .padding(.top, 20)
                     
-                    Menu {
-                        ForEach(Language.allCases, id: \.self) { language in
-                            Button(action: { lang.currentLanguage = language }) {
-                                Text(language.rawValue)
-                                if lang.currentLanguage == language {
-                                    Image(systemName: "checkmark")
-                                }
-                            }
-                        }
-                    } label: {
-                        Text(lang.currentLanguage.rawValue)
-                            .font(.system(size: 11, weight: .semibold))
-                            .padding(.horizontal, 10)
-                            .padding(.vertical, 4)
-                            .background(Color.white.opacity(0.04))
-                            .cornerRadius(6)
-                            .overlay(RoundedRectangle(cornerRadius: 6).stroke(Color.white.opacity(0.08), lineWidth: 1))
-                    }
-                    .menuStyle(.borderlessButton)
-                    .fixedSize()
+                    SidebarButton(title: lang.t("Overview"), icon: "macwindow", tag: "Overview", selection: $selection)
+                    SidebarButton(title: lang.t("Aliases"), icon: "list.dash", tag: "Aliases", selection: $selection)
+                    SidebarButton(title: lang.t("Path Manager"), icon: "folder.fill", tag: "Path", selection: $selection)
                     
-                    Spacer()
+                    Text(lang.t("Settings & Tools"))
+                        .font(.system(size: 11, weight: .bold))
+                        .foregroundColor(.secondary)
+                        .padding(.leading, 12)
+                        .padding(.top, 20)
+                    
+                    SidebarButton(title: lang.t("Environments"), icon: "cpu", tag: "Environment", selection: $selection)
+                    SidebarButton(title: lang.t("Config Doctor"), icon: "ant.fill", tag: "Doctor", selection: $selection)
+                    SidebarButton(title: lang.t("Snapshots"), icon: "clock.arrow.circlepath", tag: "Snapshots", selection: $selection)
+                    SidebarButton(title: lang.t("Plugins"), icon: "square.stack.3d.up.fill", tag: "Plugins", selection: $selection)
+                    
+                    Divider().padding(.vertical, 10)
+                    
+                    SidebarButton(title: lang.t("Functional List"), icon: "terminal", tag: "Functional", selection: $selection)
                 }
-                .padding(.horizontal, 20)
-                .padding(.vertical, 16)
+                .padding(.horizontal, 10)
             }
-            .background(Color.black.opacity(0.05))
+            Spacer()
         }
+        .background(Color(NSColor.windowBackgroundColor).opacity(0.5))
     }
 }
 
+struct SidebarButton: View {
+    let title: String
+    let icon: String
+    let tag: String
+    @Binding var selection: String?
+    
+    var body: some View {
+        Button(action: { selection = tag }) {
+            HStack(spacing: 10) {
+                Image(systemName: icon)
+                    .frame(width: 16)
+                Text(title)
+                Spacer()
+            }
+            .padding(.horizontal, 10)
+            .padding(.vertical, 8)
+            .background(selection == tag ? Color.blue.opacity(0.1) : Color.clear)
+            .foregroundColor(selection == tag ? .blue : .primary)
+            .cornerRadius(6)
+        }
+        .buttonStyle(.plain)
+    }
+}
+
+// Sub-components moved to original DetailView section
 struct DetailView: View {
     @ObservedObject var manager: ShellManager
-    @ObservedObject var aliasManager: AliasManager
-    @ObservedObject var pathManager: PathManager
-    @ObservedObject var snapshotManager: SnapshotManager
-    @ObservedObject var envDetector: EnvironmentDetector
     @ObservedObject var lang: LanguageManager
     @Binding var selection: String?
     
     var body: some View {
         ScrollView {
-            VStack(alignment: .leading, spacing: 16) {
+            VStack(alignment: .leading, spacing: 20) {
                 HeroBanner(
                     title: "\(lang.t("Overview")) (\(manager.detectedConfigFileName))",
                     subtitle: manager.isInstalled ? lang.t("System Fully Managed") : lang.t("System Not Managed"),
@@ -171,16 +166,9 @@ struct DetailView: View {
                         }
                         Spacer()
                         if healthScore < 100 {
-                            Button(action: { selection = "FunctionalList" }) {
-                                Text(lang.t("Fix Issues to Improve Score"))
-                                    .font(.system(size: 13, weight: .bold))
-                                    .padding(.horizontal, 16)
-                                    .padding(.vertical, 8)
-                                    .background(Color.orange)
-                                    .foregroundColor(.white)
-                                    .cornerRadius(8)
-                            }
-                            .buttonStyle(.plain)
+                            Image(systemName: "exclamationmark.shield.fill")
+                                .font(.system(size: 40))
+                                .foregroundColor(.orange.opacity(0.8))
                         } else {
                             Image(systemName: "checkmark.seal.fill")
                                 .font(.system(size: 40))
@@ -190,56 +178,7 @@ struct DetailView: View {
                     .padding(20)
                 }
                 
-                HStack(spacing: 16) {
-                    QuickActionButton(title: lang.t("Quick_Add_Alias"), icon: "bolt.fill", color: .orange) { selection = "Aliases" }
-                    QuickActionButton(title: lang.t("Quick_Fix_Command"), icon: "folder.fill", color: .blue) { selection = "Path" }
-                    QuickActionButton(title: lang.t("Quick_Install_Env"), icon: "pyramid.fill", color: .green) { selection = "Essentials" }
-                }
-                
                 VStack(alignment: .leading, spacing: 20) {
-                    if !manager.conflicts.isEmpty {
-                        ModernSectionHeader(title: lang.t("Conflict Alerts"))
-                        GlassCard {
-                            VStack(alignment: .leading, spacing: 12) {
-                                ForEach(manager.conflicts) { conflict in
-                                    HStack(alignment: .top, spacing: 12) {
-                                        Image(systemName: "exclamationmark.triangle.fill")
-                                            .foregroundColor(.orange)
-                                            .font(.system(size: 14))
-                                        
-                                        VStack(alignment: .leading, spacing: 4) {
-                                            Text(lang.t(conflict.type.rawValue))
-                                                .font(.system(size: 11, weight: .bold))
-                                                .foregroundColor(.orange)
-                                            Text(conflict.message)
-                                                .font(.system(size: 13))
-                                                .foregroundColor(.primary)
-                                        }
-                                    }
-                                    .padding(.vertical, 8)
-                                    
-                                    if conflict.id != manager.conflicts.last?.id {
-                                        ModernDivider()
-                                    }
-                                }
-                            }
-                            .padding(20)
-                            .background(Color.orange.opacity(0.05))
-                            
-                            ModernDivider()
-                            
-                            Button(action: { selection = "FunctionalList" }) {
-                                Label(lang.t("Manage in List"), systemImage: "arrow.right.circle.fill")
-                                    .font(.system(size: 11, weight: .bold))
-                                    .padding(.vertical, 12)
-                                    .frame(maxWidth: .infinity)
-                            }
-                            .buttonStyle(.plain)
-                            .background(Color.orange.opacity(0.1))
-                            .foregroundColor(.orange)
-                        }
-                    }
-                    
                     ModernSectionHeader(title: lang.t("Management Engine"))
                     GlassCard {
                         StatusRow(
@@ -252,102 +191,13 @@ struct DetailView: View {
                             showStatusText: !manager.isInstalled
                         )
                     }
-                    
-                    HStack(spacing: 16) {
-                        if !manager.isInstalled {
-                            GlowButton(label: lang.t("Inject into .zshrc").replacingOccurrences(of: ".zshrc", with: manager.detectedConfigFileName), icon: "plus.circle.fill", color: .blue, action: { manager.install() })
-                        } else {
-                            GlowButton(label: lang.t("Uninstall (Restore .zshrc)").replacingOccurrences(of: ".zshrc", with: manager.detectedConfigFileName), icon: "xmark.bin.fill", color: .red, action: { manager.uninstall() })
-                        }
-                    }
-                    ModernSectionHeader(title: lang.t("System Environment Report"))
-                    GlassCard {
-                        VStack(alignment: .leading, spacing: 0) {
-                            if envDetector.fullScriptOutput.isEmpty {
-                                HStack {
-                                    Image(systemName: "terminal.fill").foregroundColor(.secondary)
-                                    Text(lang.t("Run env check to see detailed system report"))
-                                        .font(.system(size: 13))
-                                        .foregroundColor(.secondary)
-                                    Spacer()
-                                    GlowButton(label: lang.t("Run Check"), icon: "play.circle.fill", color: .purple, isSubtle: true, action: { envDetector.runFullCheckScript() })
-                                }
-                                .padding(20)
-                            } else {
-                                VStack(alignment: .leading, spacing: 12) {
-                                    HStack {
-                                        Label(lang.t("Detection Results"), systemImage: "text.justify.left")
-                                            .font(.system(size: 12, weight: .bold))
-                                        Spacer()
-                                        if envDetector.isRunningScript {
-                                            ProgressView().scaleEffect(0.5)
-                                        } else {
-                                            Button(action: { envDetector.runFullCheckScript() }) {
-                                                Image(systemName: "arrow.clockwise").font(.system(size: 11))
-                                            }
-                                            .buttonStyle(.plain).foregroundColor(.secondary)
-                                        }
-                                    }
-                                    .padding(.horizontal, 20).padding(.top, 16)
-                                    
-                                    ConsoleOutputView(text: envDetector.fullScriptOutput)
-                                        .padding(.horizontal, 20).padding(.bottom, 20)
-                                }
-                            }
-                        }
-                    }
                 }
-                
-                Spacer(minLength: 60)
             }
-            .padding(.horizontal, 40).padding(.top, 20).padding(.bottom, 40)
+            .padding(40)
             .frame(maxWidth: 800, alignment: .leading)
         }
     }
 }
-
-struct MetricRow: View {
-    let icon: String
-    let title: String
-    let value: String
-    let color: Color
-    
-    var body: some View {
-        HStack(spacing: 16) {
-            Image(systemName: icon).foregroundColor(color).frame(width: 24)
-            Text(title).font(.system(size: 13, weight: .semibold))
-            Spacer()
-            Text(value).font(.system(size: 14, weight: .bold, design: .monospaced)).foregroundColor(.blue)
-        }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 14)
-    }
-}
-
 struct QuickActionButton: View {
-    let title: String
-    let icon: String
-    let color: Color
-    let action: () -> Void
-    
-    var body: some View {
-        Button(action: action) {
-            VStack(spacing: 12) {
-                Image(systemName: icon)
-                    .font(.system(size: 24))
-                    .foregroundColor(color)
-                Text(title)
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundColor(.primary)
-                    .multilineTextAlignment(.center)
-            }
-            .frame(maxWidth: .infinity)
-            .padding(.vertical, 20)
-            .padding(.horizontal, 10)
-            .background(Color.white.opacity(0.05))
-            .cornerRadius(12)
-            .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.white.opacity(0.1), lineWidth: 1))
-        }
-        .buttonStyle(.plain)
-    }
+    var body: some View { EmptyView() }
 }
