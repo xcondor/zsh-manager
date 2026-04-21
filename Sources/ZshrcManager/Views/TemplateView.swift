@@ -90,7 +90,7 @@ struct TemplateView: View {
                                 if vOutput.isEmpty || vOutput.contains("not found") {
                                     wizardResults[template.id] = .failure("Verify Failed")
                                 } else {
-                                    let cleanOutput = vOutput.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespaces)
+                                    let cleanOutput = vOutput.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
                                     wizardResults[template.id] = .success(cleanOutput.prefix(30) + (cleanOutput.count > 30 ? "..." : ""))
                                 }
                             }
@@ -144,7 +144,7 @@ struct TemplateView: View {
                         if verifyOutput.isEmpty || verifyOutput.contains("not found") {
                             wizardResults[template.id] = .failure("Verification Failed")
                         } else {
-                            let clean = verifyOutput.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespaces)
+                            let clean = verifyOutput.replacingOccurrences(of: "\n", with: " ").trimmingCharacters(in: .whitespacesAndNewlines)
                             wizardResults[template.id] = .success(clean.prefix(30) + (clean.count > 30 ? "..." : ""))
                         }
                     }

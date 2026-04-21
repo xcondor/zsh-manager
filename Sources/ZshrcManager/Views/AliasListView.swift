@@ -3,7 +3,7 @@ import SwiftUI
 struct AliasListView: View {
     @ObservedObject var manager: AliasManager
     @ObservedObject var lang: LanguageManager
-    @StateObject private var aiManager = AIManager()
+    @ObservedObject private var aiManager = AppState.shared.aiManager
     
     @State private var showingAddPopover = false
     @State private var showingAIGenerator = false
@@ -124,7 +124,7 @@ struct AliasListView: View {
             .padding(.horizontal, 40).padding(.top, 24).padding(.bottom, 40)
             .frame(maxWidth: 800, alignment: .leading)
         }
-        .onChange(of: manager.aliases.count) {
+        .onChange(of: manager.aliases.count) { _ in
             withAnimation { showRefreshReminder = true }
         }
         .sheet(isPresented: $showingAddPopover) {

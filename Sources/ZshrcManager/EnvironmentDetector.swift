@@ -51,21 +51,33 @@ class EnvironmentDetector: ObservableObject {
         fullScriptOutput = "Running analysis...\n"
         
         DispatchQueue.global(qos: .userInitiated).async {
-            // Locate script
-            let scriptPath = "scripts/check_env.sh"
-            if !FileManager.default.fileExists(atPath: scriptPath) {
+            // Dynamically resolve script path: try Bundle resources first (for released .app), 
+            // then fallback to local relative path (for dev environment)
+            var scriptPath: String? = nil
+            
+            if let bundledURL = Bundle.main.url(forResource: "check_env", withExtension: "sh", subdirectory: "scripts") {
+                scriptPath = bundledURL.path
+            } else {
+                // Fallback for development/testing
+                let devPath = "scripts/check_env.sh"
+                if FileManager.default.fileExists(atPath: devPath) {
+                    scriptPath = (devPath as NSString).expandingTildeInPath
+                }
+            }
+            
+            guard let actualPath = scriptPath else {
                 DispatchQueue.main.async {
-                    self.fullScriptOutput = "Error: Script not found at \(scriptPath)"
+                    self.fullScriptOutput = "Error: check_env.sh not found in bundle or project root."
                     self.isRunningScript = false
                 }
                 return
             }
             
             // Set executable permission just in case
-            _ = SwiftShell.run("/bin/chmod", "+x", scriptPath)
+            _ = SwiftShell.run("/bin/chmod", "+x", actualPath)
             
             // Run script
-            let scriptRes = SwiftShell.run("/bin/bash", scriptPath, "--non-interactive", "--no-color")
+            let scriptRes = SwiftShell.run("/bin/bash", actualPath, "--non-interactive", "--no-color")
             
             DispatchQueue.main.async {
                 self.fullScriptOutput = scriptRes.stdout

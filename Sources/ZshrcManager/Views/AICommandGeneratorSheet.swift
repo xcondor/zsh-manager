@@ -6,136 +6,213 @@ struct AICommandGeneratorSheet: View {
     @ObservedObject var lang: LanguageManager
     @Environment(\.dismiss) var dismiss
     
-    @State private var userInput: String = ""
-    @State private var generatedCommand: String = ""
-    @State private var errorMessage: String? = nil
-    @State private var showingSettings: Bool = false
-    @State private var isSaved: Bool = false
+    @State private var userInput = ""
+    @State private var generatedCommand = ""
+    @State private var errorMessage: String?
+    @State private var showingSettings = false
     
     var body: some View {
         VStack(spacing: 0) {
-            HeroBanner(
-                title: lang.t("AI Assistant"),
-                subtitle: lang.t("Ask AI to generate command"),
-                icon: "sparkles",
-                color: .indigo
-            )
+            // Header
+            HStack {
+                VStack(alignment: .leading, spacing: 4) {
+                    Text(lang.t("AI Assistant"))
+                        .font(.system(size: 24, weight: .bold))
+                    Text(lang.t("Describe your needs in natural language"))
+                        .font(.system(size: 13))
+                        .foregroundColor(.secondary)
+                }
+                Spacer()
+                
+                Image(systemName: "sparkles")
+                    .font(.system(size: 30))
+                    .foregroundStyle(
+                        LinearGradient(colors: [.indigo, .purple], startPoint: .topLeading, endPoint: .bottomTrailing)
+                    )
+                    .shadow(color: .indigo.opacity(0.4), radius: 10)
+            }
+            .padding(32)
             
-            VStack(alignment: .leading, spacing: 20) {
-                if aiManager.apiKey.isEmpty {
-                    VStack(spacing: 16) {
-                        Image(systemName: "key.fill").font(.system(size: 32)).foregroundColor(.indigo)
-                        Text(lang.t("API Key Required")).font(.headline)
-                        GlowButton(label: lang.t("Configure API"), icon: "gearshape.fill", color: .indigo) {
-                            showingSettings = true
-                        }
-                    }
-                    .frame(maxWidth: .infinity, minHeight: 200)
-                } else {
-                    VStack(alignment: .leading, spacing: 12) {
-                        Text(lang.t("Type your requirement here")).font(.system(size: 13, weight: .bold))
+            VStack(spacing: 24) {
+                // Input Section
+                VStack(alignment: .leading, spacing: 12) {
+                    Text(lang.t("Example: Find files larger than 100MB..."))
+                        .font(.system(size: 11, weight: .medium))
+                        .foregroundColor(.secondary.opacity(0.8))
+                        .padding(.leading, 4)
+                    
+                    ZStack(alignment: .topLeading) {
+                        RoundedRectangle(cornerRadius: 16)
+                            .fill(Color.white)
+                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.1), lineWidth: 1))
                         
                         TextEditor(text: $userInput)
-                            .font(.system(size: 13))
-                            .frame(height: 80)
-                            .padding(10)
-                            .background(Color.white.opacity(0.05))
-                            .cornerRadius(8)
-                            .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.white.opacity(0.1), lineWidth: 1))
-                        
-                        HStack {
-                            Spacer()
-                            if aiManager.isProcessing {
-                                ProgressView().scaleEffect(0.6)
-                                Text(lang.t("AI is thinking")).font(.caption).foregroundColor(.secondary)
-                            } else {
-                                GlowButton(label: lang.t("Generate Command"), icon: "wand.and.stars", color: .indigo) {
-                                    generate()
-                                }
-                                .disabled(userInput.isEmpty)
-                            }
-                        }
-                    }
-                    
-                    if !generatedCommand.isEmpty {
-                        VStack(alignment: .leading, spacing: 12) {
-                            ModernSectionHeader(title: "AI 生成的建议")
-                            
-                            VStack(alignment: .leading, spacing: 8) {
-                                Text(generatedCommand)
-                                    .font(.system(size: 14, weight: .medium, design: .monospaced))
-                                    .padding(16)
-                                    .frame(maxWidth: .infinity, alignment: .leading)
-                                    .background(Color.black.opacity(0.2))
-                                    .cornerRadius(8)
-                                    .overlay(RoundedRectangle(cornerRadius: 8).stroke(Color.indigo.opacity(0.3), lineWidth: 1))
-                                
-                                HStack(spacing: 12) {
-                                    GlowButton(label: lang.t("Try in Terminal"), icon: "terminal.fill", color: .gray, isSubtle: true) {
-                                        let task = Process()
-                                        task.launchPath = "/usr/bin/open"
-                                        task.arguments = ["-a", "Terminal", NSHomeDirectory()]
-                                        try? task.run()
-                                    }
-                                    
-                                    Spacer()
-                                    
-                                    if isSaved {
-                                        Label(lang.t("Saved"), systemImage: "checkmark.circle.fill").foregroundColor(.green).font(.caption)
-                                    } else {
-                                        GlowButton(label: lang.t("Save as Alias"), icon: "plus.circle.fill", color: .green) {
-                                            saveAsAlias()
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                        .transition(.move(edge: .bottom).combined(with: .opacity))
-                    }
-                    
-                    if let error = errorMessage {
-                        Text(error).font(.caption).foregroundColor(.red).padding(.top, 4)
+                            .font(.system(size: 14, design: .monospaced))
+                            .foregroundColor(.primary)
+                            .padding(12)
+                            .frame(height: 120)
                     }
                 }
+                
+                // Action Button
+                HStack {
+                    if aiManager.apiKey.isEmpty {
+                        HStack {
+                            Image(systemName: "key.fill").foregroundColor(.orange)
+                            Text(lang.t("Please set API Key in settings first")).font(.system(size: 12))
+                        }
+                        .padding(.horizontal, 16).padding(.vertical, 8)
+                        .background(Color.orange.opacity(0.1))
+                        .cornerRadius(8)
+                    }
+                    
+                    Spacer()
+                    
+                    GlowButton(
+                        label: lang.t("Generate Command"),
+                        icon: "magicmouse.fill",
+                        color: .indigo,
+                        isLoading: aiManager.isProcessing
+                    ) {
+                        generate()
+                    }
+                    .disabled(userInput.isEmpty || aiManager.isProcessing)
+                }
+                
+                // Result or Error Section
+                if let error = errorMessage {
+                    errorCard(error)
+                } else if !generatedCommand.isEmpty {
+                    resultCard
+                }
+            }
+            .padding(.horizontal, 32)
+            
+            Spacer(minLength: 32)
+            
+            // Footer
+            HStack {
+                Button(lang.t("Cancel")) { dismiss() }
+                    .buttonStyle(.plain)
+                    .foregroundColor(.secondary.opacity(0.8))
                 
                 Spacer()
                 
-                HStack {
-                    Button(lang.t("Cancel")) { dismiss() }.buttonStyle(.plain).foregroundColor(.secondary)
-                    Spacer()
-                    if !aiManager.apiKey.isEmpty {
-                        Button(action: { showingSettings = true }) {
-                            Image(systemName: "gearshape.fill").foregroundColor(.secondary)
-                        }.buttonStyle(.plain)
+                Button(action: { showingSettings = true }) {
+                    HStack(spacing: 6) {
+                        Image(systemName: "gearshape.fill")
+                        Text(lang.t("Settings"))
                     }
+                    .font(.system(size: 12))
+                    .foregroundColor(.secondary)
                 }
+                .buttonStyle(.plain)
             }
-            .padding(40)
+            .padding(32)
         }
-        .frame(width: 550, height: generatedCommand.isEmpty ? 450 : 650)
+        .frame(width: 650)
+        .background(
+            ZStack {
+                Color(NSColor.windowBackgroundColor)
+                RadialGradient(
+                    colors: [.indigo.opacity(0.05), .clear],
+                    center: .topTrailing,
+                    startRadius: 0,
+                    endRadius: 500
+                )
+            }
+        )
         .sheet(isPresented: $showingSettings) {
             AISettingsView(manager: aiManager, lang: lang)
         }
-        .animation(.spring(), value: generatedCommand)
     }
     
-    func generate() {
+    private var resultCard: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            HStack {
+                Label(lang.t("Generated Result"), systemImage: "terminal.fill")
+                    .font(.system(size: 11, weight: .bold))
+                    .foregroundColor(.indigo)
+                Spacer()
+                Button(action: {
+                    NSPasteboard.general.clearContents()
+                    NSPasteboard.general.setString(generatedCommand, forType: .string)
+                }) {
+                    Image(systemName: "doc.on.doc")
+                        .font(.system(size: 12))
+                        .foregroundColor(.indigo)
+                }
+                .buttonStyle(.plain)
+            }
+            
+            Text(generatedCommand)
+                .font(.system(size: 14, weight: .semibold, design: .monospaced))
+                .foregroundColor(.black)
+                .padding(16)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .background(Color.white)
+                .cornerRadius(12)
+                .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.indigo.opacity(0.3), lineWidth: 1))
+            
+            Button(action: {
+                aliasManager.addAlias(name: "cmd_\(Int.random(in: 100...999))", command: generatedCommand, description: userInput)
+                dismiss()
+            }) {
+                HStack {
+                    Image(systemName: "plus.circle.fill")
+                    Text(lang.t("Save as Shortcut"))
+                }
+                .font(.system(size: 12, weight: .bold))
+                .padding(.vertical, 8).padding(.horizontal, 16)
+                .background(Color.indigo)
+                .foregroundColor(.white)
+                .cornerRadius(8)
+            }
+            .buttonStyle(.plain)
+            .padding(.top, 4)
+        }
+        .padding(16)
+        .background(Color.indigo.opacity(0.05))
+        .cornerRadius(16)
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.indigo.opacity(0.1), lineWidth: 1))
+    }
+    
+    private func errorCard(_ error: String) -> some View {
+        HStack(alignment: .top, spacing: 12) {
+            Image(systemName: "exclamationmark.triangle.fill")
+                .foregroundColor(.red)
+                .font(.system(size: 20))
+            
+            VStack(alignment: .leading, spacing: 6) {
+                Text(lang.t("Execution Failed"))
+                    .font(.system(size: 13, weight: .bold))
+                    .foregroundColor(.red)
+                
+                Text(error)
+                    .font(.system(size: 12))
+                    .foregroundColor(.red.opacity(0.8))
+                    .textSelection(.enabled)
+                    .lineLimit(5)
+            }
+            Spacer()
+        }
+        .padding(20)
+        .background(Color.red.opacity(0.08))
+        .cornerRadius(16)
+        .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.red.opacity(0.2), lineWidth: 1))
+    }
+    
+    private func generate() {
         errorMessage = nil
+        generatedCommand = ""
+        
         aiManager.generateCommand(from: userInput) { result in
             switch result {
             case .success(let cmd):
                 self.generatedCommand = cmd
-                self.isSaved = false
             case .failure(let err):
                 self.errorMessage = err.localizedDescription
             }
         }
-    }
-    
-    func saveAsAlias() {
-        // 自动提取一个短名称
-        let suggestedName = "ai_cmd_\(Int.random(in: 100...999))"
-        aliasManager.addAlias(name: suggestedName, command: generatedCommand, description: "Generated from: \(userInput)")
-        isSaved = true
     }
 }

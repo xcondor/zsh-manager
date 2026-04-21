@@ -12,7 +12,7 @@ class AIManager: ObservableObject {
     @Published var customEndpoint: String = ""
     @Published var isProcessing: Bool = false
     
-    // 从 AppStorage 或 UserDefaults 加载配置
+    // 从 UserDefaults 加载配置
     init() {
         self.apiKey = UserDefaults.standard.string(forKey: "ai_api_key") ?? ""
         self.customEndpoint = UserDefaults.standard.string(forKey: "ai_endpoint") ?? ""
@@ -29,8 +29,19 @@ class AIManager: ObservableObject {
     }
     
     func generateCommand(from prompt: String, completion: @escaping (Result<String, Error>) -> Void) {
-        guard !apiKey.isEmpty else {
+        if apiKey.isEmpty {
             completion(.failure(NSError(domain: "AIManager", code: 401, userInfo: [NSLocalizedDescriptionKey: "API Key Is Missing"])))
+            return
+        }
+        
+        // Smart Detection: Check for key/provider mismatch
+        if provider == .openai && apiKey.hasPrefix("AIzaSy") {
+            completion(.failure(NSError(domain: "AIManager", code: 400, userInfo: [NSLocalizedDescriptionKey: "Detection: You are using a Gemini Key with the OpenAI provider. Please switch the Provider to 'Google Gemini' in Settings."])))
+            return
+        }
+        
+        if provider == .gemini && apiKey.hasPrefix("sk-") {
+            completion(.failure(NSError(domain: "AIManager", code: 400, userInfo: [NSLocalizedDescriptionKey: "Detection: You are using an OpenAI Key with the Gemini provider. Please switch the Provider to 'OpenAI / Compatible' in Settings."])))
             return
         }
         
@@ -51,7 +62,13 @@ class AIManager: ObservableObject {
             "https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=\(apiKey)" :
             (customEndpoint.isEmpty ? "https://api.openai.com/v1/chat/completions" : customEndpoint)
         
-        guard let url = URL(string: urlString) else { return }
+        guard let url = URL(string: urlString) else {
+            DispatchQueue.main.async { 
+                self.isProcessing = false
+                completion(.failure(NSError(domain: "AIManager", code: 400, userInfo: [NSLocalizedDescriptionKey: "Invalid API URL"])))
+            }
+            return 
+        }
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
@@ -79,18 +96,30 @@ class AIManager: ObservableObject {
         request.httpBody = try? JSONSerialization.data(withJSONObject: body)
         
         URLSession.shared.dataTask(with: request) { data, response, error in
-            DispatchQueue.main.async { self.isProcessing = false }
-            
             if let error = error {
-                completion(.failure(error))
+                DispatchQueue.main.async { 
+                    self.isProcessing = false
+                    completion(.failure(error)) 
+                }
                 return
             }
             
-            guard let data = data else { return }
+            guard let data = data else {
+                DispatchQueue.main.async { 
+                    self.isProcessing = false
+                    completion(.failure(NSError(domain: "AIManager", code: 0, userInfo: [NSLocalizedDescriptionKey: "Empty response from server"])))
+                }
+                return
+            }
             
-            // 解析逻辑 (简化处理)
             do {
                 if let json = try JSONSerialization.jsonObject(with: data) as? [String: Any] {
+                    // Check for common API error formats
+                    if let errorObj = json["error"] as? [String: Any],
+                       let message = errorObj["message"] as? String {
+                        throw NSError(domain: "AI_API", code: 1, userInfo: [NSLocalizedDescriptionKey: message])
+                    }
+                    
                     var resultText = ""
                     if self.provider == .gemini {
                         if let candidates = json["candidates"] as? [[String: Any]],
@@ -99,6 +128,13 @@ class AIManager: ObservableObject {
                            let parts = content["parts"] as? [[String: Any]],
                            let text = parts.first?["text"] as? String {
                             resultText = text
+                        } else {
+                            // Try to get specific Gemini error feedback
+                            if let promptFeedback = json["promptFeedback"] as? [String: Any],
+                               let blockReason = promptFeedback["blockReason"] as? String {
+                                throw NSError(domain: "Gemini", code: 2, userInfo: [NSLocalizedDescriptionKey: "Request blocked: \(blockReason)"])
+                            }
+                            throw NSError(domain: "Gemini", code: 3, userInfo: [NSLocalizedDescriptionKey: "Malformed response format"])
                         }
                     } else {
                         if let choices = json["choices"] as? [[String: Any]],
@@ -106,19 +142,34 @@ class AIManager: ObservableObject {
                            let message = first["message"] as? [String: Any],
                            let text = message["content"] as? String {
                             resultText = text
+                        } else {
+                            throw NSError(domain: "AI_Generic", code: 4, userInfo: [NSLocalizedDescriptionKey: "Could not find content in response"])
                         }
                     }
                     
                     let cleanCommand = resultText.trimmingCharacters(in: .whitespacesAndNewlines)
                         .replacingOccurrences(of: "```bash", with: "")
                         .replacingOccurrences(of: "```zsh", with: "")
+                        .replacingOccurrences(of: "```shell", with: "")
                         .replacingOccurrences(of: "```", with: "")
                         .trimmingCharacters(in: .whitespacesAndNewlines)
                     
-                    DispatchQueue.main.async { completion(.success(cleanCommand)) }
+                    if cleanCommand.isEmpty {
+                        throw NSError(domain: "AI_Parse", code: 5, userInfo: [NSLocalizedDescriptionKey: "Empty command generated"])
+                    }
+                    
+                    DispatchQueue.main.async { 
+                        self.isProcessing = false
+                        completion(.success(cleanCommand)) 
+                    }
+                } else {
+                    throw NSError(domain: "AI_Parse", code: 6, userInfo: [NSLocalizedDescriptionKey: "Invalid JSON response"])
                 }
             } catch {
-                completion(.failure(error))
+                DispatchQueue.main.async { 
+                    self.isProcessing = false
+                    completion(.failure(error)) 
+                }
             }
         }.resume()
     }

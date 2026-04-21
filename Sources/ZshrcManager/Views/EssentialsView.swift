@@ -42,6 +42,9 @@ struct EssentialsView: View {
             .padding(.horizontal, 40).padding(.top, 24).padding(.bottom, 40)
         }
         .onAppear { manager.checkAllStatus() }
+        .sheet(item: $manager.pendingInstallReview) { review in
+            InstallScriptReviewSheet(review: review, manager: manager, lang: lang)
+        }
     }
 }
 

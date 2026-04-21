@@ -14,6 +14,7 @@ class PythonManager: ObservableObject {
     @Published var isInstalling = false
     @Published var installationOutput = ""
     @Published var isPyenvInstalled = false
+    @Published var systemPythonVersion: String? = nil
     
     @Published var selectedMirror: String? = nil
     let mirrors = [
@@ -33,11 +34,33 @@ class PythonManager: ObservableObject {
     }
     
     func checkPyenv() {
-        let res = SwiftShell.run("/usr/bin/which", "pyenv")
-        let path = res.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
+        // 1. Try 'which' first
+        var res = SwiftShell.run("/usr/bin/which", "pyenv")
+        var path = res.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
+        
+        // 2. Fallback to common paths if 'which' fails
+        if res.exitcode != 0 || path.isEmpty {
+            let commonPaths = ["/opt/homebrew/bin", "/usr/local/bin", "/usr/bin", "/bin"]
+            for base in commonPaths {
+                let fullPath = "\(base)/pyenv"
+                if FileManager.default.fileExists(atPath: fullPath) {
+                    path = fullPath
+                    res = SwiftShell.run(fullPath, "--version") // Just to get a valid success result
+                    break
+                }
+            }
+        }
+        
+        // Also check system python
+        let sysPy = SwiftShell.run("/usr/bin/python3", "--version")
+        let sysVer = sysPy.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
+            .replacingOccurrences(of: "Python ", with: "")
+        
         DispatchQueue.main.async {
             self.pyenvPath = path
-            self.isPyenvInstalled = res.exitcode == 0 && !self.pyenvPath.isEmpty
+            self.isPyenvInstalled = !self.pyenvPath.isEmpty
+            self.systemPythonVersion = sysPy.exitcode == 0 ? sysVer : nil
+            
             if self.isPyenvInstalled {
                 self.refreshVersions()
             }
@@ -47,9 +70,17 @@ class PythonManager: ObservableObject {
     func refreshVersions() {
         guard !pyenvPath.isEmpty else { return }
         DispatchQueue.global(qos: .userInitiated).async {
+            var context = CustomContext(main)
+            let homebrewPath = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            if let existingPath = context.env["PATH"] {
+                context.env["PATH"] = "\(homebrewPath):\(existingPath)"
+            } else {
+                context.env["PATH"] = homebrewPath
+            }
+
             // 1. Get installed versions
-            let versionsRes = SwiftShell.run(self.pyenvPath, "versions", "--bare")
-            let globalRes = SwiftShell.run(self.pyenvPath, "global")
+            let versionsRes = context.run(self.pyenvPath, "versions", "--bare")
+            let globalRes = context.run(self.pyenvPath, "global")
             let global = globalRes.stdout.trimmingCharacters(in: .whitespacesAndNewlines)
             
             let installed = versionsRes.stdout.components(separatedBy: .newlines)
@@ -59,7 +90,7 @@ class PythonManager: ObservableObject {
                 }
             
             // 2. Get subset of available versions
-            let allAvailRes = SwiftShell.run(self.pyenvPath, "install", "--list")
+            let allAvailRes = context.run(self.pyenvPath, "install", "--list")
             let avail = allAvailRes.stdout.components(separatedBy: .newlines)
                 .filter { $0.trimmingCharacters(in: .whitespaces).prefix(1).first?.isNumber ?? false }
                 .filter { !$0.contains("-") && !$0.contains("rc") && !$0.contains("dev") } // Pure versions only
@@ -121,7 +152,15 @@ class PythonManager: ObservableObject {
     func setGlobal(_ version: String) {
         guard !pyenvPath.isEmpty else { return }
         DispatchQueue.global(qos: .userInitiated).async {
-            SwiftShell.run(self.pyenvPath, "global", version)
+            var context = CustomContext(main)
+            let homebrewPath = "/opt/homebrew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+            if let existingPath = context.env["PATH"] {
+                context.env["PATH"] = "\(homebrewPath):\(existingPath)"
+            } else {
+                context.env["PATH"] = homebrewPath
+            }
+            
+            context.run(self.pyenvPath, "global", version)
             self.refreshVersions()
         }
     }

@@ -85,9 +85,29 @@ class ShellManager: ObservableObject {
         checkConfigOutput = ""
         
         DispatchQueue.global(qos: .userInitiated).async {
-            // Looking for script in project structure
-            let scriptPath = "/Users/xingyc/PROJECTS/zshrc-manager/scripts/check_config.sh"
-            let run = SwiftShell.run("/bin/bash", scriptPath)
+            // Dynamically resolve script path: try Bundle resources first (for released .app), 
+            // then fallback to local relative path (for dev environment)
+            var scriptPath: String? = nil
+            
+            if let bundledURL = Bundle.main.url(forResource: "check_config", withExtension: "sh", subdirectory: "scripts") {
+                scriptPath = bundledURL.path
+            } else {
+                // Fallback for development/testing
+                let devPath = "/Users/xingyc/PROJECTS/zshrc-manager/scripts/check_config.sh"
+                if FileManager.default.fileExists(atPath: devPath) {
+                    scriptPath = devPath
+                }
+            }
+            
+            guard let actualPath = scriptPath else {
+                DispatchQueue.main.async {
+                    self.checkConfigOutput = "Error: check_config.sh not found in bundle or project root."
+                    self.isCheckingConfig = false
+                }
+                return
+            }
+            
+            let run = SwiftShell.run("/bin/bash", actualPath)
             
             DispatchQueue.main.async {
                 self.checkConfigOutput = run.stdout.removingANSIEscapeCodes()
@@ -152,159 +172,125 @@ class ShellManager: ObservableObject {
     // --- Phase 3.0: 自动修复能力 ---
     
     func commentLine(at index: Int) {
-        guard index >= 0 && index < configLines.count else { return }
-        configLines[index].isCommented = true
-        saveConfig()
-    }
-    
-    func appendLine(_ content: String, isManaged: Bool = true) {
-        let newLine = ConfigLine(content: content, isCommented: false, isManagerInjected: isManaged)
-        configLines.append(newLine)
-        saveConfig()
-    }
-    
-    func saveConfig() {
-        let actualPath = currentShellPath
-        guard !actualPath.isEmpty else { return }
-        
-        // 1. 安全备份
-        let backupPath = actualPath + ".doctor.bak"
-        try? fileManager.copyItem(atPath: actualPath, toPath: backupPath)
-        
-        // 2. 序列化内容
-        let content = configLines.map { line in
-            if line.isCommented {
-                return "# " + line.content
-            } else {
-                return line.content
+        Task {
+            await applyConfigMutation(operation: "Comment Line") { lines in
+                guard index >= 0 && index < lines.count else { return }
+                lines[index].isCommented = true
             }
-        }.joined(separator: "\n")
-        
-        // 3. 写入文件
-        do {
-            try content.write(toFile: actualPath, atomically: true, encoding: .utf8)
-            // 重新加载以触发 UI 更新
-            loadConfigLines()
-        } catch {
-            print("Failed to save config: \(error)")
         }
     }
     
+    func appendLine(_ content: String, isManaged: Bool = true) {
+        Task {
+            await applyConfigMutation(operation: "Append Line") { lines in
+                let newLine = ConfigLine(content: content, isCommented: false, isManagerInjected: isManaged)
+                lines.append(newLine)
+            }
+        }
+    }
+    
+    func saveConfig() {
+        Task { await persistCurrentConfig(operation: "Save Config") }
+    }
+    
     func toggleLine(id: UUID) {
-        if let index = configLines.firstIndex(where: { $0.id == id }) {
-            configLines[index].isCommented.toggle()
-            saveConfigLines()
-            self.insights = ConfigAnalyzer.shared.analyze(lines: self.configLines)
-            self.conflicts = ConfigAnalyzer.shared.detectConflicts(lines: self.configLines)
-            refreshShell()
+        Task {
+            await applyConfigMutation(operation: "Toggle Line") { lines in
+                if let index = lines.firstIndex(where: { $0.id == id }) {
+                    lines[index].isCommented.toggle()
+                }
+            }
         }
     }
     
     func migrateAll() {
-        // Ensure modular directory exists before migration
-        if !fileManager.fileExists(atPath: managerDirPath.path) {
-            try? fileManager.createDirectory(at: managerDirPath, withIntermediateDirectories: true)
-        }
-        
-        var newLines = configLines
-        var migratedCount = 0
-        var steps: [MigrationStep] = []
-        
-        // Map insights to lines to ensure consistency between UI and migration
-        for insight in insights {
-            guard let lineIndex = newLines.firstIndex(where: { $0.id == insight.id }) else { continue }
-            let line = newLines[lineIndex]
-            
-            // Skip already commented or previously moved items
-            if line.isCommented || line.isManagerInjected { continue }
-            
-            var targetPath: URL? = nil
-            // Use category-based routing
-            switch insight.category {
-            case "Alias", "Shortcut":
-                targetPath = aliasesZshPath
-            case "PATH":
-                targetPath = pathsZshPath
-            default:
-                // Everything else (Environment, Development, Package Manager, Database, etc.)
-                // Go into the environment bootstrap file
-                targetPath = envZshPath
-            }
-            
-            if let path = targetPath {
-                do {
-                    let entry = "\n# Migrated on \(Date())\n\(line.content)\n"
-                    if fileManager.fileExists(atPath: path.path) {
-                        let handle = try FileHandle(forWritingTo: path)
-                        handle.seekToEndOfFile()
-                        handle.write(entry.data(using: .utf8)!)
-                        handle.closeFile()
-                    } else {
-                        try entry.write(to: path, atomically: true, encoding: .utf8)
-                    }
-                    
-                    newLines[lineIndex].isCommented = true
-                    migratedCount += 1
-                    steps.append(MigrationStep(content: line.content, category: insight.category))
-                } catch {
-                    print("Migration failed for: \(line.content)")
-                }
-            }
-        }
-        
-        if migratedCount > 0 {
-            self.lastMigration = steps
-            self.configLines = newLines
-            saveConfigLines()
-            refreshShell()
-            loadConfigLines() 
-        }
+        Task { await migrateAllAsync() }
     }
     
     func undoMigration() {
-        // Simple undo: uncomment all migrated lines in the current list
-        // Note: This doesn't remove from modular files yet, but it restores functionality in .zshrc
-        // For a full undo, we'd need to prune those files too. 
-        // But for MVP, restoring visibility in .zshrc and clearing the log is safer.
-        var newLines = configLines
-        for step in lastMigration {
-            if let index = newLines.firstIndex(where: { $0.content == step.content }) {
-                newLines[index].isCommented = false
+        Task {
+            let oldSteps = await MainActor.run { self.lastMigration }
+            await applyConfigMutation(operation: "Undo Migration") { lines in
+                for step in oldSteps {
+                    if let index = lines.firstIndex(where: { $0.content == step.content }) {
+                        lines[index].isCommented = false
+                    }
+                }
             }
+            await MainActor.run { self.lastMigration = [] }
         }
-        
-        self.configLines = newLines
-        self.lastMigration = []
-        saveConfigLines()
-        refreshShell()
-        loadConfigLines()
     }
     
     func saveConfigLines() {
-        let content = configLines.map { line in
-            if line.isCommented {
-                return "# " + line.content
-            } else {
-                return line.content
-            }
-        }.joined(separator: "\n")
-        
-        do {
-            try content.write(to: URL(fileURLWithPath: currentShellPath), atomically: true, encoding: .utf8)
-            checkInstallationStatus()
-        } catch {
-            print("Failed to save config lines: \(error)")
-        }
+        Task { await persistCurrentConfig(operation: "Save Config Lines") }
     }
     
     func refreshShell() {
-        // Runs 'source' in the background. While it doesn't affect other windows, 
-        // it verifies the config is valid and ensures the process environment is updated.
+        // Runs 'source' in the background to verify the config is valid and 
+        // ensure the process environment is updated without blocking the UI.
         let shell = currentShellPath.contains("zsh") ? "/bin/zsh" : "/bin/bash"
-        _ = SwiftShell.run(shell, "-c", "source \(currentShellPath)")
+        let path = currentShellPath
+        
+        DispatchQueue.global(qos: .background).async {
+            _ = SwiftShell.run(shell, "-c", "source \(path)")
+        }
     }
 
     func install() {
+        Task { await installAsync() }
+    }
+    
+    func uninstall() {
+        Task { await uninstallAsync() }
+    }
+    
+    private func serialize(_ lines: [ConfigLine]) -> String {
+        lines.map { line in
+            line.isCommented ? "# " + line.content : line.content
+        }.joined(separator: "\n")
+    }
+    
+    private func persistCurrentConfig(operation: String) async {
+        let lines = await MainActor.run { self.configLines }
+        _ = await commitConfigLines(operation: operation, proposedLines: lines, title: operation)
+    }
+    
+    private func applyConfigMutation(operation: String, mutate: (inout [ConfigLine]) -> Void) async {
+        let existing = await MainActor.run { self.configLines }
+        var updated = existing
+        mutate(&updated)
+        let path = await MainActor.run { self.currentShellPath }
+        if path.isEmpty { return }
+        _ = await commitConfigLines(operation: operation, proposedLines: updated, title: operation)
+    }
+    
+    private func commitConfigLines(operation: String, proposedLines: [ConfigLine], title: String) async -> Bool {
+        let path = await MainActor.run { self.currentShellPath }
+        guard !path.isEmpty else { return false }
+        
+        let beforeText = (try? String(contentsOfFile: path, encoding: .utf8)) ?? ""
+        let afterText = serialize(proposedLines)
+        
+        let approved = await ChangeReviewManager.shared.requestApproval(title: title, filePath: path, beforeText: beforeText, afterText: afterText)
+        guard approved else { return false }
+        
+        do {
+            _ = try SafeFileWriter.shared.writeFile(filePath: path, newContent: afterText, operation: operation)
+            await MainActor.run {
+                self.configLines = proposedLines
+                self.insights = ConfigAnalyzer.shared.analyze(lines: proposedLines)
+                self.conflicts = ConfigAnalyzer.shared.detectConflicts(lines: proposedLines)
+                self.checkInstallationStatus(at: path)
+            }
+            refreshShell()
+            return true
+        } catch {
+            await MainActor.run { self.statusMessage = "Status_Failed" }
+            return false
+        }
+    }
+    
+    private func installAsync() async {
         do {
             if !fileManager.fileExists(atPath: managerDirPath.path) {
                 try fileManager.createDirectory(at: managerDirPath, withIntermediateDirectories: true)
@@ -323,29 +309,104 @@ class ShellManager: ObservableObject {
             }
             
             let injectionLine = "source ~/.zsh_manager/main.zsh"
-            var lines = configLines
-            if !lines.contains(where: { $0.content.contains(injectionLine) }) {
-                lines.append(ConfigLine(content: "", isCommented: false, isManagerInjected: true))
-                lines.append(ConfigLine(content: "# Added by Zshrc Manager", isCommented: false, isManagerInjected: true))
-                lines.append(ConfigLine(content: injectionLine, isCommented: false, isManagerInjected: true))
-                self.configLines = lines
-                saveConfigLines()
-                refreshShell()
+            let existing = await MainActor.run { self.configLines }
+            var updated = existing
+            if !updated.contains(where: { $0.content.contains(injectionLine) }) {
+                updated.append(ConfigLine(content: "", isCommented: false, isManagerInjected: true))
+                updated.append(ConfigLine(content: "# Added by Zshrc Manager", isCommented: false, isManagerInjected: true))
+                updated.append(ConfigLine(content: injectionLine, isCommented: false, isManagerInjected: true))
             }
             
-            statusMessage = "Status_Success"
-            isInstalled = true
+            let ok = await commitConfigLines(operation: "Install Injection", proposedLines: updated, title: "Install Injection")
+            if ok {
+                await MainActor.run { self.statusMessage = "Status_Success" }
+            }
         } catch {
-            statusMessage = "Status_Failed"
+            await MainActor.run { self.statusMessage = "Status_Failed" }
         }
     }
     
-    func uninstall() {
-        configLines.removeAll { $0.isManagerInjected }
-        saveConfigLines()
-        refreshShell()
-        statusMessage = "Status_Uninstall"
-        isInstalled = false
+    private func uninstallAsync() async {
+        let existing = await MainActor.run { self.configLines }
+        let updated = existing.filter { !$0.isManagerInjected }
+        let ok = await commitConfigLines(operation: "Uninstall Injection", proposedLines: updated, title: "Uninstall Injection")
+        if ok {
+            await MainActor.run { self.statusMessage = "Status_Uninstall" }
+        }
+    }
+    
+    private func migrateAllAsync() async {
+        if !fileManager.fileExists(atPath: managerDirPath.path) {
+            try? fileManager.createDirectory(at: managerDirPath, withIntermediateDirectories: true)
+        }
+        
+        let existing = await MainActor.run { self.configLines }
+        let snapshotInsights = await MainActor.run { self.insights }
+        
+        var newLines = existing
+        var migratedCount = 0
+        var steps: [MigrationStep] = []
+        
+        var fileEdits: [URL: String] = [:]
+        let stamp = ISO8601DateFormatter().string(from: Date())
+        
+        for insight in snapshotInsights {
+            guard let lineIndex = newLines.firstIndex(where: { $0.id == insight.id }) else { continue }
+            let line = newLines[lineIndex]
+            if line.isCommented || line.isManagerInjected { continue }
+            
+            let targetPath: URL
+            switch insight.category {
+            case "Alias", "Shortcut":
+                targetPath = aliasesZshPath
+            case "PATH":
+                targetPath = pathsZshPath
+            default:
+                targetPath = envZshPath
+            }
+            
+            let before = fileEdits[targetPath] ?? (try? String(contentsOf: targetPath, encoding: .utf8)) ?? ""
+            let entry = "\n# Migrated on \(stamp)\n\(line.content)\n"
+            fileEdits[targetPath] = before + entry
+            
+            newLines[lineIndex].isCommented = true
+            migratedCount += 1
+            steps.append(MigrationStep(content: line.content, category: insight.category))
+        }
+        
+        if migratedCount == 0 { return }
+        
+        let path = await MainActor.run { self.currentShellPath }
+        let beforeText = (try? String(contentsOfFile: path, encoding: .utf8)) ?? ""
+        let afterText = serialize(newLines)
+        
+        let approved = await ChangeReviewManager.shared.requestApproval(title: "Migrate to Modules", filePath: path, beforeText: beforeText, afterText: afterText)
+        guard approved else { return }
+        
+        var backups: [(file: String, backup: String)] = []
+        do {
+            for (url, after) in fileEdits {
+                let backup = try SafeFileWriter.shared.writeFile(filePath: url.path, newContent: after, operation: "Migrate Module")
+                backups.append((file: url.path, backup: backup))
+            }
+            
+            let mainBackup = try SafeFileWriter.shared.writeFile(filePath: path, newContent: afterText, operation: "Migrate Main Config")
+            backups.append((file: path, backup: mainBackup))
+            
+            await MainActor.run {
+                self.lastMigration = steps
+                self.configLines = newLines
+                self.insights = ConfigAnalyzer.shared.analyze(lines: newLines)
+                self.conflicts = ConfigAnalyzer.shared.detectConflicts(lines: newLines)
+                self.checkInstallationStatus(at: path)
+            }
+            refreshShell()
+        } catch {
+            for item in backups.reversed() {
+                try? SafeFileWriter.shared.restore(filePath: item.file, backupPath: item.backup)
+            }
+            await MainActor.run { self.statusMessage = "Status_Failed" }
+        }
     }
 }
 

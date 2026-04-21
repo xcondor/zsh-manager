@@ -4,7 +4,7 @@ import PackageDescription
 let package = Package(
     name: "ZshrcManager",
     platforms: [
-        .macOS(.v14)
+        .macOS(.v12)
     ],
     products: [
         .executable(name: "ZshrcManager", targets: ["ZshrcManager"])
@@ -16,7 +16,10 @@ let package = Package(
         .executableTarget(
             name: "ZshrcManager",
             dependencies: ["SwiftShell"],
-            path: "Sources/ZshrcManager"
+            path: "Sources/ZshrcManager",
+            resources: [
+                .process("Resources")
+            ]
         ),
         .testTarget(
             name: "ZshrcManagerTests",

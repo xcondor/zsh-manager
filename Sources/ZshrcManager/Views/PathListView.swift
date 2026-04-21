@@ -56,7 +56,7 @@ struct PathListView: View {
         .onAppear {
             manager.refreshLivePath()
         }
-        .onChange(of: manager.paths.count) {
+        .onChange(of: manager.paths.count) { _ in
             withAnimation { showRefreshReminder = true }
         }
     }
@@ -84,7 +84,7 @@ struct PathListView: View {
             if manager.paths.isEmpty {
                 emptyPathView
             } else {
-                GlassCard {
+                GlassCard(isHighContrast: true) {
                     List {
                         ForEach(manager.paths) { entry in
                             PathRow(entry: entry, manager: manager, lang: lang, isLive: false)
@@ -110,7 +110,7 @@ struct PathListView: View {
                 .foregroundColor(.secondary)
                 .padding(.bottom, 10)
             
-            GlassCard {
+            GlassCard(isHighContrast: true) {
                 VStack(spacing: 0) {
                     ForEach(Array(manager.sessionPaths.enumerated()), id: \.offset) { index, entry in
                         PathRow(entry: entry, manager: manager, lang: lang, isLive: true, rank: index + 1)

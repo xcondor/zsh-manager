@@ -1,4 +1,4 @@
-.PHONY: all run build test package dmg clean
+.PHONY: all run build test package dmg clean debug-dmg
 
 APP_NAME = ZshrcManager
 BINARY = .build/debug/$(APP_NAME)
@@ -35,6 +35,12 @@ package: test
 # Generate DMG installer
 dmg: package
 	@echo "📦 DMG generated at dist/$(APP_NAME).dmg"
+
+# Generate Debug DMG installer
+debug-dmg:
+	@chmod +x scripts/package.sh
+	@DEBUG=1 ./scripts/package.sh
+	@echo "📦 Debug DMG generated at dist/$(APP_NAME)-Debug.dmg"
 
 # Clean build artifacts
 clean:

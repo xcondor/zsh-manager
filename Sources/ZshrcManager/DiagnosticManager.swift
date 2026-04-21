@@ -44,6 +44,12 @@ class DiagnosticManager: ObservableObject {
         // 5. 检查启动阻塞模式 (如 curl/wget 在启动脚本中)
         checkSlowPatterns(shellManager.configLines, lang: lang)
         
+        // 6. 启动耗时静态分析
+        checkStartupPerformance(shellManager.configLines, lang: lang)
+        
+        // 7. 敏感信息扫描
+        checkSecrets(shellManager: shellManager, lang: lang)
+        
         // 模拟扫描动效
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
             self.calculateScore()
@@ -139,6 +145,33 @@ class DiagnosticManager: ObservableObject {
         }
     }
     
+    private func checkStartupPerformance(_ lines: [ConfigLine], lang: LanguageManager) {
+        // 检查 NVM 这种极其缓慢的加载项
+        let slowLoaders = [
+            (pattern: "nvm.sh", name: "Node Version Manager (NVM)", suggestion: "建议使用 fnm 或 zsh-nvm 异步加载以提升 0.5s+ 启动速度。"),
+            (pattern: "rbenv", name: "Ruby Environment (rbenv)", suggestion: "考虑使用延迟加载技术。"),
+            (pattern: "pyenv init", name: "Pyenv Initialization", suggestion: "建议仅在需要时手动加载或使用更轻量的加载方式。")
+        ]
+        
+        for (index, line) in lines.enumerated() where !line.isCommented {
+            for loader in slowLoaders {
+                if line.content.contains(loader.pattern) {
+                    issues.append(DiagnosticIssue(
+                        id: UUID(),
+                        ruleId: "SLOW_INIT",
+                        category: "Performance",
+                        title: "\(lang.t("Slow Command Found")): \(loader.name)",
+                        description: "该指令已知会导致较长的终端启动延迟。",
+                        severity: .warning,
+                        suggestion: lang.t(loader.suggestion),
+                        canFixAutomatically: false,
+                        targetLine: index
+                    ))
+                }
+            }
+        }
+    }
+    
     private func checkSlowPatterns(_ lines: [ConfigLine], lang: LanguageManager) {
         for (index, line) in lines.enumerated() where !line.isCommented {
             if (line.content.contains("curl") || line.content.contains("wget")) && !line.isManagerInjected {
@@ -154,6 +187,38 @@ class DiagnosticManager: ObservableObject {
                     targetLine: index
                 ))
             }
+        }
+    }
+    
+    private func checkSecrets(shellManager: ShellManager, lang: LanguageManager) {
+        let configPath = shellManager.currentShellPath
+        var findings: [SecretFinding] = []
+        
+        if !configPath.isEmpty {
+            findings.append(contentsOf: SecretScanner.shared.scanFile(path: configPath))
+        }
+        findings.append(contentsOf: SecretScanner.shared.scanManagerDirectory())
+        
+        let grouped = Dictionary(grouping: findings, by: { $0.filePath })
+        for (file, items) in grouped {
+            let count = items.count
+            let sample = items.prefix(3).map { f in
+                if let line = f.lineNumber {
+                    return "L\(line): \(f.preview)"
+                }
+                return f.preview
+            }.joined(separator: "\n")
+            
+            issues.append(DiagnosticIssue(
+                id: UUID(),
+                ruleId: "SECRET_SCAN",
+                category: "Security",
+                title: lang.t("Privacy Risk Found"),
+                description: "\(file)\n\n\(sample)\n\n\(lang.t("Detected Secrets")): \(count)",
+                severity: .critical,
+                suggestion: lang.t("Migrate to Keychain"),
+                canFixAutomatically: false
+            ))
         }
     }
     

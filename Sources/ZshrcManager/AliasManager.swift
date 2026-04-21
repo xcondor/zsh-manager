@@ -99,6 +99,9 @@ class AliasManager: ObservableObject {
             let header = "# Managed by Zshrc Manager - Aliases\n\n"
             try (header + shellScript).write(to: aliasesZshPath, atomically: true, encoding: .utf8)
             
+            // Trigger Cloud Sync if enabled
+            CloudSyncManager.shared.syncUp()
+            
         } catch {
             print("Failed to save aliases: \(error)")
         }
