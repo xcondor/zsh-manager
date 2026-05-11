@@ -54,9 +54,9 @@ struct ContentView: View {
         .sheet(item: $reviewer.pending) { proposal in
             ChangeReviewSheet(reviewer: reviewer, proposal: proposal, lang: lang)
         }
-        .sheet(isPresented: $showingActivation) {
-            LicenseActivationSheet().environmentObject(lang)
-        }
+        // .sheet(isPresented: $showingActivation) {
+        //     LicenseActivationSheet().environmentObject(lang)
+        // }
     }
     
     @ViewBuilder
@@ -84,6 +84,10 @@ struct ContentView: View {
                     ))
                 case "Snapshots":
                     AnyView(SnapshotView(manager: state.snapshotManager, lang: lang))
+                case "Sync":
+                    AnyView(CloudSyncView(manager: state.cloudSyncManager).environmentObject(lang))
+                case "Settings":
+                    AnyView(SettingsView().environmentObject(lang))
                 case "Functional":
                     AnyView(FunctionalListView(manager: state.shellManager, lang: lang))
                 case "Essentials":
@@ -119,8 +123,8 @@ struct SidebarView: View {
             ScrollView {
                 VStack(alignment: .leading, spacing: 5) {
                     // Trial Widget at the very top
-                    TrialWidget(onUpgrade: { showingActivation = true })
-                        .padding(.bottom, 12)
+                    // TrialWidget(onUpgrade: { showingActivation = true })
+                    //    .padding(.bottom, 12)
                     
                     Text(lang.t("General"))
                         .font(.system(size: 11, weight: .bold))

@@ -48,102 +48,102 @@ class PluginManager: ObservableObject {
             PluginDefinition(
                 id: "autosuggestions",
                 name: "zsh-autosuggestions",
-                description: "基于历史记录的实时补全建议",
+                description: "Plugin_Autosuggestions_Desc",
                 brewName: "zsh-autosuggestions",
                 gitUrl: "https://github.com/zsh-users/zsh-autosuggestions",
                 initLine: "source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh",
-                usage: "直接输入命令即可看到灰色建议，按 → 键采纳",
-                testCommand: "echo \"zsh-autosuggestions 需要交互式终端：打开真实 Terminal/iTerm2，输入你历史用过的命令即可看到灰色建议。\""
+                usage: "Plugin_Autosuggestions_Usage",
+                testCommand: "Plugin_Autosuggestions_Test"
             ),
             PluginDefinition(
                 id: "syntax-highlighting",
                 name: "zsh-syntax-highlighting",
-                description: "终端命令实时合法性高亮 (绿色/红色)",
+                description: "Plugin_SyntaxHighlighting_Desc",
                 brewName: "zsh-syntax-highlighting",
                 gitUrl: "https://github.com/zsh-users/zsh-syntax-highlighting",
                 initLine: "source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh",
-                usage: "命令合法显示为绿色，非法显示为红色",
-                testCommand: "echo \"zsh-syntax-highlighting 需要交互式终端：打开真实 Terminal/iTerm2，输入 ls 与 invalidcommand 观察高亮颜色变化。\""
+                usage: "Plugin_SyntaxHighlighting_Usage",
+                testCommand: "Plugin_SyntaxHighlighting_Test"
             ),
             PluginDefinition(
                 id: "thefuck",
                 name: "thefuck",
-                description: "神奇的命令纠错工具，如果你敲错了，输入 fuck 自动修复",
+                description: "Plugin_TheFuck_Desc",
                 brewName: "thefuck",
                 gitUrl: "https://github.com/nvbn/thefuck",
                 initLine: "eval \"$(thefuck --alias)\"",
-                usage: "输入错命令后，输入 fuck 即可获得修改建议并自动执行",
+                usage: "Plugin_TheFuck_Usage",
                 testCommand: "thefuck --version"
             ),
             PluginDefinition(
                 id: "zoxide",
                 name: "zoxide (z)",
-                description: "更高级的 cd 方式，智能跳转到你常用的目录",
+                description: "Plugin_Zoxide_Desc",
                 brewName: "zoxide",
                 gitUrl: "https://github.com/ajeetdsouza/zoxide",
                 initLine: "eval \"$(zoxide init zsh)\"",
-                usage: "输入 z 目录名 即可极速跳转，无需输入完整路径",
+                usage: "Plugin_Zoxide_Usage",
                 testCommand: "zoxide --help | head -n 20"
             ),
             PluginDefinition(
                 id: "tldr",
                 name: "tldr",
-                description: "最实用的命令说明书，直接给你看案例而不是冗长的文档",
+                description: "Plugin_Tldr_Desc",
                 brewName: "tldr",
                 gitUrl: "https://github.com/tldr-pages/tldr",
                 initLine: "alias help=\"tldr\"",
-                usage: "输入 help 命令 (如 help tar) 快速查看最常用的示例",
+                usage: "Plugin_Tldr_Usage",
                 testCommand: "tldr tar | head -n 30"
             ),
             PluginDefinition(
                 id: "extract",
                 name: "extract",
-                description: "万用解压工具，无论是 zip, tar 还是 gz，一键解压",
+                description: "Plugin_Extract_Desc",
                 brewName: nil, // Built-in OMZ plugin
                 gitUrl: nil,
                 initLine: "plugins+=(extract)",
-                usage: "输入 x 文件名 即可解压任何类型的压缩包",
-                testCommand: "echo \"extract 需要实际压缩包文件：打开真实终端并执行 x your.zip（或 x your.tar.gz）。\""
+                usage: "Plugin_Extract_Usage",
+                testCommand: "Plugin_Extract_Test"
             ),
             PluginDefinition(
                 id: "sudo",
                 name: "sudo",
-                description: "快速补齐 sudo，双击 ESC 即可让上条命令获得管理员权限",
+                description: "Plugin_Sudo_Desc",
                 brewName: nil, // Built-in OMZ plugin
                 gitUrl: nil,
                 initLine: "plugins+=(sudo)",
-                usage: "命令权限不足？双击 ESC 键自动在行首添加 sudo",
-                testCommand: "echo \"sudo 插件是按键绑定：打开真实终端，输入任意命令后双击 ESC 观察是否自动补齐 sudo。\""
+                usage: "Plugin_Sudo_Usage",
+                testCommand: "Plugin_Sudo_Test"
             ),
             PluginDefinition(
                 id: "eza",
                 name: "eza (Modern ls)",
-                description: "现代版 ls，带图标、色彩和更好的格式展示",
+                description: "Plugin_Eza_Desc",
                 brewName: "eza",
                 gitUrl: "https://github.com/eza-community/eza",
                 initLine: "alias ls=\"eza --icons --group-directories-first\"; alias ll=\"eza -lbF --icons\"; alias la=\"eza -lbhHigUmuSa --icons\"",
-                usage: "输入 ls 查看整洁的图标列表，输入 ll 查看详细信息",
+                usage: "Plugin_Eza_Usage",
                 testCommand: "eza --version"
             ),
             PluginDefinition(
                 id: "bat",
                 name: "bat (Modern cat)",
-                description: "现代版 cat，带语法高亮、行号和 Git 状态集成",
+                description: "Plugin_Bat_Desc",
                 brewName: "bat",
                 gitUrl: "https://github.com/sharkdp/bat",
                 initLine: "alias cat=\"bat\"",
-                usage: "输入 cat 文件名 享受代码高亮般的阅读体验",
+                usage: "Plugin_Bat_Usage",
                 testCommand: "bat --version"
             ),
             PluginDefinition(
                 id: "fzf-tab",
                 name: "fzf-tab",
-                description: "将 Tab 补全菜单替换为强大的模糊搜索界面",
+                description: "Plugin_FzfTab_Desc",
                 brewName: "fzf-tab",
                 gitUrl: "https://github.com/Aloxaf/fzf-tab",
                 initLine: "source $(brew --prefix)/share/fzf-tab/fzf-tab.plugin.zsh",
-                usage: "按 Tab 键开启增强型模糊搜索列表",
-                testCommand: "echo \"fzf-tab 需要交互式终端：打开真实 Terminal/iTerm2，输入 cd 然后按 TAB 触发 fzf 补全菜单。\""
+                usage: "Plugin_FzfTab_Usage",
+                testCommand: "Plugin_FzfTab_Test"
             )
         ]
     }

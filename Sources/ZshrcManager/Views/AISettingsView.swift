@@ -41,11 +41,11 @@ struct AISettingsView: View {
                     }
                     .padding(.horizontal, 18)
                     .padding(.vertical, 14)
-                    .background(Color.white)
+                    .background(Color(NSColor.controlBackgroundColor))
                     .cornerRadius(10)
-                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black.opacity(0.08), lineWidth: 1))
+                    .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.primary.opacity(0.1), lineWidth: 1))
                     
-                    Text(lang.t("API Key 会加密保存在本地。建议使用 Gemini API (免费且快速)。"))
+                    Text(lang.t("AI_Key_Notice"))
                         .font(.system(size: 10))
                         .foregroundColor(.secondary.opacity(0.7))
                         .padding(.top, 4)

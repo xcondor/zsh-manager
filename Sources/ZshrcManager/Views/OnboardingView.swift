@@ -15,7 +15,7 @@ struct OnboardingView: View {
                         hasCompletedOnboarding = true
                     }
                 }) {
-                    Text("Skip")
+                    Text(lang.t("Skip"))
                         .font(.system(size: 12, weight: .medium))
                         .foregroundColor(.secondary)
                 }

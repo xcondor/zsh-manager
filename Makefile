@@ -16,12 +16,14 @@ run: test
 	@echo "🔄 Build & Run $(APP_NAME)..."
 	@pkill $(APP_NAME) || true
 	@swift build
+	@codesign -s - $(BINARY) || true
 	@echo "🚀 Launching $(APP_NAME)..."
 	@./$(BINARY) &
 
 # Standard build with test validation
 build: test
 	@swift build
+	@codesign -s - $(BINARY) || true
 
 # Release build
 release: test

@@ -53,24 +53,28 @@ struct TerminalMasterView: View {
                             MasterStepRow(
                                 name: lang.t("iTerm2 App"),
                                 status: service.installedIds.contains("iterm2"),
+                                lang: lang,
                                 action: { if let s = service.services.first(where: { $0.id == "iterm2" }) { service.install(service: s) } }
                             )
                             
                             MasterStepRow(
                                 name: "Oh My Zsh",
                                 status: master.isOMZInstalled,
+                                lang: lang,
                                 action: { if let s = service.services.first(where: { $0.id == "omz" }) { service.install(service: s) } }
                             )
                             
                             MasterStepRow(
                                 name: lang.t("Shell Theme"),
                                 status: master.isP10kInstalled,
+                                lang: lang,
                                 action: { master.applyBeautify(serviceManager: service) }
                             )
                             
                             MasterStepRow(
                                 name: lang.t("Nerd Font"),
                                 status: master.isFontInstalled,
+                                lang: lang,
                                 action: { if let s = service.services.first(where: { $0.id == "nerd-font" }) { service.install(service: s) } }
                             )
                         }
@@ -130,6 +134,7 @@ struct TerminalMasterView: View {
 struct MasterStepRow: View {
     let name: String
     let status: Bool
+    @ObservedObject var lang: LanguageManager
     let action: () -> Void
     
     var body: some View {
@@ -140,12 +145,12 @@ struct MasterStepRow: View {
             Spacer()
             if !status {
                 Button(action: action) {
-                    Text("Install").font(.system(size: 12, weight: .bold))
+                    Text(lang.t("Install")).font(.system(size: 12, weight: .bold))
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(.plain)
             } else {
-                Text("Ready").font(.system(size: 12)).foregroundColor(.secondary)
+                Text(lang.t("Ready")).font(.system(size: 12)).foregroundColor(.secondary)
             }
         }
         .padding()
@@ -177,7 +182,7 @@ struct MasterPluginRow: View {
                 Button(action: {
                     manager.installPlugin(plugin.id, onOutput: { _ in }, completion: { _ in })
                 }) {
-                    Text("Install").font(.system(size: 12, weight: .bold))
+                    Text(lang.t("Install")).font(.system(size: 12, weight: .bold))
                         .foregroundColor(.blue)
                 }
                 .buttonStyle(.plain)

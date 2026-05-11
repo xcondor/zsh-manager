@@ -43,7 +43,7 @@ struct ShellEditorView: View {
                 GlassCard {
                     List {
                         ForEach(filteredLines) { line in
-                            ConfigLineRow(line: line, onToggle: {
+                            ConfigLineRow(line: line, lang: lang, onToggle: {
                                 manager.toggleLine(id: line.id)
                             })
                             .listRowBackground(Color.clear)
@@ -72,6 +72,7 @@ struct ShellEditorView: View {
 
 struct ConfigLineRow: View {
     let line: ConfigLine
+    @ObservedObject var lang: LanguageManager
     let onToggle: () -> Void
     
     var body: some View {
@@ -93,7 +94,7 @@ struct ConfigLineRow: View {
             Spacer()
             
             if line.isManagerInjected {
-                Text("MANAGED")
+                Text(lang.t("MANAGED"))
                     .font(.system(size: 8, weight: .bold))
                     .padding(.horizontal, 6).padding(.vertical, 2)
                     .background(Color.blue.opacity(0.1)).foregroundColor(.blue)

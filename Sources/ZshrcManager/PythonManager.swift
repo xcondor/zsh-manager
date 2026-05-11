@@ -25,11 +25,21 @@ class PythonManager: ObservableObject {
     
     @Published var pyenvPath: String = ""
     
+    @Published var isPipFixEnabled = false
+    @Published var isVenvShortcutEnabled = false
+    @Published var showApplySuccess = false
+    
+    private var homeDir: URL { FileManager.default.homeDirectoryForCurrentUser }
+    private var managerDirPath: URL { homeDir.appendingPathComponent(".zsh_manager") }
+    private var aliasesZshPath: URL { managerDirPath.appendingPathComponent("aliases.zsh") }
+    private var envZshPath: URL { managerDirPath.appendingPathComponent("env.zsh") }
+    
     init() {}
 
     func start() {
         DispatchQueue.global(qos: .userInitiated).async {
             self.checkPyenv()
+            self.checkAdvancedSettings()
         }
     }
     
@@ -162,6 +172,75 @@ class PythonManager: ObservableObject {
             
             context.run(self.pyenvPath, "global", version)
             self.refreshVersions()
+        }
+    }
+    
+    func checkAdvancedSettings() {
+        let envContent = (try? String(contentsOf: envZshPath, encoding: .utf8)) ?? ""
+        let aliasContent = (try? String(contentsOf: aliasesZshPath, encoding: .utf8)) ?? ""
+        
+        let pipFix = envContent.contains("PIP_BREAK_SYSTEM_PACKAGES=1")
+        let venvFix = aliasContent.contains("function vv()")
+        
+        DispatchQueue.main.async {
+            self.isPipFixEnabled = pipFix
+            self.isVenvShortcutEnabled = venvFix
+        }
+    }
+    
+    func applyAdvancedFixes() {
+        // 1. Handle Pip Fix
+        var envLines = (try? String(contentsOf: envZshPath, encoding: .utf8))?.components(separatedBy: .newlines) ?? []
+        envLines = envLines.filter { !$0.contains("PIP_BREAK_SYSTEM_PACKAGES") }
+        if isPipFixEnabled {
+            envLines.append("export PIP_BREAK_SYSTEM_PACKAGES=1 # Added by Python Manager")
+        }
+        try? envLines.joined(separator: "\n").write(to: envZshPath, atomically: true, encoding: .utf8)
+        
+        // 2. Handle Venv Shortcut
+        var aliasLines = (try? String(contentsOf: aliasesZshPath, encoding: .utf8))?.components(separatedBy: .newlines) ?? []
+        
+        // Remove existing vv function if present
+        if let startIdx = aliasLines.firstIndex(where: { $0.contains("function vv()") }),
+           let endIdx = aliasLines.dropFirst(startIdx).firstIndex(where: { $0.trimmingCharacters(in: .whitespaces) == "}" }) {
+            aliasLines.removeSubrange(startIdx...endIdx)
+        }
+        
+        if isVenvShortcutEnabled {
+            let venvFunc = """
+function vv() {
+    if [ -d ".venv" ]; then
+        source .venv/bin/activate
+        echo "✅ Activated existing .venv"
+    elif [ -f "requirements.txt" ] || [ -f "pyproject.toml" ]; then
+        echo "📦 No .venv found. Creating one..."
+        python3 -m venv .venv
+        source .venv/bin/activate
+        if [ -f "requirements.txt" ]; then
+            pip install -r requirements.txt
+        fi
+        echo "✅ Created and activated .venv"
+    else
+        echo "🐍 No .venv or requirements found. Creating a fresh .venv..."
+        python3 -m venv .venv
+        source .venv/bin/activate
+    fi
+} # Added by Python Manager
+"""
+            aliasLines.append(venvFunc)
+        }
+        
+        try? aliasLines.joined(separator: "\n").write(to: aliasesZshPath, atomically: true, encoding: .utf8)
+        
+        // Refresh UI and show success
+        checkAdvancedSettings()
+        
+        DispatchQueue.main.async {
+            self.showApplySuccess = true
+            // Auto hide after 3 seconds
+            DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                self.showApplySuccess = false
+            }
         }
     }
 }

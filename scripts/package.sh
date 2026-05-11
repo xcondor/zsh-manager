@@ -44,6 +44,7 @@ if [ ! -f "$BIN_SOURCE" ]; then
 fi
 
 cp "$BIN_SOURCE" "$APP_BUNDLE/Contents/MacOS/$APP_NAME"
+codesign -s - "$APP_BUNDLE/Contents/MacOS/$APP_NAME" || true
 
 # 4. Handle Info.plist
 echo "📄 Copying Info.plist..."

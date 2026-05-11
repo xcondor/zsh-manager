@@ -1,28 +1,33 @@
-import { AppWindow, ProBadge, StepIcon } from "../../../components/DocsComponents";
+'use client';
+
+import { AppWindow, StepIcon } from "@/components/DocsComponents";
+import { useLanguage } from '../../i18n';
 
 export default function CloudSyncDocs() {
+  const { t, mounted } = useLanguage();
+  if (!mounted) return null;
+
+  const s = t.docs_subpages || {};
+  const isZh = s.sync_title === 'iCloud 同步 (Pro)' || s.sync_title === 'iCloud 同步 (Pro)';
+
   return (
     <div className="space-y-20">
       <section>
-        <div className="flex items-center gap-4 mb-6">
-          <h1 className="text-5xl font-black">iCloud Dynamic Sync <ProBadge /></h1>
-        </div>
+        <h1 className="text-5xl font-black mb-6">{s.sync_title || "iCloud Sync (Pro)"}</h1>
         <p className="text-xl text-secondary leading-relaxed max-w-3xl">
-          Never lose your terminal configuration again. Zshrc Manager Pro seamlessly integrates with your 
-          iCloud Drive to keep your aliases, environment paths, and plugins synchronized across every Mac you own.
+          {s.sync_desc || "Keep your terminal environment perfectly synchronized across all your Macs."}
         </p>
       </section>
 
-      <div className="grid gap-16 lg-grid-2">
+      <div className="grid gap-16 lg:grid-cols-2">
         <div className="space-y-12">
           <div className="space-y-6">
             <div className="flex items-start gap-4">
               <StepIcon>1</StepIcon>
               <div>
-                <h3 className="text-2xl font-bold mb-2">Enable iCloud Drive</h3>
+                <h3 className="text-2xl font-bold mb-2">{isZh ? "原生无缝同步" : "Native Seamless Sync"}</h3>
                 <p className="text-secondary">
-                  Ensure iCloud Drive is enabled in your System Settings. Zshrc Manager uses a secure hidden container 
-                  to store your configuration snapshots.
+                  {isZh ? "无需配置 Git 仓库。我们使用原生的 Apple iCloudKit 确保无论您在哪里打开终端，它都能提供一致的体验。" : "No need to configure Git repositories. We use native Apple iCloudKit."}
                 </p>
               </div>
             </div>
@@ -30,10 +35,9 @@ export default function CloudSyncDocs() {
             <div className="flex items-start gap-4">
               <StepIcon>2</StepIcon>
               <div>
-                <h3 className="text-2xl font-bold mb-2">One-Click Backup</h3>
+                <h3 className="text-2xl font-bold mb-2">{isZh ? "端到端加密" : "End-to-End Encryption"}</h3>
                 <p className="text-secondary">
-                  Hit the "Sync Now" button to upload your local `.zshrc` and related scripts to the cloud. 
-                  Conflict resolution is handled automatically.
+                  {isZh ? "包含凭据的环境变量在存储到 iCloud 之前会被军事级加密本地保障安全。" : "Environment variables containing credentials are encrypted locally."}
                 </p>
               </div>
             </div>
@@ -41,34 +45,34 @@ export default function CloudSyncDocs() {
             <div className="flex items-start gap-4">
               <StepIcon>3</StepIcon>
               <div>
-                <h3 className="text-2xl font-bold mb-2">Restore Anywhere</h3>
+                <h3 className="text-2xl font-bold mb-2">{isZh ? "冲突解决" : "Conflict Resolution"}</h3>
                 <p className="text-secondary">
-                  On a new Mac, simply sign in to the same iCloud account, open Zshrc Manager, 
-                  and your entire environment is ready to be restored in seconds.
+                  {isZh ? "如果您在离线状态下编辑配置，上线时会提供智能差异比较以避免覆盖更改。" : "Smart diff comparison is provided to avoid overwriting changes."}
                 </p>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="lg-order-2">
-          <div className="glass rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-            <img 
-              src="/screenshots/sync.png" 
-              alt="iCloud Sync Interface" 
-              className="w-full h-auto block"
-            />
-          </div>
-          <div className="mt-8 p-6 glass rounded-2xl border-purple-500/20 bg-purple-500/5">
-             <h4 className="text-sm font-bold mb-4 uppercase tracking-widest text-purple-400">Pro Feature Status</h4>
-             <div className="flex items-center justify-between">
-                <div>
-                   <p className="font-bold text-sm text-white">Full iCloud Integration</p>
-                   <p className="text-xs text-secondary">Active & Monitoring Changes</p>
+        <div className="lg:order-2">
+          <AppWindow title={isZh ? "云端同步" : "Cloud Sync"}>
+            <div className="p-8 flex flex-col items-center justify-center text-center space-y-6 min-h-[300px]">
+              <div className="relative">
+                <div className="w-20 h-20 bg-blue-500/20 rounded-full flex items-center justify-center animate-pulse">
+                  <div className="w-16 h-16 bg-blue-500/40 rounded-full flex items-center justify-center">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#60A5FA" strokeWidth="2">
+                      <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+                    </svg>
+                  </div>
                 </div>
-                <div className="w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400">⚡️</div>
-             </div>
-          </div>
+                <div className="absolute top-0 right-0 w-6 h-6 bg-green-500 rounded-full border-4 border-black"></div>
+              </div>
+              <div>
+                <h4 className="text-lg font-bold text-white">{isZh ? "已同步并受保护" : "Synced & Protected"}</h4>
+                <p className="text-sm text-secondary mt-1">{isZh ? "最后同步：刚刚" : "Last sync: Just now"}</p>
+              </div>
+            </div>
+          </AppWindow>
         </div>
       </div>
     </div>

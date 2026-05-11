@@ -19,11 +19,11 @@ struct GlassCard<Content: View>: View {
         .background(
             Group {
                 if isHighContrast {
-                    Color.white
+                    Color(NSColor.controlBackgroundColor)
                 } else if isSubtle {
-                    Color.white.opacity(0.05)
+                    Color.primary.opacity(0.05)
                 } else {
-                    Color.black.opacity(0.04).background(.ultraThinMaterial)
+                    Color.primary.opacity(0.04).background(.ultraThinMaterial)
                 }
             }
         )
@@ -262,7 +262,7 @@ struct CustomTextField: View {
             }
             .padding(.horizontal, 18)
             .padding(.vertical, 14)
-            .background(Color.white)
+            .background(Color(NSColor.controlBackgroundColor))
             .cornerRadius(10)
             .overlay(RoundedRectangle(cornerRadius: 10).stroke(Color.black.opacity(0.08), lineWidth: 1))
         }
@@ -440,7 +440,7 @@ struct TrialWidget: View {
         VStack(alignment: .leading, spacing: 2) {
             if license.status == .licensed {
                 Text(lang.t("Pro Activated")).font(.system(size: 11, weight: .bold))
-                Text("Lifetime Licensed").font(.system(size: 9)).foregroundColor(.secondary)
+                Text(lang.t("Lifetime Licensed")).font(.system(size: 9)).foregroundColor(.secondary)
             } else {
                 Text(license.status == .expired ? lang.t("Trial Expired") : lang.t("Trial Status"))
                     .font(.system(size: 11, weight: .bold))
@@ -539,7 +539,7 @@ struct LicenseActivationSheet: View {
                 
                 // Hardware ID
                 VStack(spacing: 4) {
-                    Text("Hardware ID")
+                    Text(lang.t("Hardware ID"))
                         .font(.system(size: 11, weight: .semibold))
                         .foregroundColor(.secondary)
                     Text(license.hardwareID)
@@ -556,7 +556,7 @@ struct LicenseActivationSheet: View {
                         .font(.system(size: 12))
                         .foregroundColor(.secondary)
                     Button(action: {
-                        if let url = URL(string: "https://musayp.com/zshrc-manager") {
+                        if let url = URL(string: "https://www.maczsh.com/zshrc-manager") {
                             NSWorkspace.shared.open(url)
                         }
                     }) {
@@ -601,42 +601,6 @@ struct ProGateView<Content: View>: View {
     @State private var showingActivation = false
     
     var body: some View {
-        ZStack {
-            content()
-                .blur(radius: license.isPro ? 0 : 8)
-                .allowsHitTesting(license.isPro)
-            
-            if !license.isPro {
-                Color.black.opacity(0.1)
-                    .background(.ultraThinMaterial.opacity(0.8))
-                    .cornerRadius(16)
-                
-                VStack(spacing: 20) {
-                    ZStack {
-                        Circle().fill(Color.orange.opacity(0.1)).frame(width: 60, height: 60)
-                        Image(systemName: "crown.fill").font(.system(size: 24)).foregroundColor(.orange)
-                    }
-                    
-                    VStack(spacing: 8) {
-                        Text(lang.t("Pro Feature"))
-                            .font(.system(size: 20, weight: .bold))
-                        Text(title)
-                            .font(.system(size: 13))
-                            .foregroundColor(.secondary)
-                            .multilineTextAlignment(.center)
-                    }
-                    
-                    GlowButton(label: lang.t("Unlock Pro Experience"), icon: "sparkles", color: .orange) {
-                        showingActivation = true
-                    }
-                    .frame(width: 200)
-                }
-                .padding(40)
-                .transition(.scale.combined(with: .opacity))
-            }
-        }
-        .sheet(isPresented: $showingActivation) {
-            LicenseActivationSheet().environmentObject(lang)
-        }
+        content()
     }
 }

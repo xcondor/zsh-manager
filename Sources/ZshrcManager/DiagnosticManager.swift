@@ -83,10 +83,10 @@ class DiagnosticManager: ObservableObject {
                             id: UUID(),
                             ruleId: "PATH_DUP",
                             category: "Path",
-                            title: lang.t("发现重复的 PATH 导出"),
-                            description: "系统正在多次导出相同的路径段：\(pathValue)",
+                            title: lang.t("Diag_PathDup_Title"),
+                            description: lang.t("Diag_PathDup_Desc") + pathValue,
                             severity: .warning,
-                            suggestion: lang.t("考虑移除冗余项以缩短 PATH 长度。"),
+                            suggestion: lang.t("Diag_PathDup_Sugg"),
                             canFixAutomatically: true,
                             targetLine: index
                         ))
@@ -104,10 +104,10 @@ class DiagnosticManager: ObservableObject {
                 id: UUID(),
                 ruleId: "NO_INJECTION",
                 category: "Zshrc",
-                title: lang.t("管理引擎未启用"),
-                description: "您的 .zshrc 尚未引用 Zshrc Manager 的核心加载器。",
+                title: lang.t("Diag_EngineOff_Title"),
+                description: lang.t("Diag_EngineOff_Desc"),
                 severity: .critical,
-                suggestion: lang.t("前往首页点击“一键接管”以开启完整功能。"),
+                suggestion: lang.t("Diag_EngineOff_Sugg"),
                 canFixAutomatically: false
             ))
         }
@@ -120,10 +120,10 @@ class DiagnosticManager: ObservableObject {
                 id: UUID(),
                 ruleId: "BREW_ENV_MULT",
                 category: "Performance",
-                title: lang.t("Homebrew 多次初始化"),
-                description: "检测到多次调用 'brew shellenv'。这会显著减慢终端启动速度。",
+                title: lang.t("Diag_BrewMult_Title"),
+                description: lang.t("Diag_BrewMult_Desc"),
                 severity: .critical,
-                suggestion: lang.t("合并为单次调用以提升速度。"),
+                suggestion: lang.t("Diag_BrewMult_Sugg"),
                 canFixAutomatically: true
             ))
         }
@@ -136,10 +136,10 @@ class DiagnosticManager: ObservableObject {
                 id: UUID(),
                 ruleId: "MISSING_DIR",
                 category: "Path",
-                title: lang.t("失效的搜索路径"),
-                description: "目录不存在：\(entry.path)",
+                title: lang.t("Diag_MissingDir_Title"),
+                description: lang.t("Diag_MissingDir_Desc") + entry.path,
                 severity: .warning,
-                suggestion: lang.t("请移除该路径或确认目录是否已删除。"),
+                suggestion: lang.t("Diag_MissingDir_Sugg"),
                 canFixAutomatically: true
             ))
         }
@@ -148,9 +148,9 @@ class DiagnosticManager: ObservableObject {
     private func checkStartupPerformance(_ lines: [ConfigLine], lang: LanguageManager) {
         // 检查 NVM 这种极其缓慢的加载项
         let slowLoaders = [
-            (pattern: "nvm.sh", name: "Node Version Manager (NVM)", suggestion: "建议使用 fnm 或 zsh-nvm 异步加载以提升 0.5s+ 启动速度。"),
-            (pattern: "rbenv", name: "Ruby Environment (rbenv)", suggestion: "考虑使用延迟加载技术。"),
-            (pattern: "pyenv init", name: "Pyenv Initialization", suggestion: "建议仅在需要时手动加载或使用更轻量的加载方式。")
+            (pattern: "nvm.sh", name: "Node Version Manager (NVM)", suggestion: "Diag_Nvm_Sugg"),
+            (pattern: "rbenv", name: "Ruby Environment (rbenv)", suggestion: "Diag_Rbenv_Sugg"),
+            (pattern: "pyenv init", name: "Pyenv Initialization", suggestion: "Diag_Pyenv_Sugg")
         ]
         
         for (index, line) in lines.enumerated() where !line.isCommented {
@@ -161,7 +161,7 @@ class DiagnosticManager: ObservableObject {
                         ruleId: "SLOW_INIT",
                         category: "Performance",
                         title: "\(lang.t("Slow Command Found")): \(loader.name)",
-                        description: "该指令已知会导致较长的终端启动延迟。",
+                        description: lang.t("Diag_SlowCmd_Desc"),
                         severity: .warning,
                         suggestion: lang.t(loader.suggestion),
                         canFixAutomatically: false,
@@ -179,10 +179,10 @@ class DiagnosticManager: ObservableObject {
                     id: UUID(),
                     ruleId: "SLOW_IO",
                     category: "Performance",
-                    title: lang.t("潜在的启动阻塞"),
-                    description: "启动脚本中包含同步网络请求，可能导致终端启动卡顿。",
+                    title: lang.t("Diag_StartupBlock_Title"),
+                    description: lang.t("Diag_StartupBlock_Desc"),
                     severity: .warning,
-                    suggestion: lang.t("建议将请求改为异步执行。"),
+                    suggestion: lang.t("Diag_StartupBlock_Sugg"),
                     canFixAutomatically: false,
                     targetLine: index
                 ))

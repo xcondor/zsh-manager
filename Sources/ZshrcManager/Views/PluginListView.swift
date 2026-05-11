@@ -83,7 +83,7 @@ struct PluginCard: View {
                     
                     VStack(alignment: .leading, spacing: 4) {
                         Text(plugin.name).font(.system(size: 16, weight: .bold))
-                        Text(plugin.description).font(.system(size: 11)).foregroundColor(.secondary).lineLimit(2)
+                        Text(lang.t(plugin.description)).font(.system(size: 11)).foregroundColor(.secondary).lineLimit(2)
                     }
                     Spacer()
                     
@@ -125,7 +125,7 @@ struct PluginCard: View {
                             Spacer()
                         }
                         
-                        Text(plugin.usage)
+                        Text(lang.t(plugin.usage))
                             .font(.system(size: 12))
                             .foregroundColor(.secondary)
                             .fixedSize(horizontal: false, vertical: true)
@@ -133,7 +133,7 @@ struct PluginCard: View {
                         HStack(spacing: 12) {
                             HStack(spacing: 8) {
                                 Text(lang.t("Example Command")).font(.system(size: 10, weight: .bold)).foregroundColor(.secondary)
-                                Text(plugin.testCommand)
+                                Text(lang.t(plugin.testCommand))
                                     .font(.system(size: 11, design: .monospaced))
                                     .foregroundColor(.blue)
                                     .padding(.horizontal, 8)
@@ -145,7 +145,7 @@ struct PluginCard: View {
                             Spacer()
                             
                             Button(action: {
-                                terminal.sendInput(plugin.testCommand)
+                                terminal.sendInput(lang.t(plugin.testCommand))
                             }) {
                                 HStack(spacing: 6) {
                                     Image(systemName: "play.fill")

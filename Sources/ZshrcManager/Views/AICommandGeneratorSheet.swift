@@ -43,8 +43,8 @@ struct AICommandGeneratorSheet: View {
                     
                     ZStack(alignment: .topLeading) {
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(Color.white)
-                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.black.opacity(0.1), lineWidth: 1))
+                            .fill(Color(NSColor.controlBackgroundColor))
+                            .overlay(RoundedRectangle(cornerRadius: 16).stroke(Color.primary.opacity(0.1), lineWidth: 1))
                         
                         TextEditor(text: $userInput)
                             .font(.system(size: 14, design: .monospaced))
@@ -147,10 +147,10 @@ struct AICommandGeneratorSheet: View {
             
             Text(generatedCommand)
                 .font(.system(size: 14, weight: .semibold, design: .monospaced))
-                .foregroundColor(.black)
+                .foregroundColor(.primary)
                 .padding(16)
                 .frame(maxWidth: .infinity, alignment: .leading)
-                .background(Color.white)
+                .background(Color(NSColor.controlBackgroundColor))
                 .cornerRadius(12)
                 .overlay(RoundedRectangle(cornerRadius: 12).stroke(Color.indigo.opacity(0.3), lineWidth: 1))
             

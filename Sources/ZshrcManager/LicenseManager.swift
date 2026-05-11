@@ -12,14 +12,15 @@ class LicenseManager: ObservableObject {
     
     @Published var status: LicenseStatus = .trialing
     @Published var trialDaysRemaining: Int = 3
-    @Published var isPro: Bool = false
+    @Published var isPro: Bool = true
     
-    private let keychain = KeychainStore.shared
+    private let defaults = UserDefaults.standard
     private let trialDurationDays = 3
     
-    // Keychain accounts
-    private let kTrialStartDate = "trial_start_date"
-    private let kLicenseKey = "license_key"
+    // UserDefaults keys
+    private let kTrialStartDate = "license_trial_start"
+    private let kLicenseKey = "license_active_key"
+    private let kDidMigrateFromKeychain = "did_migrate_from_keychain"
     
     init() {
         checkStatus()
@@ -27,7 +28,7 @@ class LicenseManager: ObservableObject {
     
     func checkStatus() {
         // 1. Check if already licensed
-        if let key = keychain.getString(account: kLicenseKey), !key.isEmpty {
+        if let key = defaults.string(forKey: kLicenseKey), !key.isEmpty {
             // In a real app, we would verify the key with an API here
             self.status = .licensed
             self.isPro = true
@@ -35,7 +36,7 @@ class LicenseManager: ObservableObject {
         }
         
         // 2. Check trial start date
-        if let startDateString = keychain.getString(account: kTrialStartDate),
+        if let startDateString = defaults.string(forKey: kTrialStartDate),
            let startTimestamp = Double(startDateString) {
             let startDate = Date(timeIntervalSince1970: startTimestamp)
             let calendar = Calendar.current
@@ -56,7 +57,7 @@ class LicenseManager: ObservableObject {
         } else {
             // 3. First launch, initialize trial
             let now = Date().timeIntervalSince1970
-            try? keychain.setString("\(now)", account: kTrialStartDate)
+            defaults.set("\(now)", forKey: kTrialStartDate)
             self.status = .trialing
             self.isPro = true
             self.trialDaysRemaining = trialDurationDays
@@ -64,10 +65,9 @@ class LicenseManager: ObservableObject {
     }
     
     func activateLicense(key: String) -> Bool {
-        // Simple validation for demo purposes. 
         // In production, this would be a network call to Paddle/LemonSqueezy
         if key.count >= 8 {
-            try? keychain.setString(key, account: kLicenseKey)
+            defaults.set(key, forKey: kLicenseKey)
             checkStatus()
             return true
         }
@@ -76,8 +76,8 @@ class LicenseManager: ObservableObject {
     
     func resetTrial() {
         // For debugging purposes
-        try? keychain.delete(account: kTrialStartDate)
-        try? keychain.delete(account: kLicenseKey)
+        defaults.removeObject(forKey: kTrialStartDate)
+        defaults.removeObject(forKey: kLicenseKey)
         checkStatus()
     }
     

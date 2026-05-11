@@ -147,6 +147,58 @@ struct PythonView: View {
                             .frame(maxWidth: .infinity)
                         }
                         
+                        // Advanced Tools Section
+                        VStack(alignment: .leading, spacing: 16) {
+                            ModernSectionHeader(title: lang.t("Python Advanced Tools"))
+                            GlassCard {
+                                VStack(alignment: .leading, spacing: 20) {
+                                    Toggle(isOn: $manager.isPipFixEnabled) {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(lang.t("Pip Fix (PEP 668)")).font(.system(size: 14, weight: .bold))
+                                            Text(lang.t("Pip Fix Desc")).font(.system(size: 12)).foregroundColor(.secondary)
+                                        }
+                                    }
+                                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                                    
+                                    Divider().opacity(0.1)
+                                    
+                                    Toggle(isOn: $manager.isVenvShortcutEnabled) {
+                                        VStack(alignment: .leading, spacing: 4) {
+                                            Text(lang.t("Smart Venv Shortcut")).font(.system(size: 14, weight: .bold))
+                                            Text(lang.t("Smart Venv Desc")).font(.system(size: 12)).foregroundColor(.secondary)
+                                        }
+                                    }
+                                    .toggleStyle(SwitchToggleStyle(tint: .blue))
+                                    
+                                    HStack {
+                                        if manager.showApplySuccess {
+                                            Label(lang.t("Python Fix Applied"), systemImage: "checkmark.circle.fill")
+                                                .font(.system(size: 11, weight: .bold))
+                                                .foregroundColor(.green)
+                                                .transition(.move(edge: .trailing).combined(with: .opacity))
+                                        }
+                                        
+                                        Spacer()
+                                        
+                                        GlowButton(
+                                            label: lang.t("Apply Python Fixes"),
+                                            icon: "sparkles",
+                                            color: .orange,
+                                            isSubtle: true,
+                                            action: {
+                                                withAnimation {
+                                                    manager.applyAdvancedFixes()
+                                                }
+                                            }
+                                        )
+                                        .frame(width: 200)
+                                    }
+                                    .padding(.top, 10)
+                                }
+                                .padding(20)
+                             }
+                        }
+                        
                         if !manager.installationOutput.isEmpty {
                             VStack(alignment: .leading, spacing: 12) {
                                 ModernSectionHeader(title: lang.t("Pyenv Console"))
@@ -160,7 +212,10 @@ struct PythonView: View {
                 .padding(.horizontal, 40).padding(.top, 24).padding(.bottom, 40)
             }
         }
-        .onAppear { manager.checkPyenv() }
+        .onAppear { 
+            manager.checkPyenv()
+            manager.checkAdvancedSettings()
+        }
     }
 }
 

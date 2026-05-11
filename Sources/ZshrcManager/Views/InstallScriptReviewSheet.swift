@@ -17,7 +17,7 @@ struct InstallScriptReviewSheet: View {
             
             VStack(alignment: .leading, spacing: 16) {
                 VStack(alignment: .leading, spacing: 6) {
-                    Text("Source URL").font(.system(size: 12, weight: .bold)).foregroundColor(.secondary)
+                    Text(lang.t("Source URL")).font(.system(size: 12, weight: .bold)).foregroundColor(.secondary)
                     Text(review.url)
                         .font(.system(size: 12, design: .monospaced))
                         .textSelection(.enabled)
