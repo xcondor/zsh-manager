@@ -1,0 +1,8 @@
+name = "zshrc-manager-web"
+compatibility_date = "2024-04-01"
+compatibility_flags = ["nodejs_compat"]
+pages_build_output_dir = ".next"
+
+[[kv_namespaces]]
+binding = "FEEDBACK_KV"
+id = "51dd90520fb0480f8eed1bdd81950ec6" # User needs to replace this or create via CLI

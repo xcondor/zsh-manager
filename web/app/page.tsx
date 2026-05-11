@@ -13,8 +13,26 @@ export default function Home() {
     return <main className="relative min-h-screen pb-0 bg-black"></main>;
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Zshrc Manager",
+    "operatingSystem": "macOS",
+    "applicationCategory": "DeveloperApplication",
+    "offers": {
+      "@type": "Offer",
+      "price": "29.00",
+      "priceCurrency": "USD"
+    },
+    "description": "The most intuitive macOS GUI to manage your terminal environment. One-click beautification, environment management, and cloud sync."
+  };
+
   return (
     <main className="relative min-h-screen pb-0">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <div className="bg-glow hero-glow" />
       <div className="bg-glow" style={{ top: '60%', left: '-100px', opacity: 0.1 }} />
       <div className="bg-glow" style={{ top: '80%', right: '-100px', opacity: 0.1, background: 'radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%)' }} />
