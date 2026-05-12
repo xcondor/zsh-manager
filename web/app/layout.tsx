@@ -8,13 +8,15 @@ const inter = Inter({
   variable: "--font-inter",
 });
 
+// Note: For full SEO impact, page-specific metadata is used in individual page.tsx files
+// using the generateMetadata function which consumes our translations.ts.
 export const metadata: Metadata = {
   metadataBase: new URL("https://maczsh.com"),
   title: {
     default: "Zshrc Manager — Pro macOS Terminal Environment GUI",
     template: "%s | Zshrc Manager"
   },
-  description: "Transform your macOS terminal with Zshrc Manager. The ultimate GUI for .zshrc optimization, alias management, environment detection, and cloud synchronization. Perfect for developers who value efficiency.",
+  description: "Transform your macOS terminal with Zshrc Manager. The ultimate GUI for .zshrc optimization, alias management, environment detection, and cloud synchronization.",
   keywords: ["zsh", "macos", "terminal environment", "zshrc manager", "oh-my-zsh gui", "alias manager", "mac development tools", "terminal beautification", "zsh configuration"],
   authors: [{ name: "Zshrc Manager Team", url: "https://maczsh.com" }],
   creator: "Zshrc Manager",

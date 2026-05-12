@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
 :root {
   --bg-primary: #050505;
   --bg-secondary: #0a0a0c;
@@ -16,6 +18,22 @@
   --card-shadow: 0 40px 100px rgba(0, 0, 0, 0.8);
   --transition-smooth: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
   --font-inter: 'Inter', sans-serif;
+  
+  /* Spacing Scale (8px system) */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-6: 24px;
+  --s-8: 32px;
+  --s-12: 48px;
+  --s-16: 64px;
+  --s-24: 96px;
+  --s-32: 128px;
+  
+  /* Container & Grid */
+  --container-width: 1200px;
+  --grid-gap: var(--s-8);
 }
 
 * {
@@ -29,7 +47,7 @@
 body {
   background-color: var(--bg-primary) !important;
   color: #ffffff !important;
-  font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   line-height: 1.6;
   overflow-x: hidden;
 }
@@ -67,7 +85,7 @@ button {
 
 /* Typography Overhaul */
 h1, h2, h3, h4 {
-  font-weight: 700;
+  font-weight: 600;
   letter-spacing: -0.04em;
   line-height: 1.1;
   color: var(--text-primary);
@@ -101,13 +119,14 @@ h1, h2, h3, h4 {
 
 /* Premium Layout */
 .container {
-  max-width: 1400px;
+  max-width: var(--container-width);
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 var(--s-6);
+  width: 100%;
 }
 
 .section {
-  padding: 140px 0;
+  padding: var(--s-32) 0;
 }
 
 /* Glassmorphism Refined */
@@ -139,7 +158,7 @@ h1, h2, h3, h4 {
   color: #000 !important;
   padding: 14px 32px;
   border-radius: 12px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 16px;
   display: inline-flex;
   align-items: center;
@@ -162,7 +181,7 @@ h1, h2, h3, h4 {
   border: none;
   padding: 14px 32px;
   border-radius: 12px;
-  font-weight: 700;
+  font-weight: 600;
   font-size: 16px;
   display: inline-flex;
   align-items: center;
@@ -181,7 +200,7 @@ h1, h2, h3, h4 {
   color: #000 !important;
   padding: 10px 20px;
   border-radius: 8px;
-  font-weight: 800;
+  font-weight: 600;
   font-size: 14px;
   display: inline-flex;
   align-items: center;
@@ -353,8 +372,8 @@ h1, h2, h3, h4 {
 .text-160px { font-size: 160px; }
 .font-medium { font-weight: 500; }
 .font-semibold { font-weight: 600; }
-.font-bold { font-weight: 700; }
-.font-black { font-weight: 900; }
+.font-bold { font-weight: 600; }
+.font-black { font-weight: 600; }
 .text-center { text-align: center; }
 .text-left { text-align: left; }
 .uppercase { text-transform: uppercase; }
@@ -554,7 +573,7 @@ h1, h2, h3, h4 {
   color: var(--text-primary);
   margin-top: 2em;
   margin-bottom: 0.5em;
-  font-weight: 800;
+  font-weight: 600;
 }
 .prose code {
   background: rgba(255, 255, 255, 0.1);

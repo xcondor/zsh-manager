@@ -17,28 +17,36 @@ export const translations: Record<Language, any> = {
       download: "Download"
     },
     pricing_page: {
-      title: "Simple, Transparent Pricing",
-      subtitle: "One-time payment. Lifetime access. No recurring subscriptions.",
-      lifetime_license: "Lifetime License",
-      lifetime_desc: "Everything you need to master your terminal.",
-      forever: "forever",
-      buy_now: "Get Started Now",
-      guarantee: "Includes 30-day money back guarantee.",
-      trusted_by: "Trusted by 10,000+ developers worldwide",
-      safe_secure: "Safe & Secure",
-      safe_desc: "Your data never leaves your device. iCloud sync is end-to-end encrypted.",
-      money_back: "30-Day Money Back",
-      money_desc: "If you're not satisfied, we'll refund your purchase within 30 days.",
-      testimonial_text: "Zshrc Manager has completely transformed how I manage my terminal environment. The one-time payment was the best investment I've made for my dev setup.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "Senior DevOps Engineer",
-      features: [
-        "Native macOS Application",
-        "Visual Zshrc Editor",
-        "iCloud Secure Sync",
-        "Lifetime Updates",
-        "Premium Support"
-      ]
+      title: "Design your terminal flow.",
+      subtitle: "Professional tools for modern developers. One-time payment, lifetime updates.",
+      plans_label: "Plans & Pricing",
+      starter: "Starter",
+      pro: "Lifetime Pro",
+      enterprise: "Enterprise",
+      free: "$0",
+      pro_price: "$19.9",
+      team_price: "Team",
+      download_free: "Download Free",
+      get_pro: "Get Lifetime Access",
+      contact_sales: "Contact Sales",
+      popular: "Popular",
+      native_title: "Native Experience",
+      native_desc: "Built with Swift for macOS. No Electron, no lag. Just pure, efficient performance that respects your battery life.",
+      private_title: "Private & Secure",
+      private_desc: "Your terminal data stays in your iCloud account. We don't have access to your configs. Privacy isn't a feature, it's our foundation.",
+      features: {
+        starter: ["Visual Zshrc Editor", "Basic Highlighting", "Local History"],
+        pro: ["iCloud Secure Sync", "Environment AI Doctor", "Auto Restore Engine", "Lifetime Tech Support"],
+        enterprise: ["Team Sharing", "SSO Integration", "Admin Dashboard", "Audit Logs"]
+      },
+      trial_label: "3-Day Full Trial",
+      activation_method: "Instant CD-Key Activation",
+      license_footer: "3-day trial period. Permanent activation via CD-Key after purchase.",
+      seo: {
+        title: "Zshrc Manager - The Ultimate macOS Zsh Configuration Tool",
+        keywords: "zsh configuration 2024, best macos terminal setup, oh my zsh themes, zshrc, macOS terminal",
+        description: "Effortlessly manage, sync, and organize your Zsh terminal environment on macOS. Native Swift app with iCloud sync."
+      }
     },
     changelog_page: {
       title: "Changelog",
@@ -171,6 +179,7 @@ export const translations: Record<Language, any> = {
       contact: "Contact Us",
       changelog: "Changelog",
       refund: "Refund Policy",
+      check_license: "Check License",
       copyright: "© 2024 Zshrc Manager. All rights reserved.",
       links: ["Privacy Policy", "Terms of Service", "GitHub"]
     },
@@ -178,12 +187,23 @@ export const translations: Record<Language, any> = {
       title: "Ready to transform your Zsh experience?",
       subtitle: "Join 10,000+ developers who have mastered their terminal environment.",
       download: "Download Now",
-      version: "Version 2.1.0",
+      version: "Version 1.0.0",
       requires: "Requires macOS 12+"
     },
     socialProof: {
       count: "10,000+",
       label: "Downloads & counting"
+    },
+    download_page: {
+      title: "Thanks for downloading!",
+      subtitle: "Your download should start automatically in a few seconds...",
+      next_steps: "Next Steps",
+      step1: "Open the downloaded ZshrcManager.dmg file",
+      step2: "Drag Zshrc Manager to your Applications folder",
+      step3: "Open from Launchpad and start your terminal journey!",
+      not_started: "Download didn't start?",
+      manual_link: "Click here to download manually",
+      back_home: "Back to Home"
     },
     faq: {
       title: "Frequently Asked Questions",
@@ -228,28 +248,36 @@ export const translations: Record<Language, any> = {
       download: "开始下载"
     },
     pricing_page: {
-      title: "简单透明的价格",
-      subtitle: "一次性付款。终身访问。无重复订阅。",
-      lifetime_license: "终身许可",
-      lifetime_desc: "掌控终端所需的一切功能。",
-      forever: "永久",
-      buy_now: "立即开始",
-      guarantee: "包含 30 天无理由退款保证。",
-      trusted_by: "全球超过 10,000+ 名开发者的信任",
-      safe_secure: "安全可靠",
-      safe_desc: "您的数据永远不会离开您的设备。iCloud 同步经过端到端加密。",
-      money_back: "30 天无理由退款",
-      money_desc: "如果您不满意，我们将在 30 天内全额退款。",
-      testimonial_text: "Zshrc Manager 彻底改变了我管理终端环境的方式。一次性付费是我为开发环境做出的最棒投资。",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "高级 DevOps 工程师",
-      features: [
-        "原生 macOS 应用程序",
-        "可视化 Zshrc 编辑器",
-        "iCloud 安全同步",
-        "终身免费更新",
-        "优先技术支持"
-      ]
+      title: "定制您的终端工作流",
+      subtitle: "面向现代开发者的专业工具。一次性支付，终身更新。",
+      plans_label: "方案与定价",
+      starter: "免费版",
+      pro: "终身专业版",
+      enterprise: "企业版",
+      free: "¥0",
+      pro_price: "¥138",
+      team_price: "团队版",
+      download_free: "免费下载",
+      get_pro: "获取终身访问权限",
+      contact_sales: "联系销售",
+      popular: "最受欢迎",
+      native_title: "原生体验",
+      native_desc: "采用 Swift 为 macOS 原生构建。无 Electron，无延迟。尊重电池寿命的纯净、高效性能。",
+      private_title: "私密且安全",
+      private_desc: "您的终端数据仅存储在您的 iCloud 账户中。我们无法访问您的配置。隐私不是一个功能，而是我们的基石。",
+      features: {
+        starter: ["可视化 Zshrc 编辑器", "基础语法高亮", "本地历史记录"],
+        pro: ["iCloud 云端同步", "环境 AI 诊断助手", "自动配置还原引擎", "终身技术支持"],
+        enterprise: ["团队共享", "SSO 集成", "管理面板", "审计日志"]
+      },
+      trial_label: "3天全功能试用",
+      activation_method: "CD-Key 快速激活",
+      license_footer: "安装后可享受3天免费试用。到期后需购买永久 CD-KEY 激活。",
+      seo: {
+        title: "Zshrc Manager - 终极 macOS Zsh 配置管理工具",
+        keywords: "zsh配置教程 2024, mac终端美化指南, oh-my-zsh 插件推荐, zsh配置, 终端美化",
+        description: "轻松管理、同步和组织您的 macOS Zsh 终端环境。原生 Swift 开发，支持 iCloud 同步，让您的终端配置永不丢失。"
+      }
     },
     changelog_page: {
       title: "更新日志",
@@ -382,6 +410,7 @@ export const translations: Record<Language, any> = {
       contact: "联系我们",
       changelog: "更新日志",
       refund: "退款政策",
+      check_license: "授权查询",
       copyright: "© 2024 Zshrc Manager. 保留所有权利。",
       links: ["隐私政策", "服务条款", "GitHub"]
     },
@@ -389,12 +418,23 @@ export const translations: Record<Language, any> = {
       title: "准备好提升您的 Zsh 体验了吗？",
       subtitle: "加入 10,000+ 已经掌控终端环境的开发者。",
       download: "立即下载",
-      version: "版本 2.1.0",
+      version: "版本 1.0.0",
       requires: "需要 macOS 12+"
     },
     socialProof: {
       count: "10,000+",
       label: "次下载量并持续增长"
+    },
+    download_page: {
+      title: "感谢下载！",
+      subtitle: "下载将在几秒钟内自动开始...",
+      next_steps: "后续步骤",
+      step1: "打开下载的 ZshrcManager.dmg 文件",
+      step2: "将 Zshrc Manager 拖入应用程序文件夹",
+      step3: "从 Launchpad 打开并开启您的终端之旅！",
+      not_started: "下载没有开始？",
+      manual_link: "点击此处手动下载",
+      back_home: "返回首页"
     },
     faq: {
       title: "常见问题",
@@ -467,28 +507,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "簡單透明的價格",
-      subtitle: "一次性付款。終身訪問。無重複訂閱。",
-      lifetime_license: "終身許可",
-      lifetime_desc: "掌控終端所需的一切功能。",
-      forever: "永久",
-      buy_now: "立即開始",
-      guarantee: "包含 30 天無理由退款保證。",
-      trusted_by: "全球超過 10,000+ 名開發者的信任",
-      safe_secure: "安全可靠",
-      safe_desc: "您的數據永遠不會離開您的設備。iCloud 同步經過端到端加密。",
-      money_back: "30 天無理由退款",
-      money_desc: "如果您不滿意，我們將在 30 天內全額退款。",
-      testimonial_text: "Zshrc Manager 徹底改變了我管理終端環境的方式。一次性付費是我為開發環境做出的最棒投資。",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "高級 DevOps 工程師",
-      features: [
-        "原生 macOS 應用程式",
-        "視覺化 Zshrc 編輯器",
-        "iCloud 安全同步",
-        "終身免費更新",
-        "優先技術支持"
-      ]
+      title: "定制您的終端工作流",
+      subtitle: "面向現代開發者的專業工具。一次性支付，終身更新。",
+      plans_label: "方案與定價",
+      starter: "免費版",
+      pro: "終身專業版",
+      enterprise: "企業版",
+      free: "HK$0",
+      pro_price: "HK$158",
+      team_price: "團隊版",
+      download_free: "免費下載",
+      get_pro: "獲取終身訪問權限",
+      contact_sales: "聯繫銷售",
+      popular: "最受歡迎",
+      native_title: "原生體驗",
+      native_desc: "採用 Swift 為 macOS 原生構建。無 Electron，無延遲。尊重電池壽命的純淨、高效性能。",
+      private_title: "私密且安全",
+      private_desc: "您的終端數據僅存儲在您的 iCloud 帳戶中。我們無法訪問您的配置。隱私不是一個功能，而是我們的基石。",
+      features: {
+        starter: ["視覺化 Zshrc 編輯器", "基礎語法高亮", "本地歷史記錄"],
+        pro: ["iCloud 安全同步", "環境 AI 醫生", "自動恢復引擎", "優先技術支持"],
+        enterprise: ["團隊共享", "SSO 集成", "管理後台", "審計日誌"]
+      }
+    },
+    download_page: {
+      title: "感謝下載 Zshrc Manager",
+      subtitle: "您的下載應該會在幾秒內自動開始...",
+      next_steps: "後續步驟",
+      step1: "打開下載的 ZshrcManager.dmg 文件",
+      step2: "將 Zshrc Manager 拖拽到您的「應用程式」文件夾",
+      step3: "從啟動台打開並開始享受極致的終端體驗！",
+      not_started: "下載沒有開始？",
+      manual_link: "手動點擊此处下載",
+      back_home: "返回首頁"
     },
     trust: {
       title: "開發者信賴",
@@ -560,7 +611,7 @@ export const translations: Record<Language, any> = {
       title: "準備好提升您的 Zsh 體驗了嗎？",
       subtitle: "加入 10,000+ 已經掌控終端環境的開發者。",
       download: "立即下載",
-      version: "版本 2.1.0",
+      version: "版本 1.0.0",
       requires: "需要 macOS 12+"
     },
     socialProof: {
@@ -634,28 +685,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "단순하고 투명한 가격",
-      subtitle: "일회성 결제. 평생 이용. 반복 구독 없음.",
-      lifetime_license: "평생 라이선스",
-      lifetime_desc: "터미널을 마스터하는 데 필요한 모든 것.",
-      forever: "평생",
-      buy_now: "지금 시작하기",
-      guarantee: "30일 환불 보증 포함.",
-      trusted_by: "전 세계 10,000명 이상의 개발자가 신뢰함",
-      safe_secure: "안전 및 보안",
-      safe_desc: "데이터는 장치를 떠나지 않습니다. iCloud 동기화는 종단간 암호화됩니다.",
-      money_back: "30일 환불",
-      money_desc: "만족하지 못할 경우 30일 이내에 환불해 드립니다.",
-      testimonial_text: "Zshrc Manager는 터미널 환경 관리 방식을 완전히 바꾸어 놓았습니다. 일회성 결제는 제 개발 환경을 위한 최고의 투자였습니다.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "시니어 DevOps 엔지니어",
-      features: [
-        "네이티브 macOS 애플리케이션",
-        "비주얼 Zshrc 에디터",
-        "iCloud 보안 동기화",
-        "평생 업데이트",
-        "프리미엄 지원"
-      ]
+      title: "터미널 워크플로우를 디자인하세요",
+      subtitle: "현대 개발자를 위한 전문 도구. 한 번의 결제로 평생 업데이트.",
+      plans_label: "요금제 및 가격",
+      starter: "스타터",
+      pro: "평생 프로",
+      enterprise: "엔터프라이즈",
+      free: "₩0",
+      pro_price: "₩27,000",
+      team_price: "팀",
+      download_free: "무료 다운로드",
+      get_pro: "평생 액세스 권한 얻기",
+      contact_sales: "영업 문의",
+      popular: "가장 인기 있음",
+      native_title: "네이티브 경험",
+      native_desc: "macOS를 위해 Swift로 제작되었습니다. Electron도, 지연도 없습니다. 배터리 수명을 존중하는 순수하고 효율적인 성능.",
+      private_title: "개인 정보 및 보안",
+      private_desc: "터미널 데이터는 iCloud 계정에 보관됩니다. 당사는 사용자의 구성에 액세스할 수 없습니다. 개인 정보 보호는 기능이 아니라 우리의 기반입니다.",
+      features: {
+        starter: ["비주얼 Zshrc 에디터", "기본 하이라이팅", "로컬 히스토리"],
+        pro: ["iCloud 보안 동기화", "환경 AI 닥터", "자동 복구 엔진", "우선순위 지원"],
+        enterprise: ["팀 공유", "SSO 통합", "관리 대시보드", "감사 로그"]
+      }
+    },
+    download_page: {
+      title: "다운로드해 주셔서 감사합니다!",
+      subtitle: "다운로드가 몇 초 내에 자동으로 시작됩니다...",
+      next_steps: "다음 단계",
+      step1: "다운로드한 ZshrcManager.dmg 파일을 엽니다",
+      step2: "Zshrc Manager를 응용 프로그램 폴더로 드래그합니다",
+      step3: "Launchpad에서 열고 터미널 여정을 시작하세요!",
+      not_started: "다운로드가 시작되지 않았나요?",
+      manual_link: "수동으로 다운로드하려면 여기를 클릭하세요",
+      back_home: "홈으로 돌아가기"
     },
     trust: {
       title: "개발자들이 신뢰하는 도구",
@@ -792,28 +854,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "シンプルで透明な価格設定",
-      subtitle: "一度の支払いで一生使い続けられます。サブスクリプションは不要です。",
-      lifetime_license: "永久ライセンス",
-      lifetime_desc: "ターミナルをマスターするために必要なすべてがここに。",
-      forever: "永久",
-      buy_now: "今すぐ始める",
-      guarantee: "30日間の返金保証付き。",
-      trusted_by: "世界中の10,000人以上の開発者に信頼されています",
-      safe_secure: "安心・安全",
-      safe_desc: "データがデバイスから離れることはありません。iCloud同期はエンドツーエンドで暗号化されます。",
-      money_back: "30日間返金保証",
-      money_desc: "ご満足いただけない場合は、30日以内に全額返金いたします。",
-      testimonial_text: "Zshrc Manager は、ターミナル環境の管理方法を完全に変えてくれました。一度の支払いで一生使えるのは、開発環境への最高の投資でした。",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "シニア DevOps エンジニア",
-      features: [
-        "ネイティブ macOS アプリケーション",
-        "ビジュアル Zshrc エディタ",
-        "iCloud 安全同期",
-        "永久アップデート",
-        "プレミアムサポート"
-      ]
+      title: "ターミナルワークフローをデザインする",
+      subtitle: "現代の開発者のためのプロフェッショナルツール。一度の支払いで、一生のアップデートを。",
+      plans_label: "プランと価格",
+      starter: "スターター",
+      pro: "ライフタイムプロ",
+      enterprise: "エンタープライズ",
+      free: "¥0",
+      pro_price: "¥3,100",
+      team_price: "チーム",
+      download_free: "無料でダウンロード",
+      get_pro: "永久アクセス権を取得",
+      contact_sales: "営業に問い合わせ",
+      popular: "人気",
+      native_title: "ネイティブ体験",
+      native_desc: "macOS向けにSwiftで構築。Electronもラグもありません。バッテリー寿命を尊重する純粋で効率的なパフォーマンス。",
+      private_title: "プライバシーとセキュリティ",
+      private_desc: "ターミナルのデータはiCloudアカウントに残ります。私たちはあなたの設定にアクセスできません。プライバシーは機能ではなく、私たちの基盤です。",
+      features: {
+        starter: ["ビジュアルZshrcエディタ", "基本的なハイライト", "ローカル履歴"],
+        pro: ["iCloud安全同期", "環境AIドクター", "自動復元エンジン", "優先サポート"],
+        enterprise: ["チーム共有", "SSO統合", "管理ダッシュボード", "監査ログ"]
+      }
+    },
+    download_page: {
+      title: "ダウンロードありがとうございます！",
+      subtitle: "ダウンロードは数秒以内に自動的に開始されます...",
+      next_steps: "次のステップ",
+      step1: "ダウンロードした ZshrcManager.dmg ファイルを開きます",
+      step2: "Zshrc Manager をアプリケーションフォルダにドラッグします",
+      step3: "Launchpad から開き、ターミナルの旅を始めましょう！",
+      not_started: "ダウンロードが開始されませんか？",
+      manual_link: "ここをクリックして手動でダウンロード",
+      back_home: "ホームに戻る"
     },
     trust: {
       title: "開発者に選ばれる理由",
@@ -950,28 +1023,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "Tarification Simple et Transparente",
-      subtitle: "Paiement unique. Accès à vie. Pas d'abonnement récurrent.",
-      lifetime_license: "Licence à Vie",
-      lifetime_desc: "Tout ce dont vous avez besoin pour maîtriser votre terminal.",
-      forever: "à vie",
-      buy_now: "Commencer Maintenant",
-      guarantee: "Garantie de remboursement de 30 jours incluse.",
-      trusted_by: "Approuvé par plus de 10 000 développeurs dans le monde",
-      safe_secure: "Sûr et Sécurisé",
-      safe_desc: "Vos données ne quittent jamais votre appareil. La synchro iCloud est cryptée.",
-      money_back: "30 Jours Satisfait ou Remboursé",
-      money_desc: "Si vous n'êtes pas satisfait, nous vous remboursons dans les 30 jours.",
-      testimonial_text: "Zshrc Manager a complètement transformé ma façon de gérer mon environnement de terminal. Le paiement unique a été le meilleur investissement pour mon setup dev.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "Ingénieur DevOps Senior",
-      features: [
-        "Application Native macOS",
-        "Éditeur Visuel Zshrc",
-        "Synchro Sécurisée iCloud",
-        "Mises à jour à Vie",
-        "Support Premium"
-      ]
+      title: "Concevez votre flux de terminal",
+      subtitle: "Outils professionnels pour développeurs modernes. Paiement unique, mises à jour à vie.",
+      plans_label: "Plans et Tarifs",
+      starter: "Starter",
+      pro: "Pro à Vie",
+      enterprise: "Entreprise",
+      free: "0 €",
+      pro_price: "19,90 €",
+      team_price: "Équipe",
+      download_free: "Télécharger Gratuitement",
+      get_pro: "Obtenir l'accès à vie",
+      contact_sales: "Contactez les ventes",
+      popular: "Populaire",
+      native_title: "Expérience Native",
+      native_desc: "Construit avec Swift pour macOS. Pas d'Electron, pas de lag. Performance pure et efficace.",
+      private_title: "Privé et Sécurisé",
+      private_desc: "Vos données restent dans votre compte iCloud. Nous n'avons pas accès à vos configurations.",
+      features: {
+        starter: ["Éditeur Visuel Zshrc", "Surlignage de base", "Historique local"],
+        pro: ["Synchro sécurisée iCloud", "Docteur IA d'environnement", "Moteur de restauration auto", "Support prioritaire"],
+        enterprise: ["Partage d'équipe", "Intégration SSO", "Tableau de bord admin", "Journaux d'audit"]
+      }
+    },
+    download_page: {
+      title: "Merci pour le téléchargement !",
+      subtitle: "Votre téléchargement devrait commencer automatiquement dans quelques secondes...",
+      next_steps: "Étapes Suivantes",
+      step1: "Ouvrez le fichier ZshrcManager.dmg téléchargé",
+      step2: "Faites glisser Zshrc Manager vers votre dossier Applications",
+      step3: "Ouvrez depuis Launchpad et commencez votre voyage !",
+      not_started: "Le téléchargement n'a pas commencé ?",
+      manual_link: "Cliquez ici pour télécharger manuellement",
+      back_home: "Retour à l'accueil"
     },
     trust: {
       title: "Approuvé par les Développeurs",
@@ -1043,7 +1127,7 @@ export const translations: Record<Language, any> = {
       title: "Prêt à transformer votre expérience Zsh ?",
       subtitle: "Rejoignez plus de 10 000 développeurs qui maîtrisent leur terminal.",
       download: "Télécharger maintenant",
-      version: "Version 2.1.0",
+      version: "Version 1.0.0",
       requires: "Requis macOS 12+"
     },
     socialProof: {
@@ -1108,28 +1192,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "Einfache, transparente Preise",
-      subtitle: "Einmalzahlung. Lebenslanger Zugriff. Kein Abo.",
-      lifetime_license: "Lebenslange Lizenz",
-      lifetime_desc: "Alles, was Sie zur Beherrschung Ihres Terminals benötigen.",
-      forever: "auf Lebenszeit",
-      buy_now: "Jetzt loslegen",
-      guarantee: "Inklusive 30-Tage-Geld-zurück-Garantie.",
-      trusted_by: "Von über 10.000 Entwicklern weltweit geschätzt",
-      safe_secure: "Sicher & Geschützt",
-      safe_desc: "Ihre Daten verlassen niemals Ihr Gerät. iCloud-Sync ist Ende-zu-Ende verschlüsselt.",
-      money_back: "30 Tage Geld-zurück",
-      money_desc: "Wenn Sie nicht zufrieden sind, erstatten wir den Kaufpreis innerhalb von 30 Tagen.",
-      testimonial_text: "Zshrc Manager hat die Art und Weise, wie ich meine Terminal-Umgebung verwalte, komplett verändert. Die Einmalzahlung war die beste Investition in mein Dev-Setup.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "Senior DevOps Engineer",
-      features: [
-        "Native macOS Anwendung",
-        "Visueller Zshrc-Editor",
-        "Sicherer iCloud-Sync",
-        "Lebenslange Updates",
-        "Premium-Support"
-      ]
+      title: "Gestalten Sie Ihren Terminal-Flow",
+      subtitle: "Professionelle Tools für moderne Entwickler. Einmalzahlung, lebenslange Updates.",
+      plans_label: "Pläne & Preise",
+      starter: "Starter",
+      pro: "Lifetime Pro",
+      enterprise: "Enterprise",
+      free: "0 €",
+      pro_price: "19,90 €",
+      team_price: "Team",
+      download_free: "Kostenlos herunterladen",
+      get_pro: "Lebenslangen Zugriff erhalten",
+      contact_sales: "Vertrieb kontaktieren",
+      popular: "Beliebt",
+      native_title: "Native Erfahrung",
+      native_desc: "Mit Swift für macOS gebaut. Kein Electron, kein Lag. Reine, effiziente Leistung.",
+      private_title: "Privat & Sicher",
+      private_desc: "Ihre Terminal-Daten bleiben in Ihrem iCloud-Konto. Wir haben keinen Zugriff.",
+      features: {
+        starter: ["Visueller Zshrc-Editor", "Basis-Highlighting", "Lokale Historie"],
+        pro: ["Sicherer iCloud-Sync", "Umgebungs-KI-Doktor", "Auto-Restore-Engine", "Prioritäts-Support"],
+        enterprise: ["Team-Sharing", "SSO-Integration", "Admin-Dashboard", "Audit-Logs"]
+      }
+    },
+    download_page: {
+      title: "Vielen Dank für den Download!",
+      subtitle: "Ihr Download sollte in wenigen Sekunden automatisch starten...",
+      next_steps: "Nächste Schritte",
+      step1: "Öffnen Sie die heruntergeladene ZshrcManager.dmg-Datei",
+      step2: "Ziehen Sie Zshrc Manager in Ihren Programme-Ordner",
+      step3: "Vom Launchpad öffnen und Terminal-Reise starten!",
+      not_started: "Download nicht gestartet?",
+      manual_link: "Hier klicken für manuellen Download",
+      back_home: "Zurück zur Startseite"
     },
     trust: {
       title: "Von Entwicklern geschätzt",
@@ -1201,7 +1296,7 @@ export const translations: Record<Language, any> = {
       title: "Bereit, Ihr Zsh-Erlebnis zu transformieren?",
       subtitle: "Schließen Sie sich über 10.000 Entwicklern an, die ihr Terminal beherrschen.",
       download: "Jetzt herunterladen",
-      version: "Version 2.1.0",
+      version: "Version 1.0.0",
       requires: "Erfordert macOS 12+"
     },
     socialProof: {
@@ -1259,28 +1354,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "Yksinkertainen ja läpinäkyvä hinnoittelu",
-      subtitle: "Kertamaksu. Elinikäinen pääsy. Ei toistuvia tilauksia.",
-      lifetime_license: "Elinikäinen lisenssi",
-      lifetime_desc: "Kaikki mitä tarvitset päätteen hallintaan.",
-      forever: "ikuisesti",
-      buy_now: "Aloita nyt",
-      guarantee: "Sisältää 30 päivän rahat takaisin -takuun.",
-      trusted_by: "Yli 10 000 kehittäjän luottama maailmanlaajuisesti",
-      safe_secure: "Turvallinen & Luotettava",
-      safe_desc: "Tietosi eivät koskaan lähde laitteeltasi. iCloud-synkronointi on salattu.",
-      money_back: "30 päivän palautusoikeus",
-      money_desc: "Jos et ole tyytyväinen, palautamme maksun 30 päivän kuluessa.",
-      testimonial_text: "Zshrc Manager on täysin muuttanut tavan, jolla hallitsen pääteympäristöäni. Kertamaksu oli paras investointi kehitysympäristööni.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "Senior DevOps -insinööri",
-      features: [
-        "Natiivi macOS-sovellus",
-        "Visuaalinen Zshrc-editori",
-        "Turvallinen iCloud-synkronointi",
-        "Elinikäiset päivitykset",
-        "Premium-tuki"
-      ]
+      title: "Suunnittele terminaalisi työnkulku",
+      subtitle: "Ammattilaistyökalut moderneille kehittäjille. Kertamaksu, elinikäiset päivitykset.",
+      plans_label: "Suunnitelmat & Hinnoittelu",
+      starter: "Starter",
+      pro: "Lifetime Pro",
+      enterprise: "Enterprise",
+      free: "0 €",
+      pro_price: "19,90 €",
+      team_price: "Tiimi",
+      download_free: "Lataa ilmaiseksi",
+      get_pro: "Hanki elinikäinen pääsy",
+      contact_sales: "Ota yhteyttä myyntiin",
+      popular: "Suosittu",
+      native_title: "Natiivi kokemus",
+      native_desc: "Rakennettu Swiftillä macOS:lle. Ei Electronia, ei viivettä. Puhdas ja tehokas suorituskyky.",
+      private_title: "Yksityinen & Turvallinen",
+      private_desc: "Terminaalitietosi pysyvät iCloud-tililläsi. Emme pääse käsiksi asetuksiisi.",
+      features: {
+        starter: ["Visuaalinen Zshrc-editori", "Peruskorostus", "Paikallinen historia"],
+        pro: ["Turvallinen iCloud-synkronointi", "Ympäristön tekoälytohtori", "Automaattinen palautusmoottori", "Prioriteettituki"],
+        enterprise: ["Tiimijako", "SSO-integraatio", "Ylläpitäjän kojelauta", "Audit-logit"]
+      }
+    },
+    download_page: {
+      title: "Kiitos latauksesta!",
+      subtitle: "Latauksesi pitäisi alkaa automaattisesti muutaman sekunnin kuluttua...",
+      next_steps: "Seuraavat vaiheet",
+      step1: "Avaa ladattu ZshrcManager.dmg-tiedosto",
+      step2: "Vedä Zshrc Manager Sovellukset-kansioosi",
+      step3: "Avaa Launchpadista ja aloita terminaalimatkasi!",
+      not_started: "Lataus ei alkanut?",
+      manual_link: "Napsauta tästä ladataksesi manuaalisesti",
+      back_home: "Takaisin kotiin"
     },
     trust: {
       title: "Kehittäjien luottama",
@@ -1417,28 +1523,39 @@ export const translations: Record<Language, any> = {
       ]
     },
     pricing_page: {
-      title: "Простая и прозрачная цена",
-      subtitle: "Разовый платеж. Пожизненный доступ. Без подписок.",
-      lifetime_license: "Пожизненная лицензия",
-      lifetime_desc: "Все, что нужно для освоения терминала.",
-      forever: "навсегда",
-      buy_now: "Начать прямо сейчас",
-      guarantee: "Включает 30-дневную гарантию возврата денег.",
-      trusted_by: "Доверяют более 10 000 разработчиков по всему миру",
-      safe_secure: "Надежно и безопасно",
-      safe_desc: "Ваши данные никогда не покидают устройство. iCloud синхронизация зашифрована.",
-      money_back: "30 дней на возврат",
-      money_desc: "Если вы не будете довольны, мы вернем деньги в течение 30 дней.",
-      testimonial_text: "Zshrc Manager полностью изменил мой подход к управлению терминалом. Разовая покупка стала лучшим вложением в мою среду разработки.",
-      testimonial_author: "Alex Rivera",
-      testimonial_role: "Старший DevOps-инженер",
-      features: [
-        "Нативное приложение для macOS",
-        "Визуальный редактор Zshrc",
-        "Безопасная синхронизация iCloud",
-        "Пожизненные обновления",
-        "Премиум-поддержка"
-      ]
+      title: "Спроектируйте свой рабочий процесс",
+      subtitle: "Профессиональные инструменты для современных разработчиков. Разовый платеж, пожизненные обновления.",
+      plans_label: "Планы и Цены",
+      starter: "Starter",
+      pro: "Lifetime Pro",
+      enterprise: "Enterprise",
+      free: "0 ₽",
+      pro_price: "1990 ₽",
+      team_price: "Команда",
+      download_free: "Скачать бесплатно",
+      get_pro: "Получить пожизненный доступ",
+      contact_sales: "Связаться с отделом продаж",
+      popular: "Популярный",
+      native_title: "Нативный опыт",
+      native_desc: "Создано на Swift для macOS. Никакого Electron, никаких задержек. Чистая производительность.",
+      private_title: "Приватно и Безопасно",
+      private_desc: "Ваши данные терминала хранятся в вашем аккаунте iCloud. У нас нет доступа.",
+      features: {
+        starter: ["Визуальный редактор Zshrc", "Базовая подсветка", "Локальная история"],
+        pro: ["Безопасная синхронизация iCloud", "AI-доктор окружения", "Движок авто-восстановления", "Приоритетная поддержка"],
+        enterprise: ["Командный доступ", "SSO интеграция", "Панель администратора", "Журналы аудита"]
+      }
+    },
+    download_page: {
+      title: "Спасибо за скачивание!",
+      subtitle: "Ваша загрузка начнется автоматически через несколько секунд...",
+      next_steps: "Следующие шаги",
+      step1: "Откройте загруженный файл ZshrcManager.dmg",
+      step2: "Перетащите Zshrc Manager в папку Applications",
+      step3: "Откройте из Launchpad и начните свое путешествие!",
+      not_started: "Загрузка не началась?",
+      manual_link: "Нажмите здесь, чтобы скачать вручную",
+      back_home: "Вернуться на главную"
     },
     trust: {
       title: "Выбор разработчиков",

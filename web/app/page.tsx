@@ -21,14 +21,14 @@ export default function Home() {
     "applicationCategory": "DeveloperApplication",
     "offers": {
       "@type": "Offer",
-      "price": "29.00",
+      "price": "19.90",
       "priceCurrency": "USD"
     },
     "description": "The most intuitive macOS GUI to manage your terminal environment. One-click beautification, environment management, and cloud sync."
   };
 
   return (
-    <main className="relative min-h-screen pb-0">
+    <main className="relative min-h-screen pb-0 bg-black text-white antialiased">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
@@ -38,8 +38,8 @@ export default function Home() {
       <div className="bg-glow" style={{ top: '80%', right: '-100px', opacity: 0.1, background: 'radial-gradient(circle, var(--accent-cyan) 0%, transparent 70%)' }} />
       
       {/* Full-width Sticky Navigation */}
-      <header id="site-header" className="fixed top-0 left-0 right-0 z-[9999]">
-        <div className="container h-20 flex items-center justify-between px-6">
+      <header id="site-header" className="fixed top-0 left-0 right-0 z-[9999] border-b border-white/5 bg-black/40 backdrop-blur-xl">
+        <div className="container h-20 flex items-center justify-between">
           <div className="flex items-center gap-3">
              <div className="w-10 h-10 rounded-xl bg-accent-cyan flex items-center justify-center shadow-[0_0_20px_rgba(0,216,192,0.4)]">
                 <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
@@ -47,7 +47,7 @@ export default function Home() {
                   <line x1="12" y1="19" x2="20" y2="19" />
                 </svg>
              </div>
-             <span className="text-xl font-semibold tracking-tighter text-white">Zshrc Manager</span>
+             <span className="text-xl font-semibold tracking-tight text-white">Zshrc Manager</span>
           </div>
           
           <div className="hidden lg:flex items-center gap-8 text-xs font-semibold text-secondary uppercase tracking-[0.1em]">
@@ -106,7 +106,7 @@ export default function Home() {
                  </>
                )}
              </div>
-             <a href="#" className="btn-nav">
+             <a href="/download" className="btn-nav font-semibold">
                {t.nav.download}
                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                  <path d="M12 17V3M6 11l6 6 6-6M19 21H5" />
@@ -116,35 +116,35 @@ export default function Home() {
         </div>
       </header>
 
-      <section className="section pt-48 pb-32 overflow-hidden">
-        <div className="container max-w-5xl text-center">
-            <div className="flex justify-center items-center gap-4 mb-8">
+      <section className="section pt-48 overflow-hidden">
+        <div className="container text-center">
+            <div className="flex justify-center items-center gap-4 mb-10">
               <div className="badge">
                  <span className="text-sm"></span>
                  {t.hero.badge}
               </div>
-              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-[11px] font-bold text-secondary uppercase tracking-widest">
+              <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 text-[11px] font-semibold text-secondary uppercase tracking-widest">
                 <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
                 {t.socialProof.count} {t.socialProof.label}
               </div>
             </div>
             
-            <h1 className="text-6xl lg:text-7xl leading-tight tracking-[-0.04em] font-black max-w-4xl mx-auto mb-6">
+            <h1 className="text-6xl lg:text-8xl leading-[1.1] tracking-tighter font-semibold max-w-5xl mx-auto mb-8">
               {t.hero?.title}
             </h1>
             
-            <p className="text-xl lg:text-2xl text-secondary max-w-2xl mx-auto leading-relaxed font-medium opacity-80 mb-12">
+            <p className="text-xl lg:text-2xl text-secondary max-w-2xl mx-auto leading-relaxed font-normal opacity-70 mb-16">
               {t.hero.subtitle}
             </p>
           
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full mb-16">
-            <a href="#" className="btn-primary">
+          <div className="flex flex-col md:flex-row items-center justify-center gap-6 w-full mb-24">
+            <a href="/pricing" className="btn-primary font-semibold">
               {t.hero.getStarted}
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
                 <path d="M5 12h14M12 5l7 7-7 7"/>
               </svg>
             </a>
-            <a href="#features" className="btn-secondary group">
+            <a href="#features" className="btn-secondary group font-semibold">
               {t.hero.learnMore}
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="group-hover:translate-x-1 transition-transform">
                 <path d="M9 18l6-6-6-6" />
@@ -153,18 +153,17 @@ export default function Home() {
           </div>
 
           {/* Homebrew Command Area */}
-          <div className="max-w-2xl mx-auto mt-12 animate-in fade-in slide-in-from-bottom-8 duration-1000 delay-500">
+          <div className="max-w-2xl mx-auto mt-20">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-accent-cyan/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
               <div className="relative bg-[#080808] rounded-2xl p-2 pl-6 pr-2 flex items-center justify-between border border-white/5 hover:border-accent-cyan/30 transition-all duration-500">
                 <div className="flex items-center gap-3">
-                  <span className="text-accent-cyan font-black text-sm">$</span>
+                  <span className="text-accent-cyan font-semibold text-sm">$</span>
                   <code className="text-sm font-mono text-secondary group-hover:text-white transition-colors">brew install --cask zshrc-manager</code>
                 </div>
                 <button 
                   onClick={() => {
                     navigator.clipboard.writeText('brew install --cask zshrc-manager');
-                    // Optional: show a temporary toast or change icon
                   }}
                   className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-all text-secondary hover:text-accent-cyan active:scale-95"
                   title="Copy to clipboard"
@@ -176,30 +175,28 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            <p className="mt-4 text-[10px] uppercase tracking-[0.2em] font-black text-secondary/30 text-center">
+            <p className="mt-6 text-[10px] uppercase tracking-[0.3em] font-semibold text-secondary/30 text-center">
               {t.docs_subpages?.install_brew_desc || "Quick Install for Power Users"}
             </p>
           </div>
         </div>
       </section>
 
-      {/* Features Section - Optimized Grid Spacing */}
-      <section id="features" className="section py-24">
+      {/* Features Section */}
+      <section id="features" className="section py-40">
         <div className="container">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
             {(t.features?.cards || []).map((card: any, i: number) => (
               <div 
                 key={i} 
-                className="group relative p-12 rounded-[4rem] bg-[#080808] transition-all duration-700 flex flex-col h-full overflow-hidden"
+                className="group relative p-12 rounded-[3.5rem] bg-[#080808] border border-white/5 transition-all duration-500 flex flex-col h-full overflow-hidden hover:border-white/10"
               >
-                {/* Hover Glow Effect */}
                 <div className="absolute -top-24 -right-24 w-48 h-48 bg-accent-cyan/5 blur-[80px] rounded-full group-hover:bg-accent-cyan/10 transition-all duration-700" />
                 
                 <div className="relative z-10 flex flex-col items-center h-full text-center">
-                  <div className="mb-10">
-                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center text-accent-cyan group-hover:scale-110 group-hover:bg-accent-cyan group-hover:text-black transition-all duration-700 shadow-2xl relative overflow-hidden">
-                      <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" className="relative z-10">
+                  <div className="mb-12">
+                    <div className="w-16 h-16 rounded-2xl bg-white/[0.03] flex items-center justify-center text-accent-cyan group-hover:scale-110 group-hover:bg-accent-cyan group-hover:text-black transition-all duration-700 shadow-2xl">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                         <path d={
                           i === 0 ? "M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" :
                           i === 1 ? "M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" :
@@ -210,12 +207,12 @@ export default function Home() {
                     </div>
                   </div>
                   
-                  <h3 className="text-2xl font-bold tracking-tight text-white mb-6 group-hover:text-accent-cyan transition-colors duration-500">{card.title}</h3>
-                  <p className="text-base text-secondary mb-12 opacity-50 group-hover:opacity-90 transition-opacity duration-500 px-4 leading-relaxed">{card.desc}</p>
+                  <h3 className="text-2xl font-semibold tracking-tight text-white mb-6">{card.title}</h3>
+                  <p className="text-base text-zinc-500 mb-12 leading-relaxed opacity-80">{card.desc}</p>
                   
                   <div className="mt-auto flex flex-col items-center gap-3 w-full">
                     {(card.highlights || []).slice(0, 2).map((highlight: string, j: number) => (
-                      <span key={j} className="text-[10px] text-secondary/40 font-black uppercase tracking-[0.3em] truncate w-full">
+                      <span key={j} className="text-[10px] text-zinc-600 font-semibold uppercase tracking-[0.3em] truncate w-full">
                         {highlight}
                       </span>
                     ))}
@@ -227,39 +224,37 @@ export default function Home() {
         </div>
       </section>
 
-
-
       {/* FAQ Section */}
-      <section id="faq" className="section py-32">
+      <section id="faq" className="section py-48">
         <div className="container max-w-3xl">
-          <div className="text-center mb-20 space-y-4">
-            <h2 className="text-5xl font-semibold tracking-tight">{t.faq.title}</h2>
-            <p className="text-secondary opacity-60">{t.faq.subtitle}</p>
+          <div className="text-center mb-24 space-y-6">
+            <h2 className="text-5xl lg:text-6xl font-semibold tracking-tighter">{t.faq.title}</h2>
+            <p className="text-zinc-500 opacity-60 text-lg">{t.faq.subtitle}</p>
           </div>
-          <div className="flex flex-col gap-6">
+          <div className="flex flex-col gap-8">
             {(t.faq.items || []).map((item: any, i: number) => (
               <div 
                 key={i} 
-                className={`faq-item group relative rounded-3xl transition-all duration-500 ${activeFaq === i ? 'active bg-white/[0.03] shadow-2xl' : 'hover:bg-white/[0.01]'}`}
+                className={`faq-item group relative rounded-[2.5rem] transition-all duration-500 ${activeFaq === i ? 'active bg-white/[0.03] shadow-2xl' : 'hover:bg-white/[0.01]'}`}
               >
                 <button 
                   onClick={() => setActiveFaq(activeFaq === i ? null : i)}
-                  className="faq-question py-8 px-8 w-full text-left flex justify-between items-center group"
+                  className="faq-question py-10 px-10 w-full text-left flex justify-between items-center group"
                 >
                   <div className="flex items-center text-left">
-                    <span className="w-12 shrink-0 text-xs font-black text-accent-cyan/30 tracking-widest uppercase">{String(i + 1).padStart(2, '0')}</span>
-                    <span className={`text-xl font-bold transition-all duration-300 ${activeFaq === i ? 'text-accent-cyan' : 'text-primary group-hover:text-white'}`}>{item.q}</span>
+                    <span className="w-12 shrink-0 text-xs font-semibold text-accent-cyan/30 tracking-widest uppercase">{String(i + 1).padStart(2, '0')}</span>
+                    <span className={`text-xl font-semibold transition-all duration-300 ${activeFaq === i ? 'text-accent-cyan' : 'text-primary'}`}>{item.q}</span>
                   </div>
-                  <div className={`w-10 h-10 flex items-center justify-center transition-all duration-500 ${activeFaq === i ? 'text-accent-cyan rotate-180' : 'text-secondary group-hover:text-white'}`}>
+                  <div className={`w-10 h-10 flex items-center justify-center transition-all duration-500 ${activeFaq === i ? 'text-accent-cyan rotate-180' : 'text-secondary'}`}>
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
                       <path d="m6 9 6 6 6-6" />
                     </svg>
                   </div>
                 </button>
                 <div className={`faq-answer transition-all duration-500 ${activeFaq === i ? 'opacity-100' : 'opacity-0'}`}>
-                  <div className="px-8 pb-8 pt-2 flex">
+                  <div className="px-10 pb-10 pt-2 flex">
                     <div className="w-12 shrink-0" />
-                    <p className="text-lg text-secondary/70 leading-relaxed max-w-2xl border-l-2 border-accent-cyan/20 pl-6">{item.a}</p>
+                    <p className="text-lg text-zinc-500 leading-relaxed max-w-2xl border-l-2 border-accent-cyan/20 pl-8">{item.a}</p>
                   </div>
                 </div>
               </div>
@@ -268,92 +263,51 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-24 relative overflow-hidden">
-        <div className="container text-center relative z-10">
-          <div className="p-16 lg:p-24 rounded-[4rem] bg-white/[0.02] relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-br from-accent-cyan/[0.05] via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-b from-accent-cyan/[0.03] to-transparent pointer-events-none" />
-            
-            <div className="relative z-10 flex flex-col items-center">
-              <h2 className="text-4xl lg:text-5xl font-bold tracking-tight max-w-3xl mx-auto leading-tight mb-4">{t.cta?.title}</h2>
-              <p className="text-xl text-secondary max-w-xl mx-auto mb-12">{t.cta?.subtitle}</p>
-              
-              <div className="flex flex-col md:flex-row items-center justify-center gap-12 w-full">
-              <a href="#" className="btn-primary px-16 py-6 text-lg font-black">
-                {t.cta?.download}
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3">
-                  <path d="M5 12h14M12 5l7 7-7 7" />
-                </svg>
-              </a>
-              <div className="flex flex-col items-center md:items-start gap-1.5 pl-12 h-14 justify-center">
-                <span className="text-white text-xs font-black tracking-widest uppercase">{t.cta?.version}</span>
-                <span className="text-secondary/40 text-[10px] font-bold uppercase tracking-[0.2em]">{t.cta?.requires}</span>
-              </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-accent-cyan/5 blur-[120px] -z-10" />
-      </section>
-
-      {/* Professional Footer */}
-      <footer className="py-16 lg:py-24 bg-black relative z-[400]">
-        <div className="container max-w-6xl">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-12 lg:gap-24 mb-16">
-            {/* Brand */}
-            <div className="col-span-1 md:col-span-1 flex flex-col gap-6">
+      {/* Footer */}
+      <footer className="section border-t border-white/5 relative z-[400] pt-32 pb-24">
+        <div className="container">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-16 mb-20">
+            <div className="col-span-1 md:col-span-1 flex flex-col gap-8">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 rounded-lg bg-accent-cyan flex items-center justify-center shadow-[0_0_15px_rgba(0,216,192,0.3)]">
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <div className="w-8 h-8 rounded-lg bg-accent-cyan flex items-center justify-center">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#000" strokeWidth="3">
                     <polyline points="4 17 10 11 4 5" />
                     <line x1="12" y1="19" x2="20" y2="19" />
                   </svg>
                 </div>
-                <span className="text-xl font-bold text-white tracking-tight">{t.nav.title || "Zshrc Manager"}</span>
+                <span className="text-xl font-semibold text-white tracking-tight">{t.nav.title || "Zshrc Manager"}</span>
               </div>
-              <p className="text-sm text-secondary leading-relaxed opacity-70">
+              <p className="text-sm text-zinc-500 leading-relaxed opacity-70">
                 {t.footer?.tagline}
               </p>
             </div>
 
-            {/* Product */}
-            <div className="flex flex-col gap-4">
-              <h4 className="text-sm font-bold text-white tracking-wider">{t.footer?.product || "Product"}</h4>
-              <a href="#features" className="text-sm text-secondary hover:text-white transition-colors">{t.nav.features}</a>
-              <a href="/docs" className="text-sm text-secondary hover:text-white transition-colors">{t.footer?.docs || "Documentation"}</a>
-              <a href="/changelog" className="text-sm text-secondary hover:text-white transition-colors">{t.footer?.changelog || t.nav.changelog}</a>
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-semibold text-white tracking-wider uppercase">{t.footer?.product || "Product"}</h4>
+              <a href="#features" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.nav.features}</a>
+              <a href="/docs" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.docs || "Documentation"}</a>
+              <a href="/changelog" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.changelog || t.nav.changelog}</a>
             </div>
 
-            {/* Support */}
-            <div className="flex flex-col gap-4">
-              <h4 className="text-sm font-bold text-white tracking-wider">{t.footer?.support || "Support"}</h4>
-              <a href="#faq" className="text-sm text-secondary hover:text-white transition-colors">{t.nav.faq}</a>
-              <a href="/contact" className="text-sm text-secondary hover:text-white transition-colors">{t.footer?.contact || "Contact Us"}</a>
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-semibold text-white tracking-wider uppercase">{t.footer?.support || "Support"}</h4>
+              <a href="#faq" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.nav.faq}</a>
+              <a href="/contact" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.contact || "Contact Us"}</a>
             </div>
 
-            {/* Legal */}
-            <div className="flex flex-col gap-4">
-              <h4 className="text-sm font-bold text-white tracking-wider">{t.footer?.legal || "Legal"}</h4>
-              <a href="/privacy" className="text-sm text-secondary hover:text-white transition-colors">
-                {t.footer?.links?.[0] || "Privacy Policy"}
-              </a>
-              <a href="/terms" className="text-sm text-secondary hover:text-white transition-colors">
-                {t.footer?.links?.[1] || "Terms of Service"}
-              </a>
-              <a href="/refund" className="text-sm text-secondary hover:text-white transition-colors">
-                {t.footer?.refund || "Refund Policy"}
-              </a>
+            <div className="flex flex-col gap-6">
+              <h4 className="text-sm font-semibold text-white tracking-wider uppercase">{t.footer?.legal || "Legal"}</h4>
+              <a href="/privacy" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.links?.[0]}</a>
+              <a href="/terms" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.links?.[1]}</a>
+              <a href="/refund" className="text-sm text-zinc-500 hover:text-white transition-colors">{t.footer?.refund}</a>
             </div>
           </div>
 
-          <div className="pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-secondary opacity-50">
+          <div className="pt-12 flex flex-col md:flex-row items-center justify-between gap-8 opacity-40">
+            <p className="text-xs font-normal tracking-wider">
               {t.footer.copyright}
             </p>
-            <div className="flex items-center gap-6">
-              <a href="https://maczsh.com" className="text-xs font-semibold text-accent-cyan uppercase tracking-widest hover:opacity-70 transition-opacity">maczsh.com</a>
-            </div>
+            <a href="https://maczsh.com" className="text-xs font-semibold text-accent-cyan uppercase tracking-[0.3em]">maczsh.com</a>
           </div>
         </div>
       </footer>

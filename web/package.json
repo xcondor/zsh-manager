@@ -8,6 +8,7 @@
     "pages:build": "npx @cloudflare/next-on-pages",
     "deploy": "chmod +x deploy.sh && ./deploy.sh",
     "start": "next start",
+    "optimize-seo": "node scripts/optimize-seo.mjs",
     "lint": "eslint"
   },
   "dependencies": {
