@@ -9,10 +9,26 @@ export function useLanguage() {
 
   useEffect(() => {
     setMounted(true);
-    const saved = localStorage.getItem('lang') as Language;
+    
+    // 1. 优先级最高：localStorage (用户之前的手动选择)
+    let saved = localStorage.getItem('lang') as Language;
+    
+    // 2. 优先级次之：Cookie (Middleware 根据 IP/系统语言识别的结果)
+    if (!saved || !translations[saved]) {
+      const cookieValue = document.cookie
+        .split('; ')
+        .find(row => row.startsWith('lang='))
+        ?.split('=')[1] as Language;
+      
+      if (cookieValue && translations[cookieValue]) {
+        saved = cookieValue;
+      }
+    }
+
     if (saved && translations[saved]) {
       setLang(saved);
     } else {
+      // 3. 最后兜底：浏览器 navigator 对象侦测
       const browserLang = navigator.language.split('-')[0];
       if (browserLang === 'zh') {
         setLang(navigator.language.includes('Hant') || navigator.language.includes('TW') || navigator.language.includes('HK') ? 'zh_Hant' : 'zh');
@@ -43,6 +59,8 @@ export function useLanguage() {
   const changeLang = (l: Language) => {
     setLang(l);
     localStorage.setItem('lang', l);
+    // 同时同步更新 Cookie，确保下次进入中间件时能识别
+    document.cookie = `lang=${l}; path=/; max-age=${60 * 60 * 24 * 30}; samesite=lax`;
     window.dispatchEvent(new CustomEvent('languagechange_custom', { detail: l }));
   };
 
