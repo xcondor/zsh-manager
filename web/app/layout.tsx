@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 
 const inter = Inter({
@@ -41,23 +42,23 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
-  },
-  twitter: {
+    },
+    twitter: {
     card: "summary_large_image",
     title: "Zshrc Manager — Pro macOS Terminal Environment GUI",
     description: "One-click beautification and management for your macOS terminal environment.",
     images: ["/og-image.png"],
     creator: "@zshrcmanager",
-  },
-  alternates: {
+    },
+    alternates: {
     canonical: "/",
     languages: {
       'en-US': '/en',
       'zh-CN': '/zh',
       'ja-JP': '/ja',
     },
-  },
-  robots: {
+    },
+    robots: {
     index: true,
     follow: true,
     googleBot: {
@@ -67,7 +68,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-  },
+    },
 };
 
 export default function RootLayout({
@@ -77,6 +78,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable}`}>
+      <head>
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-CPSZG0K3VX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-CPSZG0K3VX');
+          `}
+        </Script>
+      </head>
       <body className="antialiased">{children}</body>
     </html>
   );
