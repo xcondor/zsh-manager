@@ -13,8 +13,29 @@ fi
 
 BUNDLE_ID="com.xingyc.zshrc-manager"
 DIST_DIR="dist"
+
+# Versioning Logic
+VERSION_FILE="VERSION"
+BUILD_FILE="BUILD"
+
+if [ -f "$VERSION_FILE" ]; then
+    VERSION=$(cat "$VERSION_FILE")
+else
+    VERSION="1.0.0"
+    echo "$VERSION" > "$VERSION_FILE"
+fi
+
+if [ -f "$BUILD_FILE" ]; then
+    BUILD=$(cat "$BUILD_FILE")
+    BUILD=$((BUILD + 1))
+else
+    BUILD=1
+fi
+echo "$BUILD" > "$BUILD_FILE"
+
+FULL_VERSION="${VERSION}-b${BUILD}"
 APP_BUNDLE="$DIST_DIR/$APP_NAME.app"
-DMG_NAME="$DIST_DIR/$APP_NAME.dmg"
+DMG_NAME="$DIST_DIR/${APP_NAME}-v${FULL_VERSION}.dmg"
 
 echo "🚀 Starting packaging process ($BUILD_CONFIG)..."
 
@@ -53,6 +74,13 @@ DEST_PLIST="$APP_BUNDLE/Contents/Info.plist"
 
 if [ -f "$TEMPLATE_PLIST" ]; then
     cp "$TEMPLATE_PLIST" "$DEST_PLIST"
+    # Update version info
+    /usr/libexec/PlistBuddy -c "Set :CFBundleShortVersionString $VERSION" "$DEST_PLIST" 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :CFBundleShortVersionString string $VERSION" "$DEST_PLIST"
+    
+    /usr/libexec/PlistBuddy -c "Set :CFBundleVersion $BUILD" "$DEST_PLIST" 2>/dev/null || \
+    /usr/libexec/PlistBuddy -c "Add :CFBundleVersion string $BUILD" "$DEST_PLIST"
+
     # Update CFBundleExecutable in the plist if in debug mode
     if [ "$DEBUG" = "1" ]; then
         /usr/libexec/PlistBuddy -c "Set :CFBundleExecutable $APP_NAME" "$DEST_PLIST"
@@ -77,6 +105,10 @@ else
     <string>AppIcon.icns</string>
     <key>LSMinimumSystemVersion</key>
     <string>12.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>$VERSION</string>
+    <key>CFBundleVersion</key>
+    <string>$BUILD</string>
 </dict>
 </plist>
 EOF

@@ -122,7 +122,7 @@ struct SettingsView: View {
                                         .foregroundColor(.blue)
                                     VStack(alignment: .leading, spacing: 4) {
                                         Text("Zshrc Manager").font(.system(size: 14, weight: .bold))
-                                        Text("Version 1.2.0 (Build 20240427)").font(.system(size: 12)).foregroundColor(.secondary)
+                                        Text("Version 2.1.0 (Build 20240511)").font(.system(size: 12)).foregroundColor(.secondary)
                                     }
                                     Spacer()
                                 }
