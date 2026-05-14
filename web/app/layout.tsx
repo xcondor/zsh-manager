@@ -42,23 +42,23 @@ export const metadata: Metadata = {
     ],
     locale: "en_US",
     type: "website",
-    },
-    twitter: {
+  },
+  twitter: {
     card: "summary_large_image",
     title: "Zshrc Manager — Pro macOS Terminal Environment GUI",
     description: "One-click beautification and management for your macOS terminal environment.",
     images: ["/og-image.png"],
     creator: "@zshrcmanager",
-    },
-    alternates: {
+  },
+  alternates: {
     canonical: "/",
     languages: {
       'en-US': '/en',
       'zh-CN': '/zh',
       'ja-JP': '/ja',
     },
-    },
-    robots: {
+  },
+  robots: {
     index: true,
     follow: true,
     googleBot: {
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
       'max-image-preview': 'large',
       'max-snippet': -1,
     },
-    },
+  },
 };
 
 export default function RootLayout({
@@ -78,7 +78,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className={`scroll-smooth ${inter.variable}`}>
-      <head>
+      <body className="antialiased">
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-CPSZG0K3VX"
           strategy="afterInteractive"
@@ -92,8 +92,8 @@ export default function RootLayout({
             gtag('config', 'G-CPSZG0K3VX');
           `}
         </Script>
-      </head>
-      <body className="antialiased">{children}</body>
+        {children}
+      </body>
     </html>
   );
 }

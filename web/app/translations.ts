@@ -185,14 +185,14 @@ export const translations: Record<Language, any> = {
     },
     cta: {
       title: "Ready to transform your Zsh experience?",
-      subtitle: "Join 10,000+ developers who have mastered their terminal environment.",
+      subtitle: "Master your terminal workflow with Zshrc Manager.",
       download: "Download Now",
       version: "Version 1.0.0",
       requires: "Requires macOS 12+"
     },
     socialProof: {
-      count: "10,000+",
-      label: "Downloads & counting"
+      count: "Swift",
+      label: "Native macOS Architecture"
     },
     download_page: {
       title: "Thanks for downloading!",
@@ -416,14 +416,14 @@ export const translations: Record<Language, any> = {
     },
     cta: {
       title: "准备好提升您的 Zsh 体验了吗？",
-      subtitle: "加入 10,000+ 已经掌控终端环境的开发者。",
+      subtitle: "加入追求极致效率的开发者行列。",
       download: "立即下载",
       version: "版本 1.0.0",
       requires: "需要 macOS 12+"
     },
     socialProof: {
-      count: "10,000+",
-      label: "次下载量并持续增长"
+      count: "原生",
+      label: "专为 macOS 性能深度优化"
     },
     download_page: {
       title: "感谢下载！",
@@ -609,14 +609,14 @@ export const translations: Record<Language, any> = {
     },
     cta: {
       title: "準備好提升您的 Zsh 體驗了嗎？",
-      subtitle: "加入 10,000+ 已經掌控終端環境的開發者。",
+      subtitle: "加入追求極致效率的開發者行列。",
       download: "立即下載",
       version: "版本 1.0.0",
       requires: "需要 macOS 12+"
     },
     socialProof: {
-      count: "10,000+",
-      label: "次下載量並持續增長"
+      count: "原生",
+      label: "專為 macOS 性能深度優化"
     },
     faq: {
       title: "常見問題",
@@ -793,8 +793,8 @@ export const translations: Record<Language, any> = {
       requires: "macOS 12 이상 필요"
     },
     socialProof: {
-      count: "10,000+",
-      label: "다운로드 및 증가 중"
+      count: "Native",
+      label: "Optimized for macOS"
     },
     faq: {
       title: "자주 묻는 질문",
