@@ -129,7 +129,7 @@ export default function Home() {
               </div>
             </div>
             
-            <h1 className="text-6xl lg:text-8xl leading-[1.1] tracking-tighter font-semibold max-w-5xl mx-auto mb-8">
+            <h1 className="text-5xl lg:text-7xl leading-[1.1] tracking-tighter font-semibold max-w-5xl mx-auto mb-8">
               {t.hero?.title}
             </h1>
             
@@ -156,26 +156,40 @@ export default function Home() {
           <div className="max-w-2xl mx-auto mt-20">
             <div className="relative group">
               <div className="absolute -inset-1 bg-gradient-to-r from-accent-cyan/20 to-purple-500/20 rounded-2xl blur opacity-0 group-hover:opacity-100 transition duration-1000"></div>
-              <div className="relative bg-[#080808] rounded-2xl p-2 pl-6 pr-2 flex items-center justify-between border border-white/5 hover:border-accent-cyan/30 transition-all duration-500">
-                <div className="flex items-center gap-3">
-                  <span className="text-accent-cyan font-semibold text-sm">$</span>
-                  <code className="text-sm font-mono text-secondary group-hover:text-white transition-colors">brew install --cask zshrc-manager</code>
+              <div className="relative bg-[#0d0d0d] rounded-2xl overflow-hidden border border-white/10 shadow-2xl transition-all duration-500 group-hover:border-accent-cyan/30">
+                {/* Terminal Header */}
+                <div className="flex items-center px-5 py-3 bg-white/[0.03] border-b border-white/5">
+                  <div className="flex gap-2">
+                    <div className="w-3 h-3 rounded-full bg-[#ff5f56]/60" />
+                    <div className="w-3 h-3 rounded-full bg-[#ffbd2e]/60" />
+                    <div className="w-3 h-3 rounded-full bg-[#27c93f]/60" />
+                  </div>
+                  <div className="absolute left-1/2 -translate-x-1/2 text-[10px] font-bold text-secondary/30 tracking-[0.2em] uppercase">zsh — brew</div>
                 </div>
-                <button 
-                  onClick={() => {
-                    navigator.clipboard.writeText('brew install --cask zshrc-manager');
-                  }}
-                  className="p-3 bg-white/5 hover:bg-white/10 rounded-xl transition-all text-secondary hover:text-accent-cyan active:scale-95"
-                  title="Copy to clipboard"
-                >
-                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
-                    <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
-                    <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
-                  </svg>
-                </button>
+                {/* Terminal Body */}
+                <div className="p-8 flex items-center justify-between">
+                  <div className="flex items-center gap-4 overflow-hidden">
+                    <span className="text-accent-cyan font-mono text-lg font-bold">~</span>
+                    <code className="text-sm md:text-base font-mono text-white/90 selection:bg-accent-cyan/30 whitespace-nowrap overflow-x-auto scrollbar-hide">
+                      brew install --cask zshrc-manager
+                    </code>
+                  </div>
+                  <button 
+                    onClick={() => {
+                      navigator.clipboard.writeText('brew install --cask zshrc-manager');
+                    }}
+                    className="p-3 bg-white/5 hover:bg-accent-cyan hover:text-black rounded-xl transition-all text-secondary active:scale-95 shadow-xl ml-4"
+                    title="Copy to clipboard"
+                  >
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                      <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
+                      <path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1" />
+                    </svg>
+                  </button>
+                </div>
               </div>
             </div>
-            <p className="mt-6 text-[10px] uppercase tracking-[0.3em] font-semibold text-secondary/30 text-center">
+            <p className="mt-8 text-[11px] uppercase tracking-[0.2em] font-bold text-secondary/30 text-center">
               {t.docs_subpages?.install_brew_desc || "Quick Install for Power Users"}
             </p>
           </div>
