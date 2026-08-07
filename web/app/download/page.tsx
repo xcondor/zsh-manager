@@ -7,9 +7,21 @@ export default function DownloadPage() {
   const { lang, t, mounted } = useLanguage();
   const downloadUrl = "https://download.maczsh.com/ZshrcManager-v1.0.0-b2.dmg";
 
+  const trackDownload = (method: 'auto' | 'manual') => {
+    if (typeof window !== 'undefined' && (window as any).gtag) {
+      (window as any).gtag('event', 'file_download', {
+        file_name: 'ZshrcManager-v1.0.0-b2.dmg',
+        file_extension: 'dmg',
+        link_url: downloadUrl,
+        download_method: method
+      });
+    }
+  };
+
   useEffect(() => {
     // Elegant auto-trigger download
     const timer = setTimeout(() => {
+      trackDownload('auto');
       const link = document.createElement('a');
       link.href = downloadUrl;
       link.setAttribute('download', 'ZshrcManager.dmg');
@@ -95,6 +107,7 @@ export default function DownloadPage() {
             </p>
             <a 
               href={downloadUrl}
+              onClick={() => trackDownload('manual')}
               className="inline-flex items-center gap-3 text-accent-cyan hover:text-white transition-all font-semibold text-sm uppercase tracking-widest bg-accent-cyan/5 px-6 py-3 rounded-full border border-accent-cyan/20 hover:bg-accent-cyan/10"
             >
               {td?.manual_link || "CLICK HERE TO DOWNLOAD MANUALLY"}
