@@ -152,6 +152,24 @@ export default function Home() {
             </a>
           </div>
 
+          {/* macOS App Preview Mockup */}
+          <div className="app-mockup-container mb-24">
+            <div className="app-mockup-header">
+              <div className="app-mockup-dots">
+                <div className="app-mockup-dot red" />
+                <div className="app-mockup-dot yellow" />
+                <div className="app-mockup-dot green" />
+              </div>
+              <div className="app-mockup-title">Zshrc Manager — App Overview</div>
+            </div>
+            <img 
+              src="/screenshots/app-mockup.png" 
+              alt="Zshrc Manager App Preview" 
+              className="app-mockup-image"
+              loading="eager"
+            />
+          </div>
+
           {/* Homebrew Command Area */}
           <div className="max-w-2xl mx-auto mt-20">
             <div className="relative group">
